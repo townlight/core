@@ -150,7 +150,7 @@ https://github.com/CivicSuite/civicsuite/tree/main/docs/compatibility
 License
 -------
 
-Apache License 2.0. See LICENSE.
+Code: AGPL-3.0-only, with the TownLight Public Institution Exception for qualifying deployments. See LICENSE and LICENSE-EXCEPTION.md.
 
 Contributing
 ------------
