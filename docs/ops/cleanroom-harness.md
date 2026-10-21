@@ -4,12 +4,11 @@
 
 Status: CO-6 harness, added for outside-auditor reproduction.
 
-Current limitation: this historical harness keeps its fixed `0.22.1` offline
-version assertion. The repository is already at `1.2.1`, so running the harness
-on the current development head fails that assertion. The naming cleanup does
-not change the assertion or the historical attestation inputs and does not
-claim a passing current-head cleanroom run. The normal required `tests` check
-runs the current package release verification separately.
+The offline smoke compares the installed candidate's package version with the
+version declared in that candidate's `pyproject.toml`. A mismatch fails the
+smoke. The historical `v0.22.1` release checksum and Sigstore attestation checks
+remain separate and continue to verify their original release assets and
+workflow identity.
 
 The cleanroom harness proves the Townlight Core release gate and the public
 install-and-verify path from a pinned container with no inherited maintainer
