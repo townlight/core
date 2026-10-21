@@ -115,8 +115,11 @@ offline() {
     write_run_metadata
     run_step "offline-runtime-smoke" python - <<'PY'
 import civiccore
+import tomllib
+from pathlib import Path
 
-assert civiccore.__version__ == "0.22.1"
+project = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
+assert civiccore.__version__ == project["project"]["version"]
 assert callable(civiccore.validate_manifest)
 assert callable(civiccore.import_meeting_payload)
 assert callable(civiccore.plan_vendor_delta_request)

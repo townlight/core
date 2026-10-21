@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
+import sys
+
+import pytest
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -52,3 +56,39 @@ def test_cleanroom_ci_uploads_evidence_artifact() -> None:
     assert "bash scripts/run-civiccore-cleanroom.sh" in workflow
     assert "actions/upload-artifact" in workflow
     assert "CLEANROOM_RUN_COUNT: \"2\"" in workflow
+
+
+@pytest.mark.parametrize("runtime_version", ["9.8.7", "0.22.1", "1.2.1"])
+def test_offline_smoke_requires_candidate_version(
+    tmp_path: Path, runtime_version: str
+) -> None:
+    runner = read("scripts/cleanroom/civiccore-cleanroom-runner.sh")
+    marker = 'run_step "offline-runtime-smoke" python - <<\'PY\'\n'
+    smoke = runner.split(marker, 1)[1].split("\nPY", 1)[0]
+    (tmp_path / "pyproject.toml").write_text(
+        '[project]\nversion = "9.8.7"\n', encoding="utf-8"
+    )
+    exports = (
+        "validate_manifest",
+        "import_meeting_payload",
+        "plan_vendor_delta_request",
+        "validate_cron_expression",
+        "compute_onboarding_status",
+        "verify_persisted_audit_chain",
+    )
+    (tmp_path / "civiccore.py").write_text(
+        f"__version__ = {runtime_version!r}\n"
+        + "".join(f"def {name}(): pass\n" for name in exports),
+        encoding="utf-8",
+    )
+
+    result = subprocess.run(
+        [sys.executable, "-c", smoke], cwd=tmp_path, capture_output=True, text=True
+    )
+
+    if runtime_version == "9.8.7":
+        assert result.returncode == 0, result.stderr
+        assert "offline runtime smoke OK" in result.stdout
+    else:
+        assert result.returncode != 0
+        assert "AssertionError" in result.stderr
