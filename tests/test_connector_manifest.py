@@ -121,7 +121,7 @@ def test_manifest_detects_checksum_size_missing_and_version_mismatch(tmp_path) -
     with pytest.raises(ManifestValidationError, match="missing"):
         validate_manifest(manifest, base_path=tmp_path)
 
-    with pytest.raises(ManifestValidationError, match="CivicCore version mismatch"):
+    with pytest.raises(ManifestValidationError, match="Townlight Core version mismatch"):
         validate_manifest(manifest, expected_civiccore_version="9.9.9")
 
 

@@ -42,7 +42,7 @@ def test_authorize_bearer_roles_requires_config(monkeypatch: pytest.MonkeyPatch)
     with pytest.raises(HTTPException) as exc_info:
         authorize_bearer_roles(
             None,
-            service_name="CivicBudget",
+            service_name="Townlight Budget",
             feature_name="persisted workpaper retrieval",
             token_roles_env_var="CIVIC_TEST_AUTH_TOKEN_ROLES",
             allowed_roles={"workpaper_reader"},
@@ -63,7 +63,7 @@ def test_authorize_bearer_roles_rejects_missing_bearer_header(
     with pytest.raises(HTTPException) as exc_info:
         authorize_bearer_roles(
             None,
-            service_name="CivicBudget",
+            service_name="Townlight Budget",
             feature_name="persisted workpaper retrieval",
             token_roles_env_var="CIVIC_TEST_AUTH_TOKEN_ROLES",
             allowed_roles={"workpaper_reader"},
@@ -82,7 +82,7 @@ def test_authorize_bearer_roles_rejects_unmapped_token(
     with pytest.raises(HTTPException) as exc_info:
         authorize_bearer_roles(
             HTTPAuthorizationCredentials(scheme="Bearer", credentials="unknown-token"),
-            service_name="CivicBudget",
+            service_name="Townlight Budget",
             feature_name="persisted workpaper retrieval",
             token_roles_env_var="CIVIC_TEST_AUTH_TOKEN_ROLES",
             allowed_roles={"workpaper_reader"},
@@ -100,7 +100,7 @@ def test_authorize_bearer_roles_rejects_token_without_allowed_role(
     with pytest.raises(HTTPException) as exc_info:
         authorize_bearer_roles(
             HTTPAuthorizationCredentials(scheme="Bearer", credentials="reader-token"),
-            service_name="CivicBudget",
+            service_name="Townlight Budget",
             feature_name="persisted workpaper retrieval",
             token_roles_env_var="CIVIC_TEST_AUTH_TOKEN_ROLES",
             allowed_roles={"workpaper_reader"},
@@ -122,7 +122,7 @@ def test_authorize_bearer_roles_returns_principal_for_allowed_token(
 
     principal = authorize_bearer_roles(
         HTTPAuthorizationCredentials(scheme="Bearer", credentials="reader-token"),
-        service_name="CivicBudget",
+        service_name="Townlight Budget",
         feature_name="persisted workpaper retrieval",
         token_roles_env_var="CIVIC_TEST_AUTH_TOKEN_ROLES",
         allowed_roles={"workpaper_reader"},
