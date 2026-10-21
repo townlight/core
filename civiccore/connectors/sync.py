@@ -246,7 +246,7 @@ def apply_sync_run_result(
     now: datetime | None = None,
     policy: SyncCircuitPolicy | None = None,
 ) -> SyncCircuitState:
-    """Apply one run result using the shared CivicSuite circuit-breaker pattern."""
+    """Apply one run result using the shared Townlight circuit-breaker pattern."""
 
     active_policy = policy or SyncCircuitPolicy()
     current_time = now or datetime.now(UTC)
@@ -348,7 +348,7 @@ def build_sync_source_status(
 ) -> SyncSourceStatus:
     """Return shared source-list health, pause, and next-run projection.
 
-    Product modules own persistence and authorization. CivicCore owns the
+    Product modules own persistence and authorization. Townlight Core owns the
     repeated semantics: circuit-open beats degraded, active failures degrade
     health, paused sources do not advertise a next scheduled run, and operator
     copy always includes a fix path.

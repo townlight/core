@@ -50,4 +50,4 @@ def test_placeholder_package_docstrings_point_to_adrs() -> None:
         assert "Reserved placeholder" in normalized_docstring
         assert adr.name in normalized_docstring
         assert "No downstream module may" in normalized_docstring
-        assert "versioned CivicCore release artifact" in normalized_docstring
+        assert "versioned Townlight Core release artifact" in normalized_docstring

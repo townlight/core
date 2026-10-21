@@ -1,4 +1,4 @@
-"""Embedding helpers for the shared CivicCore ingestion pipeline."""
+"""Embedding helpers for the shared Townlight Core ingestion pipeline."""
 
 from __future__ import annotations
 

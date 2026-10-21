@@ -198,7 +198,7 @@ def validate_manifest(
         manifest: Manifest model, mapping, JSON string path, or JSON Path.
         base_path: Optional directory used to verify file existence, byte sizes,
             and SHA-256 checksums.
-        expected_civiccore_version: Optional exact CivicCore version to require.
+        expected_civiccore_version: Optional exact Townlight Core version to require.
 
     Raises:
         ManifestValidationError: If schema validation or file verification fails.
@@ -215,7 +215,7 @@ def validate_manifest(
         validated.civiccore_version != expected_civiccore_version
     ):
         raise ManifestValidationError(
-            "Manifest CivicCore version mismatch: "
+            "Manifest Townlight Core version mismatch: "
             f"expected {expected_civiccore_version}, got {validated.civiccore_version}"
         )
 

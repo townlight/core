@@ -1,4 +1,4 @@
-"""CivicCore hash-chained audit primitives."""
+"""Townlight Core hash-chained audit primitives."""
 
 from __future__ import annotations
 

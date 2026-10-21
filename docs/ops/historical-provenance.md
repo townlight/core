@@ -76,7 +76,7 @@ A post-baseline release is independently verifiable when:
 - the cosign bundle verifies with the documented issuer and trust roots, and
 - release notes include the exact verification command.
 
-Worked example for the first attested CivicCore baseline release:
+Worked example for the first attested Townlight Core baseline release:
 
 ```bash
 cosign verify-blob release-attestation.json \
@@ -102,7 +102,7 @@ python scripts/verify-release-provenance.py v0.22.1 \
   [`scripts/verify-release-provenance.py`](../../scripts/verify-release-provenance.py)
 - Versioned attestation schema:
   [`docs/ops/release-attestation.schema.json`](release-attestation.schema.json)
-- CivicCore Tier 1 retrofit ledger:
+- Townlight Core Tier 1 retrofit ledger:
   [`docs/ops/civiccore-tier1-retrofit-ledger.md`](civiccore-tier1-retrofit-ledger.md)
 - CO-4 cross-module retrofit report:
   [`docs/ops/co-4-cross-module-retrofit-report.md`](co-4-cross-module-retrofit-report.md)

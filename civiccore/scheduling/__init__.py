@@ -1,4 +1,4 @@
-"""Shared schedule validation helpers for CivicSuite background jobs."""
+"""Shared schedule validation helpers for Townlight background jobs."""
 
 from civiccore.scheduling.cron import (
     UTC,

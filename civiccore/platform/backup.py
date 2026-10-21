@@ -1,4 +1,4 @@
-"""Backup and restore manifest contracts for local CivicSuite installs."""
+"""Backup and restore manifest contracts for local Townlight installs."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ class BackupItem(BaseModel):
 
 
 class BackupManifest(BaseModel):
-    """Versioned backup manifest for a CivicSuite local profile."""
+    """Versioned backup manifest for a Townlight local profile."""
 
     model_config = ConfigDict(extra="forbid")
 

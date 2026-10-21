@@ -1,8 +1,8 @@
-CivicCore User Manual
+Townlight Core User Manual
 =====================
 
 Version: v1.2.1 (current downstream productization line)
-Repository: https://github.com/CivicSuite/civiccore
+Repository: https://github.com/townlight/core
 License: AGPL-3.0-only, with the TownLight Public Institution Exception 1.0 (see LICENSE and LICENSE-EXCEPTION.md)
 
 Audience
@@ -14,9 +14,9 @@ architecture reviewers.
 Non-Technical Overview
 ----------------------
 
-CivicCore is the shared platform library underneath CivicSuite. It is not an app
+Townlight Core is the shared platform library underneath Townlight. It is not an app
 a clerk or resident logs into. End users interact with module applications such
-as CivicRecords AI or CivicClerk. CivicCore is the shared foundation those
+as Townlight Records or Townlight Meetings. Townlight Core is the shared foundation those
 applications import.
 
 What the current development line ships:
@@ -77,7 +77,7 @@ Verify the release artifact:
 v1.2.1 is the current published downstream productization line and includes
 the shared document-ingestion pipeline used by the city-core release train.
 v0.22.1 is the first
-CivicCore release with a Sigstore-signed release-attestation.json and bundle. Earlier CivicCore releases are retained
+Townlight Core release with a Sigstore-signed release-attestation.json and bundle. Earlier Townlight Core releases are retained
 for historical installs only and must not be treated as provenance baselines
 unless a future additive attestation is explicitly authorized, published, and
 recorded in docs/ops/civiccore-tier1-retrofit-ledger.md.
@@ -149,22 +149,22 @@ Still planned namespaces:
   catalog, exemptions, ingest, scaffold,
   verification
 
-Consumer applications run CivicCore migrations first, then their own module
+Consumer applications run Townlight Core migrations first, then their own module
 migrations. Separate Alembic version tables prevent revision-name collisions.
 
 Compatibility
 -------------
 
 Current v0.1.0 module foundations still pin older civiccore lines.
-Production-depth consumers should move only to the released CivicCore version
+Production-depth consumers should move only to the released Townlight Core version
 recorded in their compatibility matrix.
 
 Compatibility matrix:
-https://github.com/CivicSuite/civicsuite/tree/main/docs/compatibility
+https://github.com/townlight/townlight/tree/main/docs/compatibility
 
 Issue Routing
 -------------
 
-  - CivicCore bug: https://github.com/CivicSuite/civiccore/issues
-  - Suite-wide design issue: https://github.com/CivicSuite/civicsuite/issues
+  - Townlight Core bug: https://github.com/townlight/core/issues
+  - Suite-wide design issue: https://github.com/townlight/townlight/issues
   - Security issue: follow SECURITY.md; do not file publicly.

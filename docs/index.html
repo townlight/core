@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="CivicCore v1.2.1 - shared platform library for the open-source CivicSuite municipal operations suite. Not an end-user app. AGPL-3.0.">
-<title>CivicCore v1.2.1 - CivicSuite shared platform library</title>
+<meta name="description" content="Townlight Core v1.2.1 - shared platform library for the open-source Townlight municipal operations suite. Not an end-user app. AGPL-3.0.">
+<title>Townlight Core v1.2.1 - Townlight shared platform library</title>
   <style>
     :root {
       --text: #1f2328;
@@ -112,10 +112,10 @@
 <body>
   <main>
     <header>
-      <h1>CivicCore</h1>
+      <h1>Townlight Core</h1>
       <p class="tagline">
-        Shared platform <strong>library</strong> for the open-source CivicSuite
-        municipal operations suite. CivicCore is consumed by CivicSuite modules;
+        Shared platform <strong>library</strong> for the open-source Townlight
+        municipal operations suite. Townlight Core is consumed by Townlight modules;
         it is not an end-user municipal app. AGPL-3.0.
       </p>
     </header>
@@ -123,7 +123,7 @@
     <section aria-labelledby="what">
       <h2 id="what">What it is</h2>
       <ul>
-        <li>A shared Python library every CivicSuite module depends on. Not an end-user product.</li>
+        <li>A shared Python library every Townlight module depends on. Not an end-user product.</li>
         <li>Distributed as versioned GitHub release wheels with strict SemVer against the documented public API.</li>
         <li>Local-first by default: Ollama, PostgreSQL, and offline export primitives stay operator-controlled.</li>
         <li>Designed for downstream modules without tight coupling: migrations, LLMs, audit chains, provenance, manifests, export bundles, and city profiles.</li>
@@ -157,7 +157,7 @@
       </ul>
 
       <h3>Still planned extraction targets</h3>
-      <p>These namespaces or behaviors are not shipped yet. The placeholder namespace ADRs define the downstream consumption rule: no module depends on these namespaces until a future versioned CivicCore release ships them.</p>
+      <p>These namespaces or behaviors are not shipped yet. The placeholder namespace ADRs define the downstream consumption rule: no module depends on these namespaces until a future versioned Townlight Core release ships them.</p>
       <ul>
         <li><code>civiccore.catalog</code> - catalog primitives.</li>
         <li><code>civiccore.exemptions</code> - 50-state public-records exemption engine.</li>
@@ -171,7 +171,7 @@
       </ul>
 
       <figure style="margin: 2em 0;">
-        <img src="diagrams/civiccore-extraction-map.svg" alt="CivicCore extraction map showing shipped and planned namespaces." style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+        <img src="diagrams/civiccore-extraction-map.svg" alt="Townlight Core extraction map showing shipped and planned namespaces." style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
         <figcaption style="text-align: center; color: #666; font-size: 0.9em; margin-top: 0.5em;">Shipped vs planned - civiccore development line namespaces.</figcaption>
       </figure>
     </section>
@@ -185,7 +185,7 @@
 cd civiccore
 pip install -e .[dev]</code></pre>
       <p>Each release publishes <code>SHA256SUMS.txt</code> alongside the wheel and sdist. Verify the checksum before promoting an artifact downstream.</p>
-      <p><strong>Release provenance note:</strong> GitHub release pages can show a target commit as Verified even when the release tag itself is lightweight or unsigned. CivicCore treats tags as release pointers and verifies <code>release-attestation.json</code> plus its Sigstore/cosign bundle as the trust artifact. The exact workflow identity is pinned per repo and per tag; see <code>docs/ops/release-signing.md</code>, <code>docs/ops/release-attestation.schema.json</code>, <code>docs/ops/civiccore-tier1-retrofit-ledger.md</code>, and <code>docs/ops/historical-provenance.md</code>. The published <code>v1.2.1</code> release is the current downstream productization line and includes the shared document-ingestion pipeline used by the city-core release train; <code>v0.22.1</code> remains the first attested baseline. Earlier CivicCore releases are retained for historical installs only and must not be promoted as provenance baselines unless a future additive attestation is explicitly authorized, published, and ledgered.</p>
+      <p><strong>Release provenance note:</strong> GitHub release pages can show a target commit as Verified even when the release tag itself is lightweight or unsigned. Townlight Core treats tags as release pointers and verifies <code>release-attestation.json</code> plus its Sigstore/cosign bundle as the trust artifact. The exact workflow identity is pinned per repo and per tag; see <code>docs/ops/release-signing.md</code>, <code>docs/ops/release-attestation.schema.json</code>, <code>docs/ops/civiccore-tier1-retrofit-ledger.md</code>, and <code>docs/ops/historical-provenance.md</code>. The published <code>v1.2.1</code> release is the current downstream productization line and includes the shared document-ingestion pipeline used by the city-core release train; <code>v0.22.1</code> remains the first attested baseline. Earlier Townlight Core releases are retained for historical installs only and must not be promoted as provenance baselines unless a future additive attestation is explicitly authorized, published, and ledgered.</p>
       <figure style="margin: 2em 0;">
         <img src="diagrams/migration-order.svg" alt="Consumer apps invoke civiccore migrations before their own Alembic chain." style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
         <figcaption style="text-align: center; color: #666; font-size: 0.9em; margin-top: 0.5em;">Migration order - civiccore runs first; consumer chain runs second.</figcaption>
@@ -250,25 +250,25 @@ pip install -e .[dev]</code></pre>
       <h2 id="compat">Compatibility</h2>
       <p>
         <strong>Current module foundations span older civiccore lines while newer product-depth consumers already target later releases.</strong>
-          Production-depth consumers should target only the released CivicCore version recorded in their compatibility matrix. Every CivicSuite
-          module's README declares a CivicCore version range.
+          Production-depth consumers should target only the released Townlight Core version recorded in their compatibility matrix. Every Townlight
+          module's README declares a Townlight Core version range.
         </p>
     </section>
 
     <section aria-labelledby="docs">
       <h2 id="docs">Documentation</h2>
       <ul>
-        <li><a href="https://github.com/CivicSuite/civicsuite/blob/main/docs/CivicSuiteUnifiedSpec.md">CivicSuite Unified Spec</a> - canonical suite reference.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/README.md">README</a> - quick start and public API surface.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/USER-MANUAL.md">USER-MANUAL</a> - non-technical overview, integrator guide, architecture reference.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/CHANGELOG.md">CHANGELOG</a> - Keep a Changelog format.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/docs/adr/index.md">Placeholder ADRs</a> - CO-7 deferral rationale and downstream consumption rules for reserved namespaces.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/docs/evidence/co8-civiccore-procurement-evidence-pack/index.md">CO-8 procurement evidence pack</a> - threat model, SBOMs, license manifest, incident drills, sovereignty proof, patch cadence, claims registry, and worked install-and-verify path.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/docs/ops/co-9-civiccore-v1-closeout.md">CO-9 closeout report</a> - release authorization payload, attested release chain, freeze-line tag, audit gate, and CivicClerk unblock record.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/docs/ops/cleanroom-harness.md">Cleanroom harness</a> - pinned CO-6 container for reproducing release, Sigstore, SHA256SUMS, and offline runtime checks.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/docs/ops/historical-provenance.md">Historical provenance policy</a> - operative disclosure for the attested baseline and historical release boundary.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/docs/ops/civiccore-tier1-retrofit-ledger.md">Tier 1 retrofit ledger</a> - live CivicCore release-tag provenance decisions.</li>
-        <li><a href="https://github.com/CivicSuite/civiccore/blob/main/docs/ops/co-4-cross-module-retrofit-report.md">CO-4 cross-module retrofit report</a> - merged downstream ledger closeout for CivicRecords AI, CivicClerk, and CivicCode.</li>
+        <li><a href="https://github.com/townlight/townlight/blob/main/docs/CivicSuiteUnifiedSpec.md">Townlight Unified Spec</a> - canonical suite reference.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/README.md">README</a> - quick start and public API surface.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/USER-MANUAL.md">USER-MANUAL</a> - non-technical overview, integrator guide, architecture reference.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/CHANGELOG.md">CHANGELOG</a> - Keep a Changelog format.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/docs/adr/index.md">Placeholder ADRs</a> - CO-7 deferral rationale and downstream consumption rules for reserved namespaces.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/docs/evidence/co8-civiccore-procurement-evidence-pack/index.md">CO-8 procurement evidence pack</a> - threat model, SBOMs, license manifest, incident drills, sovereignty proof, patch cadence, claims registry, and worked install-and-verify path.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/docs/ops/co-9-civiccore-v1-closeout.md">CO-9 closeout report</a> - release authorization payload, attested release chain, freeze-line tag, audit gate, and Townlight Meetings unblock record.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/docs/ops/cleanroom-harness.md">Cleanroom harness</a> - pinned CO-6 container for reproducing release, Sigstore, SHA256SUMS, and offline runtime checks.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/docs/ops/historical-provenance.md">Historical provenance policy</a> - operative disclosure for the attested baseline and historical release boundary.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/docs/ops/civiccore-tier1-retrofit-ledger.md">Tier 1 retrofit ledger</a> - live Townlight Core release-tag provenance decisions.</li>
+        <li><a href="https://github.com/townlight/core/blob/main/docs/ops/co-4-cross-module-retrofit-report.md">CO-4 cross-module retrofit report</a> - merged downstream ledger closeout for Townlight Records, Townlight Meetings, and Townlight Code.</li>
       </ul>
     </section>
 
@@ -276,7 +276,7 @@ pip install -e .[dev]</code></pre>
       <h2 id="source">Source</h2>
       <p>
         The repository lives at
-        <a href="https://github.com/CivicSuite/civiccore">CivicSuite/civiccore</a>
+        <a href="https://github.com/townlight/core">townlight/core</a>
         on GitHub. Issues, pull requests, and discussions happen there.
       </p>
     </section>
@@ -284,7 +284,7 @@ pip install -e .[dev]</code></pre>
     <footer>
       <p>Licensed under AGPL-3.0-only, with the TownLight Public Institution Exception.</p>
       <p>Copyright 2026 Scott Converse and CivicSuite contributors.</p>
-      <p>Maintained at <a href="https://github.com/CivicSuite/civiccore">CivicSuite/civiccore</a> on GitHub.</p>
+      <p>Maintained at <a href="https://github.com/townlight/core">townlight/core</a> on GitHub.</p>
     </footer>
   </main>
 </body>

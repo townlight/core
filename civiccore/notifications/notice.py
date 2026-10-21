@@ -1,4 +1,4 @@
-"""Shared notice deadline and compliance helpers for CivicSuite modules."""
+"""Shared notice deadline and compliance helpers for Townlight modules."""
 
 from __future__ import annotations
 

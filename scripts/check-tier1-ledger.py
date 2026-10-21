@@ -153,7 +153,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.live:
             live_releases = fetch_live_releases(args.repo)
             post_baseline_attested = validate_live_release_parity(entries, live_releases)
-        print(f"PASS: {len(entries)} CivicCore release tags are ledgered")
+        print(f"PASS: {len(entries)} Townlight Core release tags are ledgered")
         if post_baseline_attested:
             print(
                 "PASS: post-baseline attested release tags verified live: "

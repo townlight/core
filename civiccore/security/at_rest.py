@@ -21,7 +21,7 @@ def build_fernet(encryption_key: str) -> Fernet:
 
 
 def encrypt_json(obj: dict[str, Any], *, encryption_key: str) -> dict[str, Any]:
-    """Encrypt a dict into the versioned envelope shape used by CivicSuite."""
+    """Encrypt a dict into the versioned envelope shape used by Townlight."""
 
     if not isinstance(obj, dict):
         raise TypeError(

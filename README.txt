@@ -1,13 +1,13 @@
-CivicCore
+Townlight Core
 =========
 
-Shared platform library for the CivicSuite open-source municipal operations
-suite. https://github.com/CivicSuite/civicsuite
+Shared platform library for the Townlight open-source municipal operations
+suite. https://github.com/townlight/townlight
 
 What this is
 ------------
 
-CivicCore is the Python library every CivicSuite module depends on for shared
+Townlight Core is the Python library every Townlight module depends on for shared
 platform plumbing. It is not an end-user municipal app.
 
 What ships in the current development line:
@@ -57,7 +57,7 @@ determinations are still not shipped platform behaviors.
 Status
 ------
 
-v1.2.1 is the current CivicCore downstream productization line. It carries the
+v1.2.1 is the current Townlight Core downstream productization line. It carries the
 shared document-ingestion pipeline used by the city-core release train, the
 CO-7 freeze-line trust anchor, the CO-8 procurement evidence pack, and the
 CO-9 closeout trail.
@@ -79,7 +79,7 @@ From the current published GitHub release wheel:
 
     pip install https://github.com/CivicSuite/civiccore/releases/download/v1.2.1/civiccore-1.2.1-py3-none-any.whl
 
-CivicCore is distributed as versioned GitHub release artifacts (not on PyPI).
+Townlight Core is distributed as versioned GitHub release artifacts (not on PyPI).
 Each release publishes SHA256SUMS.txt alongside the wheel and sdist. Verify
 checksums before promoting an artifact downstream. v1.2.1 is the current
 published downstream productization line and includes the shared
@@ -141,11 +141,11 @@ Compatibility
 -------------
 
 Current v0.1.0 module foundations still pin older civiccore lines.
-Production-depth consumers should move only to the released CivicCore version
+Production-depth consumers should move only to the released Townlight Core version
 recorded in their compatibility matrix.
 
 The suite-wide compatibility matrix is maintained at:
-https://github.com/CivicSuite/civicsuite/tree/main/docs/compatibility
+https://github.com/townlight/townlight/tree/main/docs/compatibility
 
 License
 -------
@@ -156,9 +156,9 @@ Contributing
 ------------
 
 See CONTRIBUTING.md, including the decision tree for where to file a bug
-across the CivicSuite multi-repo layout.
+across the Townlight multi-repo layout.
 
 Source
 ------
 
-https://github.com/CivicSuite/civiccore
+https://github.com/townlight/core

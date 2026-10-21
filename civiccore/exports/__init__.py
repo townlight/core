@@ -1,4 +1,4 @@
-"""Offline static export bundle helpers for CivicCore."""
+"""Offline static export bundle helpers for Townlight Core."""
 
 from civiccore.exports.bundle import (
     BundleFile,

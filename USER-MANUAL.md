@@ -1,28 +1,32 @@
-# CivicCore User Manual
+<a id="civiccore-user-manual"></a>
+
+# Townlight Core User Manual
 
 Version: v1.2.1 (current downstream productization line)
-Repository: https://github.com/CivicSuite/civiccore
+Repository: https://github.com/townlight/core
 License: AGPL-3.0-only, with the TownLight Public Institution Exception 1.0 (see LICENSE and LICENSE-EXCEPTION.md)
 
 This manual has three audiences:
 
-1. **Non-technical evaluators** - what CivicCore is and why it matters.
+1. **Non-technical evaluators** - what Townlight Core is and why it matters.
 2. **IT and module developers** - how to install it and consume the public API.
-3. **Architecture reviewers** - what ships today, what is planned, and how the library fits into the CivicSuite stack.
+3. **Architecture reviewers** - what ships today, what is planned, and how the library fits into the Townlight stack.
 
 ---
 
 ## 1. Non-Technical Overview
 
-### What CivicCore Is
+<a id="what-civiccore-is"></a>
 
-CivicCore is the shared platform library underneath CivicSuite. It is the common
-Python package that CivicSuite modules use for migrations, LLM plumbing,
+### What Townlight Core Is
+
+Townlight Core is the shared platform library underneath Townlight. It is the common
+Python package that Townlight modules use for migrations, LLM plumbing,
 provenance metadata, audit-chain primitives, export manifests, and local city
 configuration.
 
 It is **not** an app a clerk or resident logs into. End users interact with
-module applications such as CivicRecords AI or CivicClerk. CivicCore is the
+module applications such as Townlight Records or Townlight Meetings. Townlight Core is the
 shared foundation those applications import.
 
 ### What the current development line ships
@@ -74,13 +78,13 @@ shipped platform behavior.
 Credential storage, vendor-specific network adapters, vendor write-back,
 worker scheduler runtimes, notification delivery queues, and legal
 determinations are also not shipped platform behaviors. Downstream modules must
-not promote those behaviors as shipped CivicCore capability.
+not promote those behaviors as shipped Townlight Core capability.
 
 ### Why Municipal Teams Should Care
 
 - **Sovereignty:** Local-first defaults keep cities in control of their data and
   infrastructure.
-- **Reuse without coupling:** Each CivicSuite module depends on the same
+- **Reuse without coupling:** Each Townlight module depends on the same
   versioned primitives rather than copying logic.
 - **Auditability:** Shared contracts for provenance, export bundles, and audit
   chains make compliance evidence more consistent across modules.
@@ -91,7 +95,7 @@ not promote those behaviors as shipped CivicCore capability.
 
 ### Install from a Release Wheel
 
-CivicCore is distributed as GitHub release artifacts, not PyPI packages:
+Townlight Core is distributed as GitHub release artifacts, not PyPI packages:
 
 ```bash
 pip install https://github.com/CivicSuite/civiccore/releases/download/v1.2.1/civiccore-1.2.1-py3-none-any.whl
@@ -109,8 +113,8 @@ sha256sum -c SHA256SUMS.txt
 `v1.2.1` is the current published downstream productization line and includes
 the shared document-ingestion pipeline used by the city-core release train.
 `v0.22.1` is the first
-CivicCore release with a Sigstore-signed
-`release-attestation.json` and bundle. Earlier CivicCore releases are retained
+Townlight Core release with a Sigstore-signed
+`release-attestation.json` and bundle. Earlier Townlight Core releases are retained
 for historical installs only and must not be treated as provenance baselines
 unless a future additive attestation is explicitly authorized, published, and
 recorded in `docs/ops/civiccore-tier1-retrofit-ledger.md`.
@@ -157,7 +161,7 @@ rendered = render_template(template, {"document_text": document_text})
 ```
 
 The resolver checks app DB overrides first, code-level overrides second, and
-CivicCore defaults third. Missing variables produce actionable render errors.
+Townlight Core defaults third. Missing variables produce actionable render errors.
 
 ### Use Audit, Provenance, Manifest, Export, and City Profile Primitives
 
@@ -234,7 +238,7 @@ source_status = build_sync_source_status(state, sync_schedule="0 2 * * *")
 print(source_status.public_dict()["next_sync_at"])
 ```
 
-Default behavior matches the CivicRecords AI pattern: healthy after successful
+Default behavior matches the Townlight Records pattern: healthy after successful
 runs, degraded while failures remain, and circuit-open after five consecutive
 full-run failures. Grace-period sources open after two full-run failures so
 operators see the problem before scheduled pulls keep compounding it.
@@ -244,11 +248,11 @@ copy, and next scheduled run.
 
 ### Run Migrations from a Consumer
 
-CivicCore migrations run before a downstream module's migrations. Consumer
-modules use CivicCore's migration runner and keep their own version table so
+Townlight Core migrations run before a downstream module's migrations. Consumer
+modules use Townlight Core's migration runner and keep their own version table so
 revision names do not collide.
 
-The release gate verifies the CivicCore migration chain, including
+The release gate verifies the Townlight Core migration chain, including
 `civiccore_0001_baseline_v1` and `civiccore_0002_llm`.
 
 ---
@@ -257,7 +261,7 @@ The release gate verifies the CivicCore migration chain, including
 
 ### Shipped vs Planned
 
-![CivicCore extraction map](docs/diagrams/civiccore-extraction-map.svg)
+![Townlight Core extraction map](docs/diagrams/civiccore-extraction-map.svg)
 
 Shipped implementation in the current development line:
 
@@ -295,7 +299,7 @@ civiccore/
 
 ![Migration order](docs/diagrams/migration-order.svg)
 
-Consumer applications run CivicCore migrations first, then their own module
+Consumer applications run Townlight Core migrations first, then their own module
 migrations. Separate Alembic version tables prevent revision-name collisions.
 
 ### LLM Provider Abstraction
@@ -309,18 +313,18 @@ them.
 ### Compatibility
 
 Current v0.1.0 module foundations still pin older civiccore lines.
-Production-depth consumers should move only to the released CivicCore version
+Production-depth consumers should move only to the released Townlight Core version
 recorded in their compatibility matrix.
 
 The suite-wide matrix lives at:
-https://github.com/CivicSuite/civicsuite/tree/main/docs/compatibility
+https://github.com/townlight/townlight/tree/main/docs/compatibility
 
 ---
 
 ## Appendix: Where to File Issues
 
-- CivicCore bug: https://github.com/CivicSuite/civiccore/issues
-- Suite-wide design issue: https://github.com/CivicSuite/civicsuite/issues
+- Townlight Core bug: https://github.com/townlight/core/issues
+- Suite-wide design issue: https://github.com/townlight/townlight/issues
 - Security issue: follow `SECURITY.md`; do not file publicly.
 
 The decision tree in `CONTRIBUTING.md` has the full routing rules.

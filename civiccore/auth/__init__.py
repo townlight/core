@@ -1,4 +1,4 @@
-"""Authentication helpers for CivicSuite FastAPI services."""
+"""Authentication helpers for Townlight FastAPI services."""
 
 from civiccore.auth.bearer import (
     AuthenticatedPrincipal,

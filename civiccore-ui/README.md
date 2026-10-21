@@ -1,6 +1,8 @@
-# civiccore-ui — the CivicSuite design system
+<a id="civiccore-ui--the-civicsuite-design-system"></a>
 
-The shared, versioned UI layer every CivicSuite module builds on. Three layers,
+# civiccore-ui — the Townlight design system
+
+The shared, versioned UI layer every Townlight module builds on. Three layers,
 each the single source of truth for its concern:
 
 | Layer | File | Owns |

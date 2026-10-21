@@ -1,4 +1,4 @@
-"""Shared ingestion pipeline and contracts for CivicSuite consumers.
+"""Shared ingestion pipeline and contracts for Townlight consumers.
 
 This package exposes connector discovery/fetch contracts, cited-source
 validation primitives, and the shared document-ingestion pipeline used by

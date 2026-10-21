@@ -1,10 +1,12 @@
-# CO-9 CivicCore v1.0 Closeout Report
+<a id="co-9-civiccore-v10-closeout-report"></a>
+
+# CO-9 Townlight Core v1.0 Closeout Report
 
 Status: CO-9 release-gate closeout packet.
 
 Date: 2026-05-05.
 
-Repository: `CivicSuite/civiccore`.
+Repository: `townlight/core`.
 
 Release tag: `v1.0`.
 
@@ -16,16 +18,16 @@ The release-class operation is covered by explicit chat authorization for:
 
 | Sprint | Authorized operation | Scope |
 |---|---|---|
-| CO-2c | Cut CivicCore `v0.22.1` | First Sigstore-attested baseline release. |
+| CO-2c | Cut Townlight Core `v0.22.1` | First Sigstore-attested baseline release. |
 | CO-7 | Cut `civiccore-m1-freeze` | Freeze-line release for downstream module pins. |
-| CO-9 | Cut CivicCore `v1.0` | Downstream productization release. |
+| CO-9 | Cut Townlight Core `v1.0` | Downstream productization release. |
 
 The CO-9 release payload is:
 
 | Field | Value |
 |---|---|
 | Sprint ID | CO-9 |
-| Repo | `CivicSuite/civiccore` |
+| Repo | `townlight/core` |
 | Target SHA | The GitHub-merged CO-9 release-prep commit on `main` |
 | Tag / release name | `v1.0` / `civiccore v1.0` |
 | Package version | `1.0.0` |
@@ -58,7 +60,7 @@ The CO-9 release payload is:
 |---|---|
 | Placeholder namespaces `civiccore.catalog`, `civiccore.exemptions`, and `civiccore.scaffold`. | ADR-deferred with downstream no-dependency rule in [`../adr/index.md`](../adr/index.md). |
 | Historical release provenance drift. | Disclosed and governed by [`historical-provenance.md`](historical-provenance.md). |
-| Downstream module freeze dependency. | `civiccore-m1-freeze` is the freeze-line tag; CivicClerk and CivicCode productization lanes pin to the freeze, not moving `main`. |
+| Downstream module freeze dependency. | `civiccore-m1-freeze` is the freeze-line tag; Townlight Meetings and Townlight Code productization lanes pin to the freeze, not moving `main`. |
 | Procurement evidence gap. | CO-8 evidence pack plus CO-9 final SBOM. |
 
 ## Evidence Anchors
@@ -90,9 +92,11 @@ The tag push then runs the release workflow, which rebuilds artifacts, creates
 `SHA256SUMS.txt`, signs `release-attestation.json`, verifies provenance before
 publication, and publishes the GitHub release.
 
-## CivicClerk Unblock Rule
+<a id="civicclerk-unblock-rule"></a>
 
-CivicClerk productization starts only after:
+## Townlight Meetings Unblock Rule
+
+Townlight Meetings productization starts only after:
 
 - `v1.0` is published,
 - the release attestation verifies,

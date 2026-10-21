@@ -1,4 +1,4 @@
-"""Source and provenance metadata contracts for CivicCore exports."""
+"""Source and provenance metadata contracts for Townlight Core exports."""
 
 from __future__ import annotations
 

@@ -1,10 +1,19 @@
-# CivicCore Cleanroom Harness
+<a id="civiccore-cleanroom-harness"></a>
+
+# Townlight Core Cleanroom Harness
 
 Status: CO-6 harness, added for outside-auditor reproduction.
 
-The cleanroom harness proves the CivicCore release gate and the public
+Current limitation: this historical harness keeps its fixed `0.22.1` offline
+version assertion. The repository is already at `1.2.1`, so running the harness
+on the current development head fails that assertion. The naming cleanup does
+not change the assertion or the historical attestation inputs and does not
+claim a passing current-head cleanroom run. The normal required `tests` check
+runs the current package release verification separately.
+
+The cleanroom harness proves the Townlight Core release gate and the public
 install-and-verify path from a pinned container with no inherited maintainer
-state. It provisions CivicCore from an explicit commit SHA, runs the release
+state. It provisions Townlight Core from an explicit commit SHA, runs the release
 gate, verifies the release-provenance fixtures, verifies the live `v0.22.1`
 Sigstore attestation, verifies the `SHA256SUMS.txt` release-asset path, and
 then runs an offline smoke with Docker networking disabled.

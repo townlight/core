@@ -31,7 +31,7 @@ def register_handler(handler: IngestHandler) -> None:
     """Register a parser/handler for one or more file suffixes.
 
     Handlers are checked before the built-in parser list so modules can provide
-    a domain-specific parser for a source type without replacing CivicCore's
+    a domain-specific parser for a source type without replacing Townlight Core's
     shared PDF/DOCX/XLSX/CSV/EML/HTML/text handlers.
     """
 

@@ -21,7 +21,7 @@ def _role_header_for_staff_key_header(header: str) -> str:
 def staff_key_gate(env_var: str, header: str) -> Callable[..., AuthenticatedPrincipal]:
     """Return a FastAPI dependency that gates staff routes with one shared contract.
 
-    The dependency preserves the existing CivicSuite module convention:
+    The dependency preserves the existing Townlight module convention:
     ``X-CivicFoo-Role: staff`` plus ``X-CivicFoo-Staff-Key: <secret>``.
     """
 

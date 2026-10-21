@@ -12,7 +12,7 @@ Step 2 — App code-level override:
     beat civiccore defaults so that consumer apps can ship Python-level
     defaults that supersede civiccore's defaults when no DB override exists.
 
-Step 3 — CivicCore DB default:
+Step 3 — Townlight Core DB default:
     Fall back to consumer_app='civiccore', template_name=<requested>,
     is_override=false, is_active=true. Highest version wins.
 

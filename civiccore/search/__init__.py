@@ -1,4 +1,4 @@
-"""Small shared search helpers for current CivicSuite consumers.
+"""Small shared search helpers for current Townlight consumers.
 
 This package intentionally ships the smallest honest cross-module surface:
 query/text normalization for deterministic substring matching, generic

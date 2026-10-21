@@ -36,7 +36,7 @@ def test_tier1_retrofit_ledger_static_check_passes() -> None:
     )
 
     assert result.returncode == 0, result.stderr
-    assert "PASS: 25 CivicCore release tags are ledgered" in result.stdout
+    assert "PASS: 25 Townlight Core release tags are ledgered" in result.stdout
 
 
 def test_tier1_retrofit_ledger_marks_only_v0221_as_attested_baseline() -> None:

@@ -1,4 +1,4 @@
-"""Shared ORM models for CivicCore document ingestion."""
+"""Shared ORM models for Townlight Core document ingestion."""
 
 from __future__ import annotations
 

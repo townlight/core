@@ -8,7 +8,7 @@ DB overrides (so production hot-fixes still win).
 Resolution order (per ADR-0004 §7):
 1. App DB override (consumer_app, is_override=true, is_active, highest version)
 2. App code-level override (this module's OVERRIDE_REGISTRY)
-3. CivicCore DB default (consumer_app="civiccore", is_override=false, is_active, highest version)
+3. Townlight Core DB default (consumer_app="civiccore", is_override=false, is_active, highest version)
 4. PromptTemplateNotFoundError
 """
 from __future__ import annotations

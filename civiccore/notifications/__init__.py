@@ -1,4 +1,4 @@
-"""Shared notice and notification helpers for CivicSuite modules."""
+"""Shared notice and notification helpers for Townlight modules."""
 
 from civiccore.notifications.notice import (
     DeadlinePlan,

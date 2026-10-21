@@ -1,4 +1,4 @@
-"""Cron expression utilities for scheduled CivicSuite work."""
+"""Cron expression utilities for scheduled Townlight work."""
 
 from __future__ import annotations
 

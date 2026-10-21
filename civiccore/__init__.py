@@ -1,4 +1,4 @@
-"""CivicCore shared platform package for the CivicSuite municipal suite.
+"""Townlight Core shared platform package for the Townlight municipal suite.
 
 Current development-line surface includes migrations, a shared SQLAlchemy
 ``Base``, LLM helpers, hash-chained audit primitives, source/provenance
@@ -11,7 +11,7 @@ document ingestion with parser dispatch, sentence-aware chunking, local Ollama
 embeddings, pgvector-backed chunk storage, startup config validation helpers
 for placeholder-free module settings, and shared cron schedule validation
 helpers for module background jobs.
-CivicCore is a library, not an end-user application.
+Townlight Core is a library, not an end-user application.
 """
 
 from __future__ import annotations

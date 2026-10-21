@@ -1,4 +1,4 @@
-"""Shared platform health projection for local CivicSuite surfaces."""
+"""Shared platform health projection for local Townlight surfaces."""
 
 from __future__ import annotations
 
@@ -78,13 +78,13 @@ def summarize_platform_health(checks: list[PlatformHealthCheck]) -> PlatformHeal
     degraded = [check.component for check in checks if check.status == "degraded"]
 
     if blocked:
-        staff_message = "CivicSuite needs attention before affected workflows can continue."
+        staff_message = "Townlight needs attention before affected workflows can continue."
     elif worst == "degraded":
-        staff_message = "CivicSuite is running, but one or more background checks need attention."
+        staff_message = "Townlight is running, but one or more background checks need attention."
     elif worst == "needs_setup":
-        staff_message = "CivicSuite needs setup before all workflows are available."
+        staff_message = "Townlight needs setup before all workflows are available."
     else:
-        staff_message = "CivicSuite is healthy."
+        staff_message = "Townlight is healthy."
 
     return PlatformHealthSummary(
         status=worst,

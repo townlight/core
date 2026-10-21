@@ -1,7 +1,7 @@
 """LLM provider abstraction (Phase 2 extraction).
 
 This module defines :class:`LLMProvider`, the abstract base class that every
-concrete LLM backend in CivicSuite must implement. The surface here is
+concrete LLM backend in Townlight must implement. The surface here is
 deliberately narrow and was extracted in Phase 2 of the civiccore split from
 the records-ai status quo:
 

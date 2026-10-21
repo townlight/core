@@ -1,4 +1,4 @@
-"""Shared security primitives extracted for CivicSuite modules."""
+"""Shared security primitives extracted for Townlight modules."""
 
 from civiccore.security.at_rest import (
     AtRestDecryptionError,

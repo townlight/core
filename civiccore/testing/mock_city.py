@@ -1,4 +1,4 @@
-"""Reusable no-network mock city integration contracts for CivicSuite modules."""
+"""Reusable no-network mock city integration contracts for Townlight modules."""
 
 from __future__ import annotations
 
@@ -1025,7 +1025,7 @@ def run_mock_city_contract_suite(*, base_url: str = "https://mock-city.example.g
                     connector=contract.connector,
                     ok=False,
                     message=f"{contract.vendor_name} is not on the shared connector allowlist.",
-                    fix="Add the connector to CivicCore before adding module-level mock-city tests.",
+                    fix="Add the connector to Townlight Core before adding module-level mock-city tests.",
                 )
             )
             continue
@@ -1106,7 +1106,7 @@ def run_mock_city_idp_contract_suite() -> list[MockCityIdpCheck]:
                 provider=contract.provider,
                 ok=False,
                 message="Mock municipal IdP token did not contain any allowed staff role.",
-                fix="Include at least one allowed CivicSuite staff role in the mock IdP contract.",
+                fix="Include at least one allowed Townlight staff role in the mock IdP contract.",
             )
         ]
 

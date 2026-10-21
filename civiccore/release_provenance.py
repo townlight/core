@@ -1,8 +1,8 @@
-"""Release provenance checks shared across CivicSuite modules.
+"""Release provenance checks shared across Townlight modules.
 
 GitHub release pages can show a Verified badge for the target commit even when
 the release tag is lightweight or when an annotated tag object is unsigned.
-Under the CivicSuite v1 provenance model, tags are release pointers and the
+Under the Townlight v1 provenance model, tags are release pointers and the
 Sigstore-signed release attestation is the trust artifact.
 """
 
@@ -181,7 +181,7 @@ class FixtureSigstoreVerifier:
 
 
 def canonical_json_bytes(payload: dict[str, Any]) -> bytes:
-    """Return CivicSuite's canonical JSON serialization for attestations."""
+    """Return Townlight's canonical JSON serialization for attestations."""
 
     return json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode(
         "utf-8"
@@ -265,7 +265,7 @@ def _require_attestation_shape(attestation: dict[str, Any]) -> None:
     if attestation.get("schema_version") != ATTESTATION_SCHEMA_VERSION:
         raise ProvenanceError(
             "release-attestation.json schema_version must be 1; regenerate using the "
-            "versioned CivicCore attestation contract."
+            "versioned Townlight Core attestation contract."
         )
     required_top = ("subject", "build", "artifacts")
     for key in required_top:

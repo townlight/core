@@ -1,4 +1,4 @@
-"""Shared offline connector primitives for current CivicSuite consumers."""
+"""Shared offline connector primitives for current Townlight consumers."""
 
 from civiccore.connectors.imports import (
     ConnectorImportError,

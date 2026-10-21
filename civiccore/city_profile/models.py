@@ -1,4 +1,4 @@
-"""Local-first city profile models for CivicCore deployments."""
+"""Local-first city profile models for Townlight Core deployments."""
 from __future__ import annotations
 
 import json
