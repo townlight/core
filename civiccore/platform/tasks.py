@@ -1,4 +1,4 @@
-"""Storage-neutral local task contracts for CivicSuite modules."""
+"""Storage-neutral local task contracts for Townlight modules."""
 
 from __future__ import annotations
 

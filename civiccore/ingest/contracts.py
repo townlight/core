@@ -1,4 +1,4 @@
-"""Reusable ingest/data-source contracts for current CivicSuite modules."""
+"""Reusable ingest/data-source contracts for current Townlight modules."""
 
 from __future__ import annotations
 

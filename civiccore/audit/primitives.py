@@ -1,4 +1,4 @@
-"""Hash-chained audit primitives for CivicCore.
+"""Hash-chained audit primitives for Townlight Core.
 
 The primitives in this module are intentionally storage-neutral: callers can
 persist the Pydantic models in SQLAlchemy, files, queues, or keep them in
@@ -192,10 +192,10 @@ class AuditHashChain(BaseModel):
 class PersistedAuditLogEntry(BaseModel):
     """Storage-neutral view of a legacy persisted audit-log row.
 
-    This model preserves the historical CivicRecords AI hash formula for
+    This model preserves the historical Townlight Records hash formula for
     database-backed ``audit_log`` rows. It intentionally lives beside, rather
     than replacing, ``AuditEvent`` because existing deployed rows must continue
-    to verify after modules move their reusable audit math into CivicCore.
+    to verify after modules move their reusable audit math into Townlight Core.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -237,7 +237,7 @@ def compute_persisted_audit_hash(
 ) -> str:
     """Compute the legacy persisted audit-log SHA-256 entry hash.
 
-    The pipe-delimited payload mirrors CivicRecords AI's original database
+    The pipe-delimited payload mirrors Townlight Records's original database
     audit chain exactly: ``previous_hash|timestamp|actor_id|action|details``.
     """
 

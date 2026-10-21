@@ -1,4 +1,4 @@
-"""In-process task handler registry for local CivicSuite workers."""
+"""In-process task handler registry for local Townlight workers."""
 
 from __future__ import annotations
 

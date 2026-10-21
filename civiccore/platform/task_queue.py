@@ -1,4 +1,4 @@
-"""PostgreSQL-backed local task queue for CivicSuite desktop runtimes."""
+"""PostgreSQL-backed local task queue for Townlight desktop runtimes."""
 
 from __future__ import annotations
 

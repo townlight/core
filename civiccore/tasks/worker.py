@@ -1,4 +1,4 @@
-"""CLI worker for the CivicCore PostgreSQL-backed local task queue."""
+"""CLI worker for the Townlight Core PostgreSQL-backed local task queue."""
 
 from __future__ import annotations
 
@@ -63,7 +63,7 @@ async def _run_worker(args: argparse.Namespace) -> int:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run the CivicCore local task worker.")
+    parser = argparse.ArgumentParser(description="Run the Townlight Core local task worker.")
     parser.add_argument("--backend", choices=["postgres"], default="postgres")
     parser.add_argument("--once", action="store_true")
     parser.add_argument("--poll-seconds", type=float, default=2.0)

@@ -1,4 +1,4 @@
-"""Windows-local platform contracts for CivicSuite desktop deployments."""
+"""Windows-local platform contracts for Townlight desktop deployments."""
 
 from __future__ import annotations
 

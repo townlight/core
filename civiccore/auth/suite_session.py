@@ -1,4 +1,4 @@
-"""Shared CivicSuite staff-session tokens signed by CivicCore."""
+"""Shared Townlight staff-session tokens signed by Townlight Core."""
 
 from __future__ import annotations
 
@@ -28,12 +28,12 @@ _REVOKED_SESSION_IDS: dict[str, int] = {}
 
 
 class SuiteSessionConfigError(RuntimeError):
-    """Raised when CivicCore suite-session signing is not configured safely."""
+    """Raised when Townlight Core suite-session signing is not configured safely."""
 
 
 @dataclass(frozen=True)
 class SuiteSessionPrincipal:
-    """Immutable principal decoded from a shared CivicSuite staff session."""
+    """Immutable principal decoded from a shared Townlight staff session."""
 
     subject: str
     roles: frozenset[str]

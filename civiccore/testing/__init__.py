@@ -1,4 +1,4 @@
-"""Reusable test contracts for CivicSuite modules."""
+"""Reusable test contracts for Townlight modules."""
 
 from civiccore.testing.mock_city import (
     DEMO_TOWN_CONTRACT_SCHEMA_VERSION,

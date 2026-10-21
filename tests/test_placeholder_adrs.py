@@ -30,7 +30,7 @@ def test_placeholder_namespaces_have_freeze_line_adrs() -> None:
         assert "Status: Accepted" in text
         assert "Explicit downstream consumption rule" in text
         assert "no module depends" in text
-        assert "versioned Townlight Core release artifact" in text
+        assert "versioned CivicCore release artifact" in text
 
 
 def test_placeholder_adr_index_lists_all_placeholder_namespaces() -> None:
@@ -50,4 +50,4 @@ def test_placeholder_package_docstrings_point_to_adrs() -> None:
         assert "Reserved placeholder" in normalized_docstring
         assert adr.name in normalized_docstring
         assert "No downstream module may" in normalized_docstring
-        assert "versioned CivicCore release artifact" in normalized_docstring
+        assert "versioned Townlight Core release artifact" in normalized_docstring

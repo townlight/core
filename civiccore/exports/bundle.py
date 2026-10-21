@@ -1,4 +1,4 @@
-"""Utilities for static, offline CivicCore export bundles."""
+"""Utilities for static, offline Townlight Core export bundles."""
 from __future__ import annotations
 
 import json

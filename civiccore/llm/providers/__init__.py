@@ -1,4 +1,4 @@
-"""CivicCore LLM provider abstraction and built-in implementations.
+"""Townlight Core LLM provider abstraction and built-in implementations.
 
 Importing this package triggers registration of three built-in providers:
 ollama, openai, anthropic. Consumers may register additional providers via

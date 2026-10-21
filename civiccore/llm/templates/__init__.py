@@ -1,4 +1,4 @@
-"""CivicCore LLM prompt template ORM, schemas, rendering, and resolution.
+"""Townlight Core LLM prompt template ORM, schemas, rendering, and resolution.
 
 Phase 2 Step 3a added: PromptTemplate ORM + Pydantic schemas.
 Phase 2 Step 3c added: rendering (string.Template engine) + override resolution.

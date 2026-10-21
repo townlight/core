@@ -636,7 +636,7 @@ from civiccore.llm import (
 The full enumerated list — stable across the v0.x series per the spec's
 semver policy — is also published in **Appendix A of the Townlight Core
 Extraction Spec** in
-[CivicSuite/civicsuite](https://github.com/townlight/townlight).
+[townlight/townlight](https://github.com/townlight/townlight).
 
 ## Compatibility
 

@@ -1,4 +1,4 @@
-"""Verification helpers for CivicSuite release and runtime evidence."""
+"""Verification helpers for Townlight release and runtime evidence."""
 
 from civiccore.verification.browser_evidence import (
     DEFAULT_MIN_SCREENSHOT_BYTES,

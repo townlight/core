@@ -50,7 +50,7 @@ def test_authorize_bearer_roles_requires_config(monkeypatch: pytest.MonkeyPatch)
 
     assert exc_info.value.status_code == 503
     assert exc_info.value.detail["message"] == (
-        "CivicBudget persisted workpaper retrieval auth is not configured."
+        "Townlight Budget persisted workpaper retrieval auth is not configured."
     )
     assert "Set CIVIC_TEST_AUTH_TOKEN_ROLES" in exc_info.value.detail["fix"]
 

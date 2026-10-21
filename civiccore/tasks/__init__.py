@@ -1,4 +1,4 @@
-"""Local task worker entry points for CivicCore."""
+"""Local task worker entry points for Townlight Core."""
 
 from __future__ import annotations
 

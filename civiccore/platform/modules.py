@@ -1,4 +1,4 @@
-"""Module manifest and registry contracts for local CivicSuite deployments."""
+"""Module manifest and registry contracts for local Townlight deployments."""
 
 from __future__ import annotations
 
@@ -43,7 +43,7 @@ WINDOWS_LOCAL_BLOCKED_RUNTIME_KINDS = frozenset({"docker", "wsl", "linux_shell",
 
 
 class ModuleDependency(BaseModel):
-    """Another CivicSuite module required by a manifest."""
+    """Another Townlight module required by a manifest."""
 
     model_config = ConfigDict(extra="forbid")
 
@@ -160,7 +160,7 @@ class ModuleRuntimeRequirement(BaseModel):
 
 
 class ModuleManifest(BaseModel):
-    """Complete manifest for a CivicSuite module package."""
+    """Complete manifest for a Townlight module package."""
 
     model_config = ConfigDict(extra="forbid")
 

@@ -1,4 +1,4 @@
-"""Shared onboarding interview/profile helpers for CivicSuite modules."""
+"""Shared onboarding interview/profile helpers for Townlight modules."""
 
 from civiccore.onboarding.profile import (
     DEFAULT_PROFILE_FIELDS,

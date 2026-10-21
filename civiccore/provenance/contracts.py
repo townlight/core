@@ -53,7 +53,7 @@ class CitationTarget(BaseModel):
 
 
 class SourceReference(BaseModel):
-    """Metadata for an original source used by CivicCore."""
+    """Metadata for an original source used by Townlight Core."""
 
     model_config = ConfigDict(extra="forbid")
 

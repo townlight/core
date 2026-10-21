@@ -1,4 +1,4 @@
-"""CivicCore LLM abstraction.
+"""Townlight Core LLM abstraction.
 
 Public API entry point for downstream apps (records-ai, civicclerk). Exposes:
 

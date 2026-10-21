@@ -91,9 +91,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/CivicSuite/civiccore"
-Documentation = "https://github.com/CivicSuite/civicsuite"
-Issues = "https://github.com/CivicSuite/civiccore/issues"
+Homepage = "https://github.com/townlight/core"
+Documentation = "https://github.com/townlight/townlight"
+Issues = "https://github.com/townlight/core/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
