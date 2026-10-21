@@ -1,15 +1,17 @@
-# CO-7 CivicCore Freeze Readiness
+<a id="co-7-civiccore-freeze-readiness"></a>
+
+# CO-7 Townlight Core Freeze Readiness
 
 Status: pre-freeze evidence, release-class freeze tag not yet cut
 Date: 2026-05-05
 
 ## Preflight
 
-- CivicCore local branch at sprint start: `main`
-- CivicCore origin/main and local HEAD: `fed0639cf66a5a155659bd2eff5bca4b282d600c`
-- CivicCore latest public release: `v0.22.1`, published 2026-05-05T16:23:36Z
-- CivicCore open PRs at sprint start: none
-- Umbrella CivicSuite local branch at sprint start: `main`
+- Townlight Core local branch at sprint start: `main`
+- Townlight Core origin/main and local HEAD: `fed0639cf66a5a155659bd2eff5bca4b282d600c`
+- Townlight Core latest public release: `v0.22.1`, published 2026-05-05T16:23:36Z
+- Townlight Core open PRs at sprint start: none
+- Umbrella Townlight local branch at sprint start: `main`
 - Umbrella origin/main and local HEAD: `e737648d6b9b286968f44b466098140dee83c868`
 - Umbrella open PRs at sprint start: none
 - Frontend changes in this sprint: docs index only; browser QA required before merge
@@ -21,8 +23,8 @@ browser and cleanroom runs was present and intentionally left uncommitted.
 
 ## Spec Lockstep
 
-CO-7 reconciles the shipped CivicCore surface against CivicSuite unified spec
-section 6 and the CivicCore README. The shipped freeze candidate includes:
+CO-7 reconciles the shipped Townlight Core surface against Townlight unified spec
+section 6 and the Townlight Core README. The shipped freeze candidate includes:
 
 - migrations and shared SQLAlchemy `Base`
 - `civiccore.llm` provider, template, registry, context, and structured-output helpers
@@ -37,11 +39,11 @@ section 6 and the CivicCore README. The shipped freeze candidate includes:
 - connector host validation, startup config validation, encrypted JSON envelope helpers, and release-provenance verification
 
 The umbrella spec and compatibility matrix are updated in the companion CO-7
-CivicSuite PR so those shipped surfaces no longer appear as silent drift.
+Townlight PR so those shipped surfaces no longer appear as silent drift.
 
 ## Placeholder ADRs
 
-The three README-listed placeholder namespaces now have CivicCore ADRs:
+The three README-listed placeholder namespaces now have Townlight Core ADRs:
 
 - `docs/adr/ADR-0001-defer-civiccore-catalog.md`
 - `docs/adr/ADR-0002-defer-civiccore-exemptions.md`
@@ -49,7 +51,7 @@ The three README-listed placeholder namespaces now have CivicCore ADRs:
 
 Each ADR names the deferral rationale, target phase, and downstream consumption
 rule: no module depends on the placeholder namespace until it ships in a
-versioned CivicCore release artifact.
+versioned Townlight Core release artifact.
 
 ## Downstream Placeholder Audit
 
@@ -60,9 +62,9 @@ git -C <module> grep -n -E 'civiccore\.(catalog|exemptions|scaffold)|from civicc
 ```
 
 Result: no production-code reliance found across the compatibility-matrix module
-set. CivicClerk and CivicCode contain test-only references to
+set. Townlight Meetings and Townlight Code contain test-only references to
 `civiccore.exemptions` and `civiccore.catalog` inside guard tests that assert
-module schemas do not foreign-key into unreleased CivicCore placeholder targets.
+module schemas do not foreign-key into unreleased Townlight Core placeholder targets.
 
 A production-code-only sweep excluding tests returned clean for every module in
 the compatibility matrix.
@@ -82,12 +84,12 @@ Local checks completed on 2026-05-05 before any freeze tag publication:
   1280x900 and mobile 390x844 screenshots, zero browser console messages, zero
   page errors, no horizontal overflow, keyboard focus proof, contrast proof,
   and copy review.
-- Companion CivicSuite docs verification:
+- Companion Townlight docs verification:
   `bash scripts/verify-docs.sh` passed.
-- Companion CivicSuite suite-state verification:
+- Companion Townlight suite-state verification:
   `python scripts/verify-suite-state.py --remote-only` passed for all 26 repos
   and confirmed `civiccore 0.22.1`.
-- Companion CivicSuite browser QA:
+- Companion Townlight browser QA:
   `docs/browser-qa-co7-civiccore-freeze-lockstep-summary.md` passed with
   desktop 1280x900 and mobile 390x844 screenshots, zero browser console
   messages, zero page errors, no horizontal overflow, keyboard focus proof,

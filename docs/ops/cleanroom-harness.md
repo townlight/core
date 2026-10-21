@@ -1,10 +1,12 @@
-# CivicCore Cleanroom Harness
+<a id="civiccore-cleanroom-harness"></a>
+
+# Townlight Core Cleanroom Harness
 
 Status: CO-6 harness, added for outside-auditor reproduction.
 
-The cleanroom harness proves the CivicCore release gate and the public
+The cleanroom harness proves the Townlight Core release gate and the public
 install-and-verify path from a pinned container with no inherited maintainer
-state. It provisions CivicCore from an explicit commit SHA, runs the release
+state. It provisions Townlight Core from an explicit commit SHA, runs the release
 gate, verifies the release-provenance fixtures, verifies the live `v0.22.1`
 Sigstore attestation, verifies the `SHA256SUMS.txt` release-asset path, and
 then runs an offline smoke with Docker networking disabled.

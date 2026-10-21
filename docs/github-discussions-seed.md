@@ -1,6 +1,6 @@
 # civiccore — GitHub Discussions seed posts
 
-Drafts for the initial Discussions categories on https://github.com/CivicSuite/civiccore/discussions. Edit inline before posting.
+Drafts for the initial Discussions categories on https://github.com/townlight/core/discussions. Edit inline before posting.
 
 ---
 
@@ -77,4 +77,4 @@ records-ai v1.4.0 (released 2026-04-25) is the first downstream release consumin
 | 0.1.0 | 1.3.0 | Supported (Phase 1) |
 | 0.1.0 | < 1.3.0 | Not applicable (pre-extraction) |
 
-CivicSuite umbrella tracks the matrix at https://github.com/CivicSuite/civicsuite/blob/main/docs/compatibility/index.md.
+Townlight umbrella tracks the matrix at https://github.com/townlight/townlight/blob/main/docs/compatibility/index.md.

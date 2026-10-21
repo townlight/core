@@ -7,7 +7,7 @@
 | 0.2.x   | Yes                |
 | < 0.2   | No                 |
 
-CivicCore is in pre-1.0; only the latest minor (`0.2.x`) receives security
+Townlight Core is in pre-1.0; only the latest minor (`0.2.x`) receives security
 fixes. Once we cut `0.3.0`, support for `0.2.x` ends.
 
 ## Reporting a vulnerability
@@ -17,10 +17,10 @@ fixes. Once we cut `0.3.0`, support for `0.2.x` ends.
 Two preferred channels, in order:
 
 1. **GitHub Security Advisory** — open a private security advisory at
-   https://github.com/CivicSuite/civiccore/security/advisories/new. This
+   https://github.com/townlight/core/security/advisories/new. This
    is the fastest path; it is private to maintainers until disclosure.
 2. **Email** — if you cannot use the advisory flow, email the maintainer
-   listed at https://github.com/CivicSuite/civiccore (the `Maintained by`
+   listed at https://github.com/townlight/core (the `Maintained by`
    link in the README) with subject prefix `[civiccore-security]`.
 
 ### What to include

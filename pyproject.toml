@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "civiccore"
 version = "1.2.1"
-description = "CivicSuite shared platform package - migrations, shared SQLAlchemy base, LLM abstraction, audit/provenance, document ingestion, ingest and connector contracts, connector sync primitives, connector delta planning, reusable mock-city proof contracts, connector security helpers, startup config validation helpers, schedule validation helpers, encrypted config primitives, notice helpers, onboarding profile helpers, search access helpers, small auth helpers, manifests, exports, city profile primitives, and Windows-local module/runtime contracts"
+description = "Townlight shared platform package - migrations, shared SQLAlchemy base, LLM abstraction, audit/provenance, document ingestion, ingest and connector contracts, connector sync primitives, connector delta planning, reusable mock-city proof contracts, connector security helpers, startup config validation helpers, schedule validation helpers, encrypted config primitives, notice helpers, onboarding profile helpers, search access helpers, small auth helpers, manifests, exports, city profile primitives, and Windows-local module/runtime contracts"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "AGPL-3.0-only"

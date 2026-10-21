@@ -1,15 +1,17 @@
-# CivicCore Tier 1 Retrofit Ledger
+<a id="civiccore-tier-1-retrofit-ledger"></a>
+
+# Townlight Core Tier 1 Retrofit Ledger
 
 Status: CO-3 ledger, live-release scan current as of 2026-05-05.
 
-This ledger covers every public CivicCore GitHub Release visible during the
+This ledger covers every public Townlight Core GitHub Release visible during the
 CO-3 live scan. It does not rewrite history and does not alter any pre-baseline
 release notes, tags, or assets. The correction action taken here is a
 repo-controlled ledger plus documentation truth update.
 
 ## Rules
 
-- `v0.22.1` is the first CivicCore Sigstore-attested baseline release.
+- `v0.22.1` is the first Townlight Core Sigstore-attested baseline release.
 - `v0.22.0` and earlier releases are retained for historical installs, but are
   not provenance baselines.
 - A pre-baseline release may become attested only through a future additive
@@ -36,7 +38,7 @@ but the live check permits them only when the GitHub release exposes both
 
 ## Live Scan Summary
 
-- Repo: `CivicSuite/civiccore`
+- Repo: `townlight/core`
 - Live releases scanned: 25
 - Latest release: `v0.22.1`
 - Baseline release:
@@ -50,7 +52,7 @@ but the live check permits them only when the GitHub release exposes both
 
 | Tag | Published | Git ref type | Target commit | Ledger status | Attestation | Rule |
 | --- | --- | --- | --- | --- | --- | --- |
-| `v0.22.1` | 2026-05-05T16:23:36Z | lightweight tag | `46c99854adbce6dc8a056ae5215278bb1eba9a19` | Attested baseline | Sigstore verified | Use as CivicCore baseline. |
+| `v0.22.1` | 2026-05-05T16:23:36Z | lightweight tag | `46c99854adbce6dc8a056ae5215278bb1eba9a19` | Attested baseline | Sigstore verified | Use as Townlight Core baseline. |
 | `v0.22.0` | 2026-05-03T06:39:51Z | lightweight tag | `483a224aaf2ae08868bd4cd4caf842bfda97db94` | Pre-gate, no attestation | None | Do not promote as baseline. |
 | `v0.21.0` | 2026-05-02T17:00:33Z | annotated tag object | `4a1eb718ee9565a9a1911da9eff71a5c9f0b3e3e` | Pre-gate, no attestation | None | Do not promote as baseline. |
 | `v0.20.0` | 2026-05-02T15:06:14Z | lightweight tag | `ad66681132c28bf17c48681c82943d153897b099` | Pre-gate, no attestation | None | Do not promote as baseline. |
@@ -78,7 +80,7 @@ but the live check permits them only when the GitHub release exposes both
 
 ## Auditor Interpretation
 
-Zero CO-3 historical CivicCore release tags are intentionally left unledgered.
+Zero CO-3 historical Townlight Core release tags are intentionally left unledgered.
 The pre-baseline entries are explicit no-attestation decisions, not implied
 backfills. Later post-baseline releases are governed by their own release
 attestation and closeout evidence. If a future sprint publishes additive attestations for any

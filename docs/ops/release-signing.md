@@ -1,6 +1,6 @@
 # Release Signing and Provenance
 
-CivicCore is the canonical home for CivicSuite release-provenance gate logic.
+Townlight Core is the canonical home for Townlight release-provenance gate logic.
 Downstream modules should call `python -m civiccore.release_provenance` or a
 thin local wrapper around `civiccore.release_provenance.main()`.
 
@@ -12,7 +12,7 @@ localhost identity exception, and no "fix it in the next release" path.
 
 GitHub release pages can show a "Verified" badge for the target commit even
 when the release tag itself is lightweight or when an annotated tag object is
-unsigned. CivicSuite does not treat the tag as the trust root. The tag is a
+unsigned. Townlight does not treat the tag as the trust root. The tag is a
 release pointer. The trust artifact is a Sigstore-signed
 `release-attestation.json` produced by the exact release workflow for the exact
 repo and tag.
@@ -108,7 +108,7 @@ review environment cannot validate the bundle, the auditor treats that as
 ## Failure Modes The Gate Must Reject
 
 - Missing or wrong attestation schema version: fail closed and regenerate using
-  the versioned CivicCore schema.
+  the versioned Townlight Core schema.
 - Wrong workflow identity: fail closed. Identity must be exact repo + exact
   `.github/workflows/release.yml` + exact `refs/tags/<tag>`.
 - Workflow rename or migration: fail closed until the runbook, fixture suite,
@@ -197,7 +197,7 @@ and exact workflow-identity verification commands.
 
 Maintainer desktops and cloud-synced folders are scratchpads, not audit
 surfaces. Drafts, runbooks, schemas, fixture analyses, defect statements, and
-other artifacts under audit review must live in a CivicSuite repository on a
+other artifacts under audit review must live in a Townlight repository on a
 branch and move through a verified PR before review. If an artifact is too
 sensitive for a public repository, it must live in an appropriate private
 organization repository with the same verified-merge discipline.
