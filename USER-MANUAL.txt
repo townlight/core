@@ -3,7 +3,7 @@ CivicCore User Manual
 
 Version: v1.2.1 (current downstream productization line)
 Repository: https://github.com/CivicSuite/civiccore
-License: Apache 2.0
+License: AGPL-3.0-only, with the TownLight Public Institution Exception 1.0 (see LICENSE and LICENSE-EXCEPTION.md)
 
 Audience
 --------

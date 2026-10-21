@@ -648,7 +648,7 @@ module versions work with which CivicCore versions — is maintained at
 
 ## License
 
-[Apache License 2.0](LICENSE).
+Code: AGPL-3.0-only, with the TownLight Public Institution Exception for qualifying deployments. See [LICENSE](LICENSE) and [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md).
 
 ## Contributing
 
