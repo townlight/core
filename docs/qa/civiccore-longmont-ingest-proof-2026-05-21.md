@@ -4,6 +4,8 @@ Purpose: prove the shared CivicCore ingestion pipeline parses a real municipal P
 
 Command class: local proof script using `testcontainers.postgres.PostgresContainer("pgvector/pgvector:pg17")`, `civiccore.migrations.runner.upgrade_to_head()`, and `civiccore.ingest.ingest_file()`.
 
+Chunking parameters for this CivicCore proof: `chunk_size=900`, `chunk_overlap=90`.
+
 Corpus:
 
 - `C:\Users\scott\OneDrive\Desktop\Claude\longmont-code-corpus\Longmont, CO Code of Ordinances.pdf`
@@ -34,8 +36,8 @@ sample_chunk_text=SUPPLEMENT NO. 8 March 2026 CODE OF ORDINANCES City of LONGMON
 Acceptance facts:
 
 - Real PDF parser path used: yes.
-- Sentence-aware chunk rows persisted: `1789`.
+- Sentence-aware chunk rows persisted: `1789` with `chunk_size=900` / `chunk_overlap=90`.
 - Ollama `nomic-embed-text` vectors persisted: `1789`.
 - Vector dimensionality: `768`.
 - Database schema: CivicCore baseline migration `documents` / `document_chunks` on pgvector PostgreSQL.
-
+- Note: CivicCode PR #61 intentionally uses `chunk_size=500` / `chunk_overlap=50` for its active Longmont proof, so its 2,931 chunk count is not expected to match this CivicCore proof's 1,789 chunk count. CivicCode PR #61 commits `scripts/prove-longmont-civiccore-chunk-params.py`, which ingests the same PDF through `civiccore.ingest.ingest_file()` twice in one run and reproduces both counts.
