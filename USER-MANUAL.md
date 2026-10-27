@@ -1,3 +1,104 @@
+# Townlight Core — User manual
+
+Current operating guide · reviewed 2026-10-26 · Core 1.2.1, bundled in accepted desktop compositions.
+
+[Product page](https://townlight.github.io/products/core/) · [Overall manual](https://github.com/townlight/townlight/blob/main/USER-MANUAL.md) · [Requirements assessment](https://github.com/townlight/townlight/blob/main/docs/assessment/feature-and-integration-review.md)
+
+## Purpose and audience
+
+Core supplies Python contracts and shared services used by the other seven products. Staff normally encounter it through Setup, Settings and System Health rather than a separate Core workspace.
+
+Primary operators: **IT and platform maintainers**. [Release and acceptance notes](https://github.com/townlight/townlight/releases/tag/townlight-records-meetings-code-zoning-planning-permitting-inspections-v1.7.0-beta.1).
+
+## Before starting
+
+Use the explicit product composition in the installed Townlight desktop. Sign in with the required local staff account, confirm System Health readiness and take a backup before maintenance. If a workspace is absent, inspect the profile and release identity before importing data. Optional AI is not needed for the accepted deterministic workflow. The procedures below use real saved sources; sample/demo web pages are not substitutes.
+
+## Complete the workflow
+
+### 1. Prepare a deployment
+
+Choose the signed composition for the workflows needed. Keep the release acceptance, checksum and signing receipt with the installer. Package version, desktop version and the selected product profile are different identities; use the receipt rather than assuming they are equal.
+
+### 2. Activate the local runtime
+
+Complete the desktop administrator setup. Use the explicit activation and backed-up migration controls. System Health reports PostgreSQL, City workflow services, Task queue, optional Model runtime and document storage separately. Start dependencies before dependent services and wait for readiness, not merely a running PID.
+
+### 3. Manage access
+
+Create and use named local staff accounts through the desktop controls. Native session proof is mapped to persisted SQL identity. Never substitute an editable actor label, role header or staff key in a browser for an authenticated account.
+
+### 4. Use shared ingestion
+
+Import through the owning product. Core parses and normalizes supported material while the product records the original, permissions and citation. Core ingestion is implemented; it is not a central permission bypass or an automatic municipal data discovery service.
+
+### 5. Use local AI deliberately
+
+The optional model runtime and provider abstraction support configured consumers. Continue without local AI where offered. Model output is a draft; permission filtering, citations and human review still apply. No model download is necessary for the deterministic accepted land-use workflows.
+
+### 6. Recover coherently
+
+Create the desktop backup before migration or maintenance. Stop dependent City workflow services and Task queue before PostgreSQL maintenance. Use the canonical backup/restore controls; do not restore only one module table or write historical JSON back into a live SQL profile.
+
+### 7. Diagnose a failure
+
+Read System Health status, service logs and the support bundle. A dependency can be stopped, warming up, misconfigured or inaccessible; those conditions are distinct. Preserve data and the exact error before deciding a repair. Share a redacted bundle, not credentials or resident data.
+
+## How this product connects
+
+All seven products consume Core. The module owns its business permissions and workflow; Core does not automatically connect every pair of products.
+
+## Boundaries and known gaps
+
+The shared catalog, shared exemption engine and module scaffolding packages are reserved placeholders under accepted deferral ADRs. Search helpers are not a complete centrally hosted search service. Full user administration, business exemptions and public portals remain consumer responsibilities.
+
+## Shared operating rules
+
+Use the installed native desktop for the accepted workflow. Standalone package web pages, sample endpoints and developer API examples are different surfaces. A local Resident/Public view is not an internet deployment. Confirm the selected composition before looking for a workspace.
+
+1. Keep named staff accounts and least privilege. Administrators manage setup; ordinary staff use their authorized workspace. Do not put credentials, unredacted evidence or resident data into public issues.
+2. Preserve originals and their hashes. Import preview and confirmation are distinct actions. Treat fictional fixtures as fictional; they are not municipal authority.
+3. Save before navigating away, closing or signing out. Unsaved drafts are not a durable record. On a conflict, reopen and reconcile; on an unknown result, inspect the saved record before repeating a write.
+4. Review the exact revision and audience. A private packet and a public copy are different artifacts. Public text is explicitly edited/reviewed; changing a filename does not sanitize private content.
+5. Keep source permission, version and hash checks. If a provider is stopped or a source becomes restricted, retain the draft, restore authorized access and deliberately reselect evidence. Never bypass the check or substitute a sample.
+6. Approval, attachment, export and publication are separate actions. No cross-product attachment is an automatic records response, official permit, legal determination or enforcement decision.
+
+## Installation, maintenance and recovery
+
+Choose a release from the overall manual; do not infer a supported upgrade from a higher version number. Verify its published checksum, publisher signature and acceptance notes before installing. The default download remains the signed 1.4 beta, and Records-only remains its default selection. Planning 1.5.1 has a fresh-install boundary; Permitting and Inspections use separately identified products.
+
+Complete Setup and normal runtime activation for the selected composition. Optional local AI can be deferred. Use System Health to distinguish stopped, starting, ready and failed dependencies. Wait for readiness before opening a dependent workspace. Use documented Retry controls after recovery; do not repeat business writes to refresh a stale screen.
+
+Back up through the canonical desktop controls before migration or maintenance. Keep the coherent data, document and profile backup and its receipt in protected storage. A source export is not a full backup. Stop dependent services before PostgreSQL maintenance. Restore through the supported controls rather than editing SQL or restoring historical JSON into the active runtime. Uninstall can retain data; backup before uninstalling and inspect the chosen removal options. Never assume uninstall means data deletion.
+
+For an error, retain the message, time, selected profile, installed version and operation; inspect System Health and relevant logs. Use a redacted support bundle. Do not delete the profile, run an arbitrary downgrade or repair prerequisites as a first response. If an installer requests a restart, save work and obtain the operator’s explicit restart decision before proceeding.
+
+## Evidence and scope
+
+This manual reuses the accepted installed, required-CI and signed-delivery evidence. It does not turn source inspection into a new installed test. Recovery evidence is reused only within its recorded candidate/profile boundaries; no universal upgrade, hardware, accessibility or production deployment certification is implied. The [overall manual](https://github.com/townlight/townlight/blob/main/USER-MANUAL.md) gives release identities and shared operations. The [feature and integration assessment](https://github.com/townlight/townlight/blob/main/docs/assessment/feature-and-integration-review.md) separates implementation, explicit deferral, missing capability and unverified acceptance.
+
+
+## Maintainer and API reference
+
+The following source contracts support these instructions. The historical reference below retains older API/setup details for their original version; it does not override this operating guide or the release acceptance.
+
+- [civiccore/search/__init__.py](https://github.com/townlight/core/tree/main/civiccore/search/__init__.py)
+- [civiccore/ingest/pipeline.py](https://github.com/townlight/core/tree/main/civiccore/ingest/pipeline.py)
+- [civiccore/platform](https://github.com/townlight/core/tree/main/civiccore/platform)
+- [civiccore/catalog/__init__.py](https://github.com/townlight/core/tree/main/civiccore/catalog/__init__.py)
+- [civiccore/exemptions/__init__.py](https://github.com/townlight/core/tree/main/civiccore/exemptions/__init__.py)
+- [civiccore/scaffold/__init__.py](https://github.com/townlight/core/tree/main/civiccore/scaffold/__init__.py)
+- [docs/adr/ADR-0001-defer-civiccore-catalog.md](https://github.com/townlight/core/tree/main/docs/adr/ADR-0001-defer-civiccore-catalog.md)
+- [docs/adr/ADR-0002-defer-civiccore-exemptions.md](https://github.com/townlight/core/tree/main/docs/adr/ADR-0002-defer-civiccore-exemptions.md)
+- [docs/adr/ADR-0003-defer-civiccore-scaffold.md](https://github.com/townlight/core/tree/main/docs/adr/ADR-0003-defer-civiccore-scaffold.md)
+
+
+---
+
+## Historical package/API reference
+
+The material below is retained from the previous manual for historical and developer reference. Version, unreleased, sample, planned and installation claims below describe that earlier document, not current desktop release status. Use the current guide above for operation. Existing detailed API reference remains useful only for the matching package/version.
+
 <a id="civiccore-user-manual"></a>
 
 # Townlight Core User Manual
