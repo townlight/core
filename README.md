@@ -1,3 +1,28 @@
+# Townlight Core
+
+**The shared foundation beneath municipal work.**
+
+Core supplies Python contracts and shared services used by the other seven products. Staff normally encounter it through Setup, Settings and System Health rather than a separate Core workspace.
+
+## Use this product
+
+- [Current user manual](USER-MANUAL.md): installed workflow, roles, sources, review, export, recovery and limits.
+- [Product landing page](https://townlight.github.io/products/core/).
+- [Overall eight-product manual](https://github.com/townlight/townlight/blob/main/USER-MANUAL.md) and [feature/integration assessment](https://github.com/townlight/townlight/blob/main/docs/assessment/feature-and-integration-review.md).
+- [Signed composition and acceptance](https://github.com/townlight/townlight/releases/tag/townlight-records-meetings-code-zoning-planning-permitting-inspections-v1.7.0-beta.1): Core 1.2.1, bundled in accepted desktop compositions.
+
+All seven products consume Core. The module owns its business permissions and workflow; Core does not automatically connect every pair of products.
+
+## Release scope
+
+The shared catalog, shared exemption engine and module scaffolding packages are reserved placeholders under accepted deferral ADRs. Search helpers are not a complete centrally hosted search service. Full user administration, business exemptions and public portals remain consumer responsibilities.
+
+Documentation reviewed 2026-10-26. Installed acceptance, source/API implementation and future requirements are different evidence. Code is AGPL-3.0-only with the repository’s public institution exception where applicable; documentation is CC BY 4.0. See the repository license files.
+
+## Historical repository reference
+
+The earlier README below is retained for package history and contributor commands. Older maturity/version statements describe that historical reference and are superseded by the current operating guide and linked release evidence.
+
 <a id="civiccore"></a>
 
 # Townlight Core
