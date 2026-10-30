@@ -151,6 +151,6 @@ fix and disclosure timeline with you.
 ## License
 
 By contributing, you agree your contribution is licensed under
-AGPL-3.0-only, with the TownLight Public Institution Exception 1.0;
+AGPL-3.0-only;
 documentation contributions are licensed under CC BY 4.0. See
-[LICENSE](LICENSE) and [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md).
+[LICENSE](LICENSE).

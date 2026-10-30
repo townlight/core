@@ -1,14 +1,15 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "civiccore"
-version = "1.2.1"
+version = "1.3.0.dev1"
 description = "Townlight shared platform package - migrations, shared SQLAlchemy base, LLM abstraction, audit/provenance, document ingestion, ingest and connector contracts, connector sync primitives, connector delta planning, reusable mock-city proof contracts, connector security helpers, startup config validation helpers, schedule validation helpers, encrypted config primitives, notice helpers, onboarding profile helpers, search access helpers, small auth helpers, manifests, exports, city profile primitives, and Windows-local module/runtime contracts"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "AGPL-3.0-only"
+license-files = ["LICENSE", "LICENSE-CODE", "LICENSE-DOCS"]
 authors = [
     { name = "Scott Converse" },
     { name = "CivicSuite contributors" },
@@ -42,6 +43,7 @@ classifiers = [
 # to ">=3.11" because it is a shared library and must support modules that
 # may not have moved to 3.12 yet.
 dependencies = [
+    "packaging>=24.0",
     "fastapi>=0.135.0",
     "uvicorn[standard]>=0.44.0",
     "sqlalchemy[asyncio]>=2.0.49",

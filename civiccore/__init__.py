@@ -16,7 +16,7 @@ Townlight Core is a library, not an end-user application.
 
 from __future__ import annotations
 
-__version__ = "1.2.1"
+__version__ = "1.3.0.dev1"
 
 from civiccore.audit import (
     AuditActor,
@@ -147,6 +147,8 @@ from civiccore.platform import (
     can_run_task,
     claim_next_local_task,
     complete_local_task,
+    cancel_local_task,
+    renew_local_task,
     enqueue_local_task,
     fail_local_task,
     next_retry_at,
@@ -326,6 +328,8 @@ __all__ = [
     "can_run_task",
     "claim_next_local_task",
     "complete_local_task",
+    "cancel_local_task",
+    "renew_local_task",
     "access_level_allows",
     "completed_profile_fields",
     "compute_onboarding_status",
