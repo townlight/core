@@ -8,7 +8,7 @@ Core provides the shared contracts, ingestion, identity helpers, task infrastruc
 
 ## Start here
 
-Staff should use the operating manual. Administrators should read first-run, configuration and recovery before changing a deployment. Developers should read the exact API/schema reference and matching source companion. This is a private candidate documentation update; it neither changes public downloads nor publishes a release.
+Staff should use the operating manual. Administrators should read first-run, configuration and recovery before changing a deployment. Developers should read the exact API/schema reference and matching source companion. This edition accompanies Townlight Beta 1; use the release link above for the signed candidate and exact source/documentation archives.
 
 - [Operating manual](docs/beta-1/manuals/core.html) · [Printable PDF](docs/beta-1/pdf/Townlight-Core-Manual-Beta-1.pdf) · [Editable Word manual](docs/beta-1/docx/Townlight-Core-Manual-Beta-1.docx)
 - [API and data dictionary](docs/beta-1/api/core.html) · [OpenAPI JSON](docs/beta-1/api/core-openapi.json)
