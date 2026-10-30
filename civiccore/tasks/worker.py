@@ -10,7 +10,7 @@ from collections.abc import Sequence
 
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from civiccore.platform.task_queue import run_one_local_task
+from civiccore.tasks.leased import run_leased_task
 from civiccore.platform.tasks import TaskRetryPolicy
 from civiccore.tasks.registry import get_task_handlers
 
@@ -47,13 +47,13 @@ async def _run_worker(args: argparse.Namespace) -> int:
 
     try:
         while True:
-            async with session_factory() as session:
-                task = await run_one_local_task(
-                    session,
-                    handlers=handlers,
-                    retry_policy=retry_policy,
-                )
-                await session.commit()
+            task = await run_leased_task(
+                session_factory,
+                handlers=handlers,
+                retry_policy=retry_policy,
+                lease_seconds=getattr(args, "lease_seconds", 300),
+                max_run_seconds=getattr(args, "max_run_seconds", 3600),
+            )
             if args.once:
                 return 0
             if task is None:
@@ -70,6 +70,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--max-attempts", type=int, default=3)
     parser.add_argument("--base-delay-seconds", type=int, default=30)
     parser.add_argument("--max-delay-seconds", type=int, default=3600)
+    parser.add_argument("--lease-seconds", type=int, default=300)
+    parser.add_argument("--max-run-seconds", type=int, default=3600)
     args = parser.parse_args(argv)
     return asyncio.run(_run_worker(args))
 

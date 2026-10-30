@@ -1,0 +1,15 @@
+# Durable task ownership
+
+The existing Core PostgreSQL queue is extended rather than replaced. The lease/claim pattern is adapted from TownReporter's `src/lib/news/jobs.ts` at the inspected donor baseline `ab9984bce2e5806c021ebb7435642b2c0fa98b08`. It does not transplant the newsroom application or model/provider routing.
+
+Apply Core migrations through `civiccore_0005_job_leases`. Enqueue serializes idempotency admission and rejects a reused key with different module/type/payload/audit subject. Claims have a random token and deadline. Expired work is reclaimed with a new token, with a bounded failed-attempt count. Completion, failure and heartbeat require current unexpired ownership. Cancellation records its actor and fences further results.
+
+Existing same-session `claim_next_local_task` then complete/fail calls retain compatibility through the token captured in that session. A different session must explicitly carry the claim token. A caller cannot acquire authority by simply reloading a task row. Applications must authorize queue operations before invoking the library, including module/department scope for cancellation.
+
+The CLI uses `run_leased_task`: it commits the claim before execution, renews it independently, cancels cooperative work when ownership is lost, and enforces `--max-run-seconds`. Leased handlers must be async and must yield; blocking native/model work belongs in a separately supervised worker process. The older transaction-scoped `run_one_local_task` remains for bounded in-process compatibility, not long-running external work.
+
+A fenced job result is not an exactly-once promise for external side effects. Handlers must use an idempotent artifact/operation receipt and verify their current claim before authoritative writes. Native child termination and media/provider containment are the handler's responsibility; this queue does not falsely certify external cleanup. Consumer transcription/extraction adapters and their acceptance remain work.
+
+Claim-bound **artifact acceptance** now exists as `civiccore.tasks.artifacts` (migration `civiccore_0009_job_artifacts`): a derived file is published only inside a configured store root, only for the job identity and live claim token carried by the claimed envelope, with a computed and re-verified sha256 and an attributed append-only receipt. `civiccore.platform.task_queue.require_active_claim` is the read-only fence it calls before the authoritative write. See [job-artifacts.md](job-artifacts.md) and [ADR-0010](adr/ADR-0010-claim-bound-artifacts.md). It adds no transcription, OCR, transcoding, embedding or provider call; consumer adapters, large-original storage and retention/redaction remain work.
+
+Verified on actual isolated PostgreSQL: concurrent duplicate submission, changed-payload rejection, expired-claim recovery, stale success/failure rejection, heartbeat preservation beyond one lease, attributed cancellation, bounded timeout and same-session compatibility. No installed job worker was changed.

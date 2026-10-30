@@ -36,10 +36,15 @@ class OllamaProvider(LLMProvider):
         base_url: str = "http://localhost:11434",
         default_model: str = "gemma4:e4b",
         default_embed_model: str = "nomic-embed-text",
+        think: bool | str | None = None,
     ) -> None:
         self.base_url = base_url.rstrip("/")
         self.default_model = default_model
         self.default_embed_model = default_embed_model
+        # Ollama's `/api/generate` accepts ``think`` as a bool or a level
+        # string ("low"/"medium"/"high"). ``None`` omits the field, which keeps
+        # the pre-existing request shape for every existing caller.
+        self.think = think
 
     @property
     def name(self) -> str:
@@ -78,6 +83,8 @@ class OllamaProvider(LLMProvider):
         }
         if images:
             payload["images"] = images
+        if self.think is not None:
+            payload["think"] = self.think
 
         async with httpx.AsyncClient(timeout=timeout) as client:
             resp = await client.post(f"{self.base_url}/api/generate", json=payload)

@@ -1,0 +1,3 @@
+# Current candidate license
+
+Core 1.3.0.dev1 owned code is AGPL-3.0-only, without the Public Institution Exception, under the owner-approved uniform Townlight policy. Documentation retains CC BY 4.0 and third-party components retain their own notices. Earlier artifacts and grants are unchanged. The exact earlier exception is retained in history/Public-Institution-Exception-1.0.md for historical reference; it is not an additional permission for this candidate. The wheel contains the full AGPL text and current code/documentation notices. Distribution requires matching source and build instructions; this candidate is private and uninstalled.

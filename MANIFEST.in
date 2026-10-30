@@ -1,0 +1,5 @@
+recursive-include docs/licensing *.md
+recursive-include docs/adr *.md
+include docs/catalog-beta.md
+include docs/job-leases.md
+include CONTRIBUTING.md

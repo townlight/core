@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
+from packaging.version import Version
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 ModuleSurface = Literal["staff", "resident", "admin", "system"]
@@ -263,7 +264,11 @@ class ModuleRegistryState(BaseModel):
 def validate_windows_local_manifest(manifest: ModuleManifest | dict[str, Any]) -> ModuleManifest:
     """Validate a manifest for the Windows desktop profile."""
 
-    parsed = manifest if isinstance(manifest, ModuleManifest) else ModuleManifest.model_validate(manifest)
+    parsed = (
+        manifest
+        if isinstance(manifest, ModuleManifest)
+        else ModuleManifest.model_validate(manifest)
+    )
     if "windows_local" not in parsed.install_profiles:
         raise ValueError(f"{parsed.module_id} does not declare support for windows_local")
     _validate_windows_runtime_requirements(parsed)
@@ -296,39 +301,67 @@ def build_module_registry(
     if unknown:
         raise ValueError(f"selected modules are not installed: {sorted(unknown)}")
 
-    entries: list[ModuleRegistryEntry] = []
+    core_version = Version(civiccore_version)
     for manifest in parsed:
-        enabled = manifest.module_id in selected
+        Version(manifest.version)
+        Version(manifest.civiccore_min_version)
+        for dependency in manifest.dependencies:
+            if dependency.min_version:
+                Version(dependency.min_version)
+
+    # Resolve prerequisites before admitting dependants. A visiting node signals
+    # a required cycle; propagate the block rather than treating selection as health.
+    resolved: dict[str, ModuleRegistryEntry] = {}
+    visiting: set[str] = set()
+
+    def resolve(module_id: str) -> ModuleRegistryEntry:
+        if module_id in resolved:
+            return resolved[module_id]
+        manifest = by_id[module_id]
+        reason = None
+        enabled = module_id in selected
         status: ModuleRegistryStatus = "enabled" if enabled else "disabled"
-        reason: str | None = None
-
         if profile not in manifest.install_profiles:
-            enabled = False
-            status = "blocked"
             reason = f"{manifest.name} is not available for the {profile} profile."
+        elif enabled and core_version < Version(manifest.civiccore_min_version):
+            reason = f"Requires Core {manifest.civiccore_min_version} or newer."
         elif enabled:
-            missing = [
-                dependency.module_id
-                for dependency in manifest.dependencies
-                if dependency.required and dependency.module_id not in selected
-            ]
-            if missing:
-                enabled = False
-                status = "blocked"
-                reason = f"Missing required module dependencies: {', '.join(sorted(missing))}."
-
-        entries.append(
-            ModuleRegistryEntry(
-                module_id=manifest.module_id,
-                name=manifest.name,
-                version=manifest.version,
-                enabled=enabled,
-                locked=False,
-                status=status,
-                reason=reason,
-                manifest=manifest,
-            )
+            visiting.add(module_id)
+            try:
+                for dependency in manifest.dependencies:
+                    if not dependency.required:
+                        continue
+                    target = dependency.module_id
+                    if target not in selected or target not in by_id:
+                        reason = f"Missing required module dependency: {target}."
+                    elif target in visiting:
+                        reason = f"Required dependency cycle through {target}."
+                    elif dependency.min_version and Version(by_id[target].version) < Version(
+                        dependency.min_version
+                    ):
+                        reason = f"Requires {target} {dependency.min_version} or newer."
+                    elif not resolve(target).enabled:
+                        reason = f"Required module dependency is blocked or disabled: {target}."
+                    if reason:
+                        break
+            finally:
+                visiting.remove(module_id)
+        if reason:
+            enabled, status = False, "blocked"
+        entry = ModuleRegistryEntry(
+            module_id=module_id,
+            name=manifest.name,
+            version=manifest.version,
+            enabled=enabled,
+            locked=False,
+            status=status,
+            reason=reason,
+            manifest=manifest,
         )
+        resolved[module_id] = entry
+        return entry
+
+    entries = [resolve(manifest.module_id) for manifest in parsed]
 
     return ModuleRegistryState(
         profile=profile,

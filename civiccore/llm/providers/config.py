@@ -18,6 +18,9 @@ class OllamaConfig(BaseModel):
     base_url: str = Field(default="http://localhost:11434")
     default_model: str = Field(default="gemma4:e4b")
     default_embed_model: str = Field(default="nomic-embed-text")
+    # Reasoning models on the local runtime accept True/False or a level string.
+    # Left as None so the field is not sent at all unless configured.
+    think: bool | str | None = Field(default=None)
 
 
 class OpenAIConfig(BaseModel):

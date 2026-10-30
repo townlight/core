@@ -37,6 +37,8 @@ class LocalTaskEnvelope(BaseModel):
     last_error: str | None = Field(default=None, min_length=1)
     idempotency_key: str | None = Field(default=None, min_length=1)
     audit_subject_id: str | None = Field(default=None, min_length=1)
+    claim_token: str | None = None
+    lease_expires_at: datetime | None = None
 
     @model_validator(mode="after")
     def validate_retry_state(self) -> LocalTaskEnvelope:
@@ -141,7 +143,9 @@ def record_task_attempt(
             "last_error": error,
         }
     )
-    return LocalTaskResult(task=updated, message="Task failed and is waiting to retry.", retry_at=retry_at)
+    return LocalTaskResult(
+        task=updated, message="Task failed and is waiting to retry.", retry_at=retry_at
+    )
 
 
 def summarize_task_queue(tasks: list[LocalTaskEnvelope]) -> TaskQueueSummary:

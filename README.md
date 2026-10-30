@@ -1,683 +1,212 @@
-# Townlight Core
-
-**The shared foundation beneath municipal work.**
-
-Core supplies Python contracts and shared services used by the other seven products. Staff normally encounter it through Setup, Settings and System Health rather than a separate Core workspace.
-
-## Use this product
-
-- [Current user manual](USER-MANUAL.md): installed workflow, roles, sources, review, export, recovery and limits.
-- [Product landing page](https://townlight.github.io/products/core/).
-- [Overall eight-product manual](https://github.com/townlight/townlight/blob/main/USER-MANUAL.md) and [feature/integration assessment](https://github.com/townlight/townlight/blob/main/docs/assessment/feature-and-integration-review.md).
-- [Signed composition and acceptance](https://github.com/townlight/townlight/releases/tag/townlight-records-meetings-code-zoning-planning-permitting-inspections-v1.7.0-beta.1): Core 1.2.1, bundled in accepted desktop compositions.
-
-All seven products consume Core. The module owns its business permissions and workflow; Core does not automatically connect every pair of products.
-
-## Release scope
-
-The shared catalog, shared exemption engine and module scaffolding packages are reserved placeholders under accepted deferral ADRs. Search helpers are not a complete centrally hosted search service. Full user administration, business exemptions and public portals remain consumer responsibilities.
-
-Documentation reviewed 2026-10-26. Installed acceptance, source/API implementation and future requirements are different evidence. Code is AGPL-3.0-only with the repository’s public institution exception where applicable; documentation is CC BY 4.0. See the repository license files.
-
-## Historical repository reference
-
-The earlier README below is retained for package history and contributor commands. Older maturity/version statements describe that historical reference and are superseded by the current operating guide and linked release evidence.
-
-<a id="civiccore"></a>
+> **Townlight Beta 1 public release:** [signed Windows installer, exact owned source, documentation and acceptance](https://github.com/townlight/townlight/releases/tag/townlight-beta-1). [Online manuals](https://townlight.github.io/manuals/core.html). The retained manual edition describes the accepted candidate before publication; publication changes distribution only. Component versions and signed bytes are unchanged.
 
 # Townlight Core
 
-Shared platform package for the
-[Townlight](https://github.com/townlight/townlight) open-source
-municipal operations suite.
+**Townlight Beta 1** · Existing component versions retained · AGPL-3.0-only
 
-## What this is
+Core provides the shared contracts, ingestion, identity helpers, task infrastructure and recovery foundation used by Townlight. Staff encounter these capabilities through Setup, Settings and System Health. Business decisions stay with their owning product.
 
-Townlight Core is the Python package every Townlight module depends on for
-shared platform plumbing. **What ships today:** the migration runner plus
-`civiccore_0001_baseline_v1` shared-schema baseline, a shared SQLAlchemy
-declarative `Base`, the `civiccore.llm` module, hash-chained audit
-primitives, source/provenance metadata contracts, offline import/export
-manifest schemas, static export-bundle helpers, local city profile
-configuration, small auth helpers for downstream FastAPI services,
-including mixed public/staff routes that should stay anonymous by
-default while unlocking privileged results for authorized callers,
-browser-evidence verification helpers for current-facing release pages,
-small shared search helpers for deterministic text matching, generic
-permission-aware access checks, hybrid ranking fusion, and local-first connector import helpers for
-agenda-platform payload normalization with actionable error contracts and
-source provenance, storage-neutral live connector sync retry/circuit-breaker
-primitives with actionable operator health copy and shared source-list status
-projection, connector delta request
-planning, reusable mock-city proof contracts for vendor, municipal IdP, and
-backup-retention readiness, shared ingest contracts for connector discovery/fetch
-records and cited-source validation, shared document ingestion for PDF, DOCX,
-XLSX, CSV, EML, HTML, and text files with sentence-aware chunking, local Ollama
-embeddings, and pgvector-backed `documents` / `document_chunks` storage, plus
-shared notice deadline planning and publication compliance helpers with
-actionable warning codes, plus shared
-cron schedule validation helpers for module background jobs.
+## Start here
 
-**Still planned extraction targets (placeholder packages exist; not yet
-implemented today):** `civiccore.catalog`, `civiccore.exemptions`
-(50-state public-records exemption engine),
-`civiccore.scaffold`. `civiccore.ingest` now ships reusable
-discovery/fetch contracts, cited-source validation helpers, and the shared
-document ingestion pipeline. It does not ship a worker scheduler/runtime.
-`civiccore.onboarding` now ships storage-neutral
-profile interview helpers, but not a web onboarding UI or persistence
-router. `civiccore.search` now ships normalization and
-fusion helpers, but not a full search engine or indexer.
-`civiccore.notifications` now ships notice deadline and compliance
-helpers, but not delivery queues or outbound notification orchestration.
-`civiccore.platform` now ships the Windows-local desktop contracts for module
-manifests, install-profile validation, operator health summaries, durable local
-task envelopes, backup/restore manifests, and installer/runtime action results.
-It also ships the PostgreSQL-backed `civiccore_local_tasks` migration, async
-queue helpers, and `python -m civiccore.tasks.worker` entry point for the local
-desktop worker. Product modules still own task handlers and UI, while Townlight Core
-owns shared validation, queue state, retry semantics, and plain-English
-operator state.
-`civiccore.verification` now ships the first release-evidence helper
-surface, while sovereignty verification remains future work.
-`civiccore.connectors` now also ships shared local-payload import
-normalization helpers, live-sync retry/circuit-breaker primitives, and source-list
-status projection helpers for supported agenda platforms, while
-`civiccore.security` now ships shared connector-host validation,
-startup config validation, and encrypted JSON envelope helpers for secret-bearing config.
-`civiccore.scheduling` now ships storage-neutral cron validation and next-run
-helpers, but not a scheduler runtime or task queue. Credential
-orchestration, vendor-specific network adapters, and vendor write-back remain unshipped.
-`civiccore.release_provenance` now uses the attestation trust model for release
-verification: Git tags are treated as release pointers, while
-`release-attestation.json` plus its Sigstore/cosign bundle are the verifiable
-trust artifacts. The exact workflow identity is pinned per repo and per tag;
-org-wide wildcard identities are not accepted.
-The CO-7 placeholder ADRs in [`docs/adr/index.md`](docs/adr/index.md) record
-the deferral rationale, target phase, and downstream consumption rule for the
-reserved placeholder namespaces. Unshipped namespaces are reserved for future
-Phase work and must not be relied on by downstream modules until they ship.
+Staff should use the operating manual. Administrators should read first-run, configuration and recovery before changing a deployment. Developers should read the exact API/schema reference and matching source companion. This edition accompanies Townlight Beta 1; use the release link above for the signed candidate and exact source/documentation archives.
 
-## Status
+- [Operating manual](docs/beta-1/manuals/core.html) · [Printable PDF](docs/beta-1/pdf/Townlight-Core-Manual-Beta-1.pdf) · [Editable Word manual](docs/beta-1/docx/Townlight-Core-Manual-Beta-1.docx)
+- [API and data dictionary](docs/beta-1/api/core.html) · [OpenAPI JSON](docs/beta-1/api/core-openapi.json)
+- [Product and suite directory](docs/beta-1/index.html) · [Terms and full license](docs/beta-1/terms.html)
 
-**v1.2.1 is the current Townlight Core downstream productization line.** It carries
-the shared document-ingestion pipeline used by the city-core release train,
-the CO-7 freeze-line trust anchor, the CO-8 procurement evidence pack, and the
-CO-9 closeout trail for modules that need a procurement-grade platform pin.
-`v0.22.1` remains the first attested baseline release. This line carries the
-canonical Sigstore release-provenance helper, versioned attestation schema,
-fixture-driven gate, and tag-driven release workflow that signs and verifies
-`release-attestation.json` before publication, plus the shared
-connector source-list status projection that combines circuit health, active
-failure counts, pause state, actionable operator copy, and next-run calculation
-for module workspaces on top of shared cron schedule validation helpers for
-module background jobs on top of shared
-startup config validation helpers for placeholder detection, CSV env parsing,
-generic secret checks, Fernet key validation, and common-password rejection,
-on top of shared vendor delta request planning plus reusable no-network
-mock-city proof contracts for agenda vendors, municipal OIDC, and backup
-retention/off-host storage, on top of shared live connector sync retry/circuit-breaker primitives,
-including run-result normalization, operator health copy, retry delay policy, and async HTTP retry,
-on top of shared Windows-local module/runtime contracts for the desktop shell,
-including no-Docker/no-WSL manifest validation, plain-English health summaries,
-PostgreSQL-backed local task queue helpers, and backup/restore checksum
-manifests, on top of shared persisted audit-log hash and verification helpers for
-database-backed module audit rows on top of shared trusted-header auth config
-loading and proxy-source enforcement helpers on top of shipped
-trusted-header auth helpers on top of shipped
-`civiccore.ingest` discovery/fetch, cited-source validation, and document-ingestion pipeline on top of shipped
-`civiccore.security` connector host-validation, startup config validation, and encrypted-config helpers on top of shipped
-`civiccore.onboarding` profile interview helpers on top of shipped
-`civiccore.notifications` notice deadline planning and publication
-compliance helpers on top of the shipped `civiccore.connectors`
-local-first import helpers, the shipped `civiccore.search` helper
-surface for deterministic text matching, permission-aware access checks,
-and reciprocal-rank-fusion, the
-shipped `civiccore.verification` release-evidence helpers, the shipped
-`civiccore.auth` optional bearer resolver for mixed public/staff
-endpoints, and the shared audit, provenance, manifest, export-bundle,
-and city profile primitives needed for the first production-depth
-Townlight workflows.
-`v0.2.0` shipped the `civiccore.llm` module:
-provider abstraction (Ollama / OpenAI / Anthropic), prompt template engine
-with a 3-step override resolver, model registry service + admin router,
-context utilities with prompt-injection defense, and a Pydantic-validated
-structured-output helper. `v0.1.0` was the Phase 1 baseline (migration
-runner, idempotent guards, and the `civiccore_0001_baseline_v1`
-shared-schema baseline extracted from Townlight Records).
+## Exact version and candidate
 
-## Architecture
+| Identity | Value |
+| --- | --- |
+| Public documentation identity | Townlight Beta 1 |
+| Installer version | 1.6.0.1 |
+| Product component | civiccore 1.3.0.dev1 |
+| Native desktop source version | 1.6.0-1 |
+| Candidate MSI SHA256 | `98bcdef11ebdf5c767f620c904ff49f85115fde3b5c23f62703b111e645aaf86` |
+| Corresponding-source SHA256 | `84a23e1297e42d17b16cfc9e51b2dd78bc46414c0de8ad7ebd2466c1a409d06b` |
+| Current owned software license | AGPL-3.0-only |
+| Supported acceptance profile | Windows x64 fresh install; inspections-preview; separate Station configuration |
 
-### Shipped vs placeholder
 
-![civiccore extraction map](docs/diagrams/civiccore-extraction-map.svg)
+“Townlight Beta 1” identifies this coordinated beta delivery. It does not renumber the installer, native binary, Python packages or historical receipts. Component versions may differ. This documentation is a later companion to unchanged signed bytes, not a rebuilt installer. Historical release pages and manuals describe their own versions and are not the download instructions for this private candidate.
 
-### Migration order (consumer chain)
+## What staff can do
 
-![Migration order](docs/diagrams/migration-order.svg)
+- **Complete setup:** Choose folders and the full product composition. Create the city profile and the first named administrator. Choose a protected backup location. Defer optional local AI if it is not needed.
+- **Activate the runtime:** Run the first-run health check, wait for readiness and open Townlight. In System Health select Finish Records Migration to activate the canonical Python and PostgreSQL services. A running process alone is not a ready database.
+- **Create staff access:** Use Settings to create named staff. Sign out and confirm that staff can sign in with their own account. Keep administrator privileges with people responsible for setup; ordinary staff cannot administer users.
+- **Import through the right product:** Use the source library of Code, Zoning, Planning or Permitting. Inspect provenance and permissions there. Core ingestion helpers do not bypass the owning product’s source review.
+- **Make a coherent backup:** Save open work. Use Backup Now; it stops writers to preserve a consistent snapshot. Retain the backup receipt, then use Start to resume services.
+- **Restore and verify:** Use Restore Latest Backup after preserving current recovery material. A result of Restore needs service start is an intermediate state: use Start, then Check. Reopen a known saved record to confirm recovery.
+- **Collect diagnostics:** Record the time, selected composition, version, operation and exact error. Inspect System Health and create a redacted support bundle. Do not delete a profile as the first repair step.
 
-### LLM provider abstraction
+## Operating procedures and examples
 
-![Provider abstraction](docs/diagrams/provider-abstraction.svg)
+The operating manual now includes these existing procedures, with synthetic inputs, readback and limits. Follow the actual app boundary identified there; a standalone source capability is not automatically a desktop screen.
 
-## Install
+- [Shared catalog rules and scaffolding](docs/beta-1/manuals/core.html#shared-catalog-rules-and-scaffolding).
+- [Catalog import and readback](docs/beta-1/manuals/core.html#catalog-import-and-readback).
+- [Jurisdictional rule evaluation and review](docs/beta-1/manuals/core.html#jurisdictional-rule-evaluation-and-review).
+- [Scaffold plan and generate](docs/beta-1/manuals/core.html#scaffold-plan-and-generate).
 
-From the current GitHub release wheel (`v1.2.1`):
+## Architecture and data
 
-```bash
-pip install https://github.com/CivicSuite/civiccore/releases/download/v1.2.1/civiccore-1.2.1-py3-none-any.whl
+### Runtime and storage
+
+The accepted package targets **Windows x64 fresh installation**. Its native shell uses **Rust 2021, Tauri 2 and Microsoft WebView2**; browser assets are JavaScript built with **Vite 8.1.6**. This describes the native desktop frontend; Station has a separate React operator, specified below or in its product manual. Canonical business workflows use bundled **CPython 3.13.5, FastAPI, Pydantic, SQLAlchemy and Alembic**, with **PostgreSQL 17 / PostGIS** and managed original files. The installed runtime tested here contains FastAPI 0.162.0. Package minimum Python requirements can differ from the bundled executable; the metadata reference preserves both. No stack rewrite is implied by the beta label.
+
+The native transport is fixed to loopback `127.0.0.1:15480`; PostgreSQL uses the configured local runtime port (default `15432`). Optional local model service defaults to `127.0.0.1:15434`. Those are deployment defaults, not internet endpoints. The runtime has health, module and readiness endpoints; readiness is stronger than process existence. The task queue is the existing local Core task infrastructure, not an assertion that a separate Redis service is required for this desktop composition.
+
+The default native profile is `%LOCALAPPDATA%\CivicSuite`; the historical directory name remains part of compatibility. Do not rename it to Townlight. A configured `TOWNLIGHT_PROFILE_ROOT` must be absolute. Local configuration and secrets live under that profile; protected managed files and database state must be backed up coherently. Source/runtime identity is distinct from a product’s display label.
+
+### Data and consistency
+
+Named local accounts; native sessions; source and department authority; task receipts; profile configuration; coherent backup manifests; catalog, exemption and scaffold contracts.
+
+Versioned saves use expected prior revision identifiers where defined. Reopen and reconcile on conflict. Exact exports and handoffs use source IDs, current visibility, revision and SHA256. Review belongs to the saved revision and does not transfer silently to edited text. Database changes use the owning product’s migrations; a request or readiness check is not an authorization to mutate schema.
+
+### Capacity and platform statements
+
+This beta has synthetic single-profile workflow evidence. It does not have a published benchmark for concurrent staff capacity, minimum RAM/CPU, large-source limits or a field SLA. Do not turn a developer machine’s specification into a supported minimum. Installer size is 2,092,122,112 bytes before installation; allow additional disk for extracted runtime, database, originals, exports, media and backups. Select equipment/storage after sizing those actual workloads.
+
+The exact [runtime payload lock](docs/beta-1/reference/runtime-payload-lock.json) records pinned files, sizes and hashes. The [component metadata](docs/beta-1/reference/component-metadata.json) records shipped dependency declarations. These references are more precise than a manually copied dependency list. Third-party and historical license notices must accompany their matching payloads.
+
+
+| Data contract | Description |
+| --- | --- |
+| Input | Administrator setup choices, named staff accounts, source material submitted through the owning product, and protected backup storage. |
+| Retained records | Named local accounts; native sessions; source and department authority; task receipts; profile configuration; coherent backup manifests; catalog, exemption and scaffold contracts. |
+| Output | Ready local services, permission-aware shared contracts, task results, diagnostics and coherent backup or restore receipts. |
+| Connections | All products use selected Core contracts. Core does not create unrestricted access between products. Notice and Access are supporting components, rather than additional products in this nine-product beta. |
+
+
+## Setup and operation
+
+1. Obtain the identified signed private candidate and its corresponding-source companion from the beta coordinator. The landing pages in this documentation are not an installer download service.
+2. On the intended fresh Windows test installation, verify the MSI hash and publisher signature before installing. Preserve unrelated profiles and recovery material. This candidate has fresh-install acceptance; historical in-place upgrades are unverified.
+3. Launch Townlight under the intended named Windows account. Choose the storage folders. Select **Townlight Inspections candidate** (`inspections-preview`) for all eight desktop products. A narrower default selection will not expose all workspaces.
+4. Enter the city profile, time zone and contacts. Create the first named local administrator, sign in and choose protected backup storage. **Continue without local AI** is valid for the deterministic workflows.
+5. Run Health Check and wait for readiness. Open Townlight. In System Health select **Finish Records Migration** to activate the canonical Python/PostgreSQL runtime. Do not fabricate migration receipts or seed accounts.
+6. Create named staff through Settings. Import authorized sources using each product’s source library. All examples in this package are synthetic; they are not municipal authority.
+7. Provision Station separately if it is part of the beta exercise. Selecting the desktop composition does not start or configure Station. Configure vision explicitly only if automatic photo drafting is selected.
+
+## Configuration
+### Native deployment configuration
+
+Use Setup, Settings and System Health for supported staff operation. Administrators provision folders, backup storage, named accounts and the city profile. Select `inspections-preview` for the full eight-workspace desktop. Station remains a separate service boundary. Do not use a standalone product’s demo server as a substitute for the installed workspace.
+
+Technical deployments use `TOWNLIGHT_PRODUCT_PROFILE`, `TOWNLIGHT_PROFILE_ROOT`, `DATABASE_URL`, `CIVICSUITE_RUNTIME_PORT`, `PORTAL_MODE` and the runtime-managed secret files. Treat database URLs and native session proofs as secrets. The installed native domain runtime explicitly refuses non-loopback binding. `PORTAL_MODE=private` is the accepted posture; changing it does not by itself commission an internet portal, authentication provider or reverse proxy.
+
+The isolated documentation exporter sets a fictional profile and unusable synthetic database origin only to read schemas; those values are not deployment configuration. Keep deployment values in the intended process/account scope. An already-running process does not automatically inherit later environment edits.
+
+## API usage
+### Native command example
+
+The following JavaScript belongs in the existing trusted Townlight frontend/development environment with `invoke` imported from `@tauri-apps/api/core`. It is not a command for an arbitrary web page or an instruction for nontechnical staff. IDs must come from records created in an isolated synthetic exercise.
+
+```javascript
+import { invoke } from '@tauri-apps/api/core';
+const result = await invoke('get_app_state', {});
+console.log(result);
 ```
 
-Each GitHub release also publishes `SHA256SUMS.txt` alongside the wheel and
-sdist. Verify the checksum before promoting a release artifact into a downstream
-module or internal package mirror.
+### Trusted local HTTP example
 
-### Release Provenance
+An administrator/developer can inspect an already-configured isolated runtime from a trusted local process. This PowerShell example reads the signed-in synthetic profile’s existing proof into memory; it does not create a user, seed a session, reveal the proof in output or bypass a permission check. Do not use real city data in development examples. A read response does not prove approval or publication.
 
-Townlight Core now carries the canonical Townlight release-provenance gate in
-`civiccore.release_provenance`. The gate exists because GitHub release pages can
-show the target commit as "Verified" even when the release tag is lightweight or
-the annotated tag object is unsigned. Treat the release-page badge as a commit
-signal only; use `scripts/verify-release-provenance.py` and
-`docs/ops/release-signing.md` for release-tag provenance.
-
-`v1.2.1` is the current published downstream productization line. It adds the
-shared document-ingestion pipeline used by the city-core release train. The
-original `v1.0` release remains historical and superseded. `v0.22.1` remains
-the first attested baseline release, and `civiccore-m1-freeze` remains the
-CO-7 freeze-line tag downstream modules use as their initial trust anchor.
-`v0.22.0` and earlier Townlight Core releases predate the Sigstore attestation
-baseline and are retained for historical installs only. Their Tier 1 status is published in
-[`docs/ops/civiccore-tier1-retrofit-ledger.md`](docs/ops/civiccore-tier1-retrofit-ledger.md).
-The operative historical disclosure is published in
-[`docs/ops/historical-provenance.md`](docs/ops/historical-provenance.md).
-Outside auditors can reproduce the release gate and public install-and-verify
-paths with the CO-6 cleanroom harness in
-[`docs/ops/cleanroom-harness.md`](docs/ops/cleanroom-harness.md).
-The CO-8 procurement evidence pack in
-[`docs/evidence/co8-civiccore-procurement-evidence-pack/index.md`](docs/evidence/co8-civiccore-procurement-evidence-pack/index.md)
-links the threat model, SBOMs, license manifest, incident drills,
-sovereignty proof, patch cadence, claims registry, and worked install-and-verify
-commands that an outside auditor needs to evaluate the v1.0 release gate. The
-current recovery status is tracked in
-[`docs/release-recovery-status.md`](docs/release-recovery-status.md).
-The CO-9 closeout report in
-[`docs/ops/co-9-civiccore-v1-closeout.md`](docs/ops/co-9-civiccore-v1-closeout.md)
-maps the release authorization, attested releases, freeze-line tag, retrofit
-decisions, placeholder ADRs, cleanroom evidence, and final audit gate.
-Do not promote any pre-baseline release as the corrected provenance baseline
-unless a future additive attestation is explicitly authorized, published, and
-recorded in that ledger.
-
-For development from a clone:
-
-```bash
-git clone https://github.com/CivicSuite/civiccore.git
-cd civiccore
-pip install -e .[dev]
+```powershell
+$profilePath = Join-Path $env:LOCALAPPDATA 'CivicSuite'
+$sessionPath = Join-Path $profilePath 'config\local-session.json'
+$session = Get-Content -LiteralPath $sessionPath -Raw | ConvertFrom-Json
+$headers = @{ 'X-Townlight-Session' = $session.session_hash }
+Invoke-RestMethod -Uri 'http://127.0.0.1:15480/desktop/v1/suite/state' -Headers $headers
+Remove-Variable session, headers
 ```
 
-PyPI publication can come later; Townlight Core is distributed as versioned
-GitHub release artifacts so Townlight Records can stop depending on a Git SHA pin.
-The tag-driven release workflow runs `scripts/verify-release.sh` before
-publishing so the shipped artifact has already passed pytest, ruff,
-docs/version checks, a local build, and a clean-virtualenv wheel-install smoke
-test.
+### A synthetic write with subsequent readback
 
-## LLM providers
+This example demonstrates the existing Meetings HTTP contract in an isolated exercise. It is intentionally fictional. It does not start a service. Its authentication setup is included so it can be run independently under the signed-in synthetic account. If a write times out, inspect current records before repeating it.
 
-Townlight Core exposes a pluggable LLM provider abstraction for downstream apps. Three providers ship built-in:
-
-```python
-from civiccore.llm.providers import (
-    LLMProvider,         # ABC
-    register_provider,   # decorator for adding new providers
-    get_provider,        # construct a provider by name
-    list_providers,      # introspection
-    OllamaProvider,
-    OpenAIProvider,
-    AnthropicProvider,
-)
-
-# Built-in usage
-provider = get_provider("ollama", base_url="http://localhost:11434")
-text = await provider.generate(system_prompt="...", user_content="...")
+```powershell
+$profilePath = Join-Path $env:LOCALAPPDATA 'CivicSuite'
+$sessionPath = Join-Path $profilePath 'config/local-session.json'
+$session = Get-Content -LiteralPath $sessionPath -Raw | ConvertFrom-Json
+$headers = @{ 'X-Townlight-Session' = $session.session_hash }
+$body = @{
+  title = 'Synthetic documentation exercise'
+  scheduled_start = '2026-11-05T18:00:00-07:00'
+  location = 'Synthetic room'
+  meeting_type = 'regular'
+} | ConvertTo-Json
+$meeting = Invoke-RestMethod -Method Post `
+  -Uri 'http://127.0.0.1:15480/desktop/v1/meetings/meetings' `
+  -Headers $headers -ContentType 'application/json' -Body $body
+Invoke-RestMethod `
+  -Uri ('http://127.0.0.1:15480/desktop/v1/meetings/meetings/' + $meeting.id) `
+  -Headers $headers
+Remove-Variable session, headers
 ```
 
-Optional cloud-provider SDKs are needed only if you instantiate the corresponding provider:
+This write requires Meetings to be enabled and the signed-in staff role to permit it. It is a cross-suite integration example; for this product’s request models, use the complete technical reference below.
 
-```bash
-# Direct install (works today, including GitHub wheel installs):
-pip install openai      # required for OpenAIProvider
-pip install anthropic   # required for AnthropicProvider
+## MCP status
 
-# Extras shorthand (works once civiccore is published to PyPI):
-pip install civiccore[openai]
-pip install civiccore[anthropic]
-```
+No direct product MCP server is exposed by the accepted Townlight desktop or Station boundary. Do not configure an invented `townlight mcp` command or assume an AI client has staff permissions. The integration surfaces for this beta are native IPC, the documented HTTP APIs, source bundle imports, exact exports and the existing Station CLI.
 
-Ollama needs no extra (uses httpx, already a base dependency).
+The bundled transcription code includes a **TextFlowKit MCP adapter** as a separate source capability. It offers job-based `transcribe_media`, `get_transcript`, `list_jobs`, `get_job_status` and `export_transcript`, and additional tools declared in that adapter. It uses stdio first and optional Streamable HTTP, with the MCP SDK as an optional extra. It is not automatically launched, authenticated as Townlight staff or accepted as a Townlight product MCP deployment. This documentation does not add such a service.
 
-Third-party providers register via the public decorator without modifying civiccore source:
-
-```python
-from civiccore.llm.providers import LLMProvider, register_provider
-
-@register_provider("my_provider")
-class MyProvider(LLMProvider):
-    ...
-```
-
-## LLM templates
-
-Townlight Core exposes a prompt-template rendering and override-resolution layer for downstream apps.
-
-```python
-from civiccore.llm.templates import (
-    PromptTemplate,             # ORM
-    PromptTemplateCreate,       # Pydantic schemas
-    PromptTemplateRead,
-    RenderedPrompt,             # render() result dataclass
-    render_template,            # string.Template renderer
-    resolve_template,           # async DB resolver (3-step: app DB → code-level → civiccore default)
-    CIVICCORE_DEFAULT_APP,      # "civiccore" namespace constant
-    PromptTemplateError,        # exceptions
-    PromptTemplateNotFoundError,
-    PromptTemplateRenderError,
-)
-```
-
-### Resolution order
-
-`resolve_template(session, template_name=..., consumer_app=...)` returns the active `PromptTemplate` row using:
-
-1. **App DB override** — `consumer_app=<requesting app>`, `is_override=True`, `is_active=True`, highest `version`.
-2. **App code-level override** — in-memory `OVERRIDE_REGISTRY` populated via `register_template_override` (per ADR-0004 §7). DB overrides win over code overrides so operators retain production hot-fix capability.
-3. **Townlight Core default** — `consumer_app="civiccore"`, `is_override=False`, `is_active=True`, highest `version`.
-4. Otherwise raises `PromptTemplateNotFoundError`.
-
-Callers passing `consumer_app="civiccore"` skip both override steps (1 and 2) and resolve directly to the civiccore default.
-
-### Rendering
-
-`render_template(template, {"key": "value", ...})` substitutes `string.Template` placeholders (`$key` or `${key}`). Missing variables raise `PromptTemplateRenderError` naming the missing key.
-
-## LLM context utilities and structured output
-
-Townlight Core exposes context-budgeting and structured-output helpers at the package root:
-
-```python
-from civiccore.llm import (
-    TokenBudget, ContextBlock,
-    estimate_tokens, count_tokens, sanitize_for_llm,
-    assemble_context, blocks_to_prompt, DEFAULT_CONTEXT_WINDOW,
-    StructuredOutput, StructuredOutputFailure,
-)
-
-# Token-budgeted prompt assembly with prompt-injection defense
-blocks = assemble_context(
-    system_prompt="You are a helpful assistant.",
-    chunks=[document_text],
-    max_context_tokens=4096,
-)
-prompt = blocks_to_prompt(blocks)
-
-# Pydantic-validated structured output with retry-on-malformed
-class ExtractedFields(BaseModel):
-    name: str
-    confidence: float
-
-result = await StructuredOutput(ExtractedFields).generate(
-    provider=get_provider("ollama"),
-    system_prompt="Extract fields from the document.",
-    user_content=document_text,
-    max_attempts=3,
-)
-```
-
-Per ADR-0004: token counting is context-window math; no cost tracking, no spend limits.
-
-## Audit, provenance, manifests, exports, and city profiles
-
-The current Townlight Core development line adds storage-neutral primitives
-for production-depth municipal workflows:
-
-```python
-from civiccore import (
-    AuditActor, AuditSubject, AuditHashChain,
-    PersistedAuditLogEntry, compute_persisted_audit_hash,
-    verify_persisted_audit_chain,
-    SourceReference, SourceKind, CitationTarget, ProvenanceBundle,
-    ImportManifest, ExportManifest, ManifestFile, validate_manifest,
-    ExportBundle, BundleFile, write_manifest, build_sha256sums, validate_bundle,
-    CityProfile, load_city_profile,
-)
-
-chain = AuditHashChain()
-chain.record_event(
-    actor=AuditActor(actor_id="clerk-1", actor_type="staff"),
-    action="packet_exported",
-    subject=AuditSubject(subject_id="meeting-42", subject_type="meeting"),
-    source_module="civicclerk",
-)
-assert chain.verify()
-
-entry_hash = compute_persisted_audit_hash(
-    previous_hash="0" * 64,
-    timestamp="2026-05-01T12:00:00+00:00",
-    actor_id="records-admin",
-    action="request_created",
-    details={"request_id": "RR-1001"},
-)
-assert verify_persisted_audit_chain([
-    PersistedAuditLogEntry(
-        previous_hash="0" * 64,
-        entry_hash=entry_hash,
-        timestamp="2026-05-01T12:00:00+00:00",
-        actor_id="records-admin",
-        action="request_created",
-        details={"request_id": "RR-1001"},
-    )
-])[0]
-```
-
-These APIs are deliberately offline-first. They do not provide JWT
-issuance, SSO, user directories, credential storage, vendor-specific network
-adapters, worker execution, legal determinations, or vendor write-back.
-
-## Windows-local platform contracts
-
-`civiccore.platform` exposes the shared contracts and queue helpers the
-Townlight Windows desktop shell uses to keep future modules pluggable without
-making clerks learn infrastructure:
-
-```python
-from civiccore.platform import (
-    ModuleManifest,
-    build_module_registry,
-    PlatformHealthCheck,
-    summarize_platform_health,
-    LocalTaskEnvelope,
-    enqueue_local_task,
-    claim_next_local_task,
-    record_task_attempt,
-    run_one_local_task,
-    build_backup_manifest,
-    plan_restore,
-)
-```
-
-For the `windows_local` install profile, module manifests cannot require
-Docker, WSL, Linux shell setup, or a terminal-only operator path. Townlight Core also
-ships task envelopes, a durable PostgreSQL task table, async queue helpers, and
-a worker CLI so downstream modules share retry, health, checksum, and
-restore-safety semantics while registering their own task handlers.
-
-## Document ingestion
-
-`civiccore.ingest` owns the shared document-ingestion path for downstream
-modules. It exposes parser dispatch plus `register_handler()`, `ingest_file()`,
-and `ingest_bytes()` entry points; stores parsed files in the baseline
-`documents` table; writes sentence-aware chunks to `document_chunks`; and
-persists 768-dimensional local Ollama embeddings through pgvector.
-
-```python
-from pathlib import Path
-
-from civiccore.ingest import DataSource, SourceType, ingest_file
-
-source = DataSource(
-    name="Longmont Code of Ordinances proof corpus",
-    source_type=SourceType.FILE_SYSTEM,
-    connection_config={"path": "longmont-code-corpus"},
-    created_by=operator_id,
-)
-session.add(source)
-await session.commit()
-
-document = await ingest_file(
-    session=session,
-    file_path=Path("longmont-code-corpus/Longmont, CO Code of Ordinances.pdf"),
-    source_id=source.id,
-    chunk_size=900,
-    chunk_overlap=90,
-)
-```
-
-The local Longmont proof in
-[`docs/qa/civiccore-longmont-ingest-proof-2026-05-21.md`](docs/qa/civiccore-longmont-ingest-proof-2026-05-21.md)
-parsed the 12.4 MB Longmont Code of Ordinances PDF into 1,789 persisted chunks
-and wrote 1,789 768-dimensional `nomic-embed-text` embeddings.
-
-## Live connector sync primitives
-
-Townlight Core ships the storage-neutral pieces of the Townlight Records sync pattern
-so every Townlight module can share one retry and circuit-breaker contract
-without inheriting product-specific tables, credentials, or vendor adapters.
-
-```python
-from civiccore.connectors import (
-    SyncCircuitState,
-    SyncRunResult,
-    apply_sync_run_result,
-    build_sync_operator_status,
-    build_sync_source_status,
-)
-
-state = SyncCircuitState(connector="legistar", source_name="Legistar production")
-state = apply_sync_run_result(
-    state,
-    SyncRunResult(records_discovered=1, records_succeeded=0, records_failed=1),
-)
-status = build_sync_operator_status(state)
-assert status.public_dict()["health_status"] == "degraded"
-source_status = build_sync_source_status(state, sync_schedule="*/15 * * * *")
-assert source_status.public_dict()["active_failure_count"] == 0
-```
-
-The shared circuit opens after five consecutive full-run failures by default,
-or after two failures when the source is in a configured grace period. Modules
-still own their ORM rows, scheduler, credential store, vendor-specific fetch
-logic, and UI, but they should use this shared state machine, operator copy, and
-source-list projection instead of reimplementing it.
-
-## Auth helper
-
-`civiccore.auth` now exposes small auth helpers for downstream FastAPI
-services that need to protect non-public internal endpoints or support
-mixed public/staff routes without taking on a full first-party
-identity-provider dependency. That surface now includes shared
-trusted-header config loading and proxy-source enforcement helpers in
-addition to bearer-token, trusted-header, and staff-key role checks.
-
-```python
-from fastapi import Depends
-from fastapi.security import HTTPBearer
-
-from civiccore.auth import (
-    authorize_bearer_roles,
-    authorize_trusted_header_roles,
-    resolve_optional_bearer_roles,
-    staff_key_gate,
-)
-
-bearer = HTTPBearer(auto_error=False)
-
-def read_workpaper(credentials = Depends(bearer)) -> dict[str, str]:
-    authorize_bearer_roles(
-        credentials,
-        service_name="CivicBudget",
-        feature_name="persisted workpaper retrieval",
-        token_roles_env_var="CIVICBUDGET_AUTH_TOKEN_ROLES",
-        allowed_roles={"workpaper_reader", "budget_admin"},
-    )
-    return {"status": "ok"}
-
-
-def search_archive(credentials = Depends(bearer)) -> dict[str, bool]:
-    principal = resolve_optional_bearer_roles(
-        credentials,
-        service_name="CivicClerk",
-        feature_name="archive search staff access",
-        token_roles_env_var="CIVICCLERK_AUTH_TOKEN_ROLES",
-        allowed_roles={"archive_reader", "clerk_admin", "city_attorney"},
-    )
-    return {"include_closed": principal is not None}
-
-
-def require_proxy_assertion(request) -> dict[str, str]:
-    principal = authorize_trusted_header_roles(
-        request.headers,
-        service_name="CivicClerk",
-        feature_name="staff workflow access",
-        principal_header_name="X-Forwarded-Email",
-        roles_header_name="X-Forwarded-Roles",
-        allowed_roles={"clerk_admin", "meeting_editor"},
-        provider_name="Entra ID proxy",
-    )
-    return {"subject": principal.subject or "unknown"}
-
-
-require_staff_key = staff_key_gate(
-    "CIVICGRANTS_STAFF_API_KEY",
-    "X-CivicGrants-Staff-Key",
-)
-
-def create_grant_case(_principal = Depends(require_staff_key)) -> dict[str, str]:
-    return {"status": "accepted"}
-```
-
-Set `CIVICBUDGET_AUTH_TOKEN_ROLES` to a JSON object that maps bearer
-tokens to role strings or role lists:
+For a transcription client already provisioned separately, an illustrative tool call is:
 
 ```json
-{
-  "demo-reader-token": ["workpaper_reader"],
-  "budget-admin-token": "workpaper_reader,budget_admin"
-}
+{"name":"get_job_status","arguments":{"job_id":"synthetic-existing-job-id"}}
 ```
 
-If the bearer-token config is missing or malformed, Townlight Core raises an
-actionable `503`; missing or invalid bearer headers return `401`; tokens
-without an allowed role return `403`. Trusted-header helpers return
-actionable `401` and `403` responses when the proxy assertion is missing,
-malformed, or underprivileged. The optional resolvers return `None` for
-anonymous callers, which lets public endpoints stay public until a caller
-actually presents a bearer token or arrives through a trusted proxy.
-`staff_key_gate()` preserves the existing Townlight module convention of
-`X-Civic*-Role: staff` plus `X-Civic*-Staff-Key`, fails closed when the
-configured environment variable is missing, and compares submitted keys with
-`hmac.compare_digest`.
+Use a job ID returned by that transcription service. This example does not create a Townlight record or bypass its review/Records handoff. The exact optional adapter tool signatures are supplied in the [MCP source reference](docs/beta-1/reference/mcp.html). Station meeting capture does not become live speech recognition because this optional donor adapter exists.
 
-## Onboarding helper
+## Verification and known limits
 
-`civiccore.onboarding` now ships shared storage-neutral helpers for
-interview-style city-profile onboarding flows:
+| Product | Recorded result | Precisely exercised |
+| --- | --- | --- |
+| Core | PASS | Normal empty-profile setup; canonical activation; UI-created staff and sign-in; staff denied user administration; coherent backup, mutation, restore, Start/Check and retained/absent record readback. |
 
-```python
-from civiccore.onboarding import (
-    DEFAULT_PROFILE_FIELDS,
-    compute_onboarding_status,
-    next_profile_prompt,
-    parse_profile_answer,
-)
 
-parsed = parse_profile_answer("has_dedicated_it", "yes")
-status = compute_onboarding_status({"city_name": "Sampleville"})
-progress = next_profile_prompt(
-    {"city_name": "Sampleville"},
-    skipped_fields=("state",),
-)
-assert parsed is True
-assert status == "in_progress"
-assert progress.next_field == "county"
-```
+These results come from the identified signed candidate’s fresh normal-profile Sandbox exercise: real native IPC/HTTP/PostgreSQL and selected headless controls. All accounts, source bundles and media were synthetic. The guest install/uninstall and recovery passed, and the owned Sandbox stopped. No host installed application or standalone CivicCast was changed. This documentation task reuses those receipts; it does not claim a new software acceptance run.
 
-This ships the field order, skip-aware next-question selection, text
-trimming, and yes/no normalization contract. Full web onboarding flows,
-router integration, and persistence orchestration remain future work.
+The [workflow matrix](docs/beta-1/reference/workflow-matrix.json) identifies raw receipt filenames. The [evidence index](docs/beta-1/reference/sandbox-evidence-index.json) retains their original hashes; raw receipts remain in the private beta handoff rather than being silently republished with the documentation site.
 
-## Scheduling helper
+The limits remain: actual city field acceptance and equipment/network commissioning; Station automatic provisioning/SCM commissioning; every UI/role combination; field recognition accuracy; and historical in-place upgrades are not certified. They are not five invented feature requirements. Fresh-install controlled beta handoff remains the accepted scope. This package makes no city-deployment, publication or general-availability claim.
 
-`civiccore.scheduling` exposes the shared cron expression contract used by
-module background jobs. `civiccore.platform` exposes the local task envelope,
-PostgreSQL queue helpers, and retry contract. Modules keep their own task
-handlers, but should reuse these helpers so one-minute accidental or adversarial
-schedules and task retry behavior are handled consistently across Townlight.
+Shared catalog, exemption and module-generator code exists in this private candidate. It is not a centrally hosted federation service. A business product still owns its decisions, identity mapping and permission checks. Historical placeholder ADRs are retained as history, rather than descriptions of the current implementation.
 
-```python
-from civiccore.scheduling import compute_next_sync_at, validate_cron_expression
+## Development and repository map
 
-validate_cron_expression("*/5 * * * *")
-next_run = compute_next_sync_at("0 2 * * *", last_sync_at=None)
-```
+Use the corresponding source for the candidate rather than assuming the public default branch matches it. The source companion contains `installed-owned-source`, product build inputs, desktop Rust/browser sources, locks and `BUILD.md`. It excludes credentials and third-party binary/model payloads. Use the recorded runtime lock when reproducing packaging.
 
-## Verification helper
+Relevant source contracts:
 
-`civiccore.verification` now ships a small browser-evidence helper for
-current-facing release pages. It binds a release screenshot manifest to
-the normalized content hash of a rendered source file, which keeps
-browser QA evidence honest across Windows and Linux checkouts.
+- `civiccore/auth`
+- `civiccore/catalog`
+- `civiccore/exemptions`
+- `civiccore/scaffold`
+- `civicsuite_runtime/services.py`
+- `desktop/src-tauri/src/supervisor.rs`
 
-```python
-from pathlib import Path
+The desktop package defines `npm run build`, `npm test`, `npm run test:browser` and its Tauri command. Python products retain their own `pyproject.toml`, tests and migrations; use the matching checkout’s declared dependencies and test configuration. Do not run a sample server against a production profile. This documentation build validates documentation only and reuses the separately identified installed acceptance; it does not claim a new complete application CI run.
 
-from civiccore.verification import validate_release_browser_evidence
+## Recovery and support
 
-result = validate_release_browser_evidence(
-    repo_root=Path("."),
-    manifest_path=Path("docs/browser-qa/release-evidence.json"),
-    expected_version="0.1.2",
-)
-print(result.reviewed_at)
-```
+Save work and use Core’s canonical **Backup Now** before maintenance. That operation stops writers. Preserve the coherent profile/database/document backup and its receipt, then use **Start** to resume. A source export is not a full backup.
 
-## Public API surface
+Use **Restore Latest Backup** through the supported controls. If the result says **Restore needs service start**, use **Start**, then **Check**, and reopen a known record. Do not repeat restore merely because services need to start. The fresh-profile acceptance verified that a fulfilled request survived restore and a post-backup marker did not.
 
-`civiccore.llm` exposes a single import surface for downstream apps:
+Keep Station’s dedicated database and media evidence together in its own backup. Core’s native-profile backup must not be assumed to include an external Station data directory. Stop writers during a coordinated backup. Preserve failed media attempts and logs.
 
-```python
-from civiccore.llm import (
-    # Providers
-    LLMProvider, register_provider, get_provider, list_providers,
-    OllamaProvider, OpenAIProvider, AnthropicProvider,
-    # Templates
-    PromptTemplate, PromptTemplateCreate, PromptTemplateRead,
-    RenderedPrompt, render_template, resolve_template,
-    CIVICCORE_DEFAULT_APP, PromptTemplateError,
-    PromptTemplateNotFoundError, PromptTemplateRenderError,
-    # Model registry
-    ModelRegistry, ModelRegistryCreate, ModelRegistryRead, ModelRegistryUpdate,
-    model_registry_router, MissingModelError, ModelRegistryServiceError,
-    get_active_model, require_active_model, get_active_model_context_window,
-    # Context utilities
-    TokenBudget, ContextBlock, estimate_tokens, count_tokens, sanitize_for_llm,
-    assemble_context, blocks_to_prompt, DEFAULT_CONTEXT_WINDOW,
-    # Structured output
-    StructuredOutput, StructuredOutputFailure, DEFAULT_MAX_ATTEMPTS,
-)
-```
+On failure, record the time, selected composition, component/installer versions and exact message. Check System Health for stopped, starting, ready or failed dependencies. Use the existing Retry control after readiness; do not create duplicate business records to refresh a stale view. Share only a redacted diagnostic bundle. Preserve secrets, original evidence, recovery material and unrelated installations.
 
-The full enumerated list — stable across the v0.x series per the spec's
-semver policy — is also published in **Appendix A of the Townlight Core
-Extraction Spec** in
-[townlight/townlight](https://github.com/townlight/townlight).
+## License and responsible use
 
-## Compatibility
+Current owned code is AGPL-3.0-only. Preserve full license, matching corresponding source, dependency notices and historical grants. Terms of use do not remove license rights. Source imports do not confer permission to publish third-party material. Review all automatic drafts and use the separate owning-product decision before official action. CivicCast remains independent.
 
-Every Townlight module's README declares its Townlight Core dependency contract.
-Current v0.1.0 module foundations pin older civiccore lines. Production-depth
-consumers should move only to the released Townlight Core version recorded in their
-compatibility matrix.
-The suite-wide compatibility matrix — which
-module versions work with which Townlight Core versions — is maintained at
-[CivicSuite/civicsuite/docs/compatibility/](https://github.com/townlight/townlight/tree/main/docs/compatibility).
+## Earlier documentation
 
-## License
-
-Code: AGPL-3.0-only, with the TownLight Public Institution Exception for qualifying deployments. See [LICENSE](LICENSE) and [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md).
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md), including the decision tree for
-where to file a bug across the Townlight multi-repo layout.
+Previous editions are retained under `docs/history/pre-townlight-beta-1/`. They describe their original software and license grants. Use the current Townlight Beta 1 manual for this candidate.

@@ -1,0 +1,924 @@
+{
+  "edition": "Townlight Beta 1",
+  "base_commit": "95e2904d40f984f9d3a189f9836c3768d98196da",
+  "installer_sha256": "98bcdef11ebdf5c767f620c904ff49f85115fde3b5c23f62703b111e645aaf86",
+  "owned_source_sha256": "84a23e1297e42d17b16cfc9e51b2dd78bc46414c0de8ad7ebd2466c1a409d06b",
+  "documentation_sha256": "a928bb1c40fec7ef6f223c7b77bc9fe7837e4cfffcebf35bb3309cc5549284e6",
+  "release": "https://github.com/townlight/townlight/releases/tag/townlight-beta-1",
+  "archive_files": [
+    {
+      "archive": "installed-owned-source/civiccore/__init__.py",
+      "repo": "core",
+      "path": "civiccore/__init__.py",
+      "sha256": "22823aa2e5f34ff62c57276cc877fc52fb6c654877b5e3756d6dccdb40f7dc15",
+      "status": "changed",
+      "publication_sha256": "fa24a6f9f6c3c737464ce9ac5a916263c345fb6c873258d149c39ff81e384357"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/audit/__init__.py",
+      "repo": "core",
+      "path": "civiccore/audit/__init__.py",
+      "sha256": "9066c9b752564f42427bb925f2ec72e92007f389fbec24b3bde90655cfb3c9d9",
+      "status": "same",
+      "publication_sha256": "9066c9b752564f42427bb925f2ec72e92007f389fbec24b3bde90655cfb3c9d9"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/audit/primitives.py",
+      "repo": "core",
+      "path": "civiccore/audit/primitives.py",
+      "sha256": "293ba8cf2d89165bf50d1fb019c05a4a1e5a1ca22c3703be25f6c96014491d3a",
+      "status": "same",
+      "publication_sha256": "293ba8cf2d89165bf50d1fb019c05a4a1e5a1ca22c3703be25f6c96014491d3a"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/auth/__init__.py",
+      "repo": "core",
+      "path": "civiccore/auth/__init__.py",
+      "sha256": "7a3f307c6fc4ac465688b2ad83b49b85d551721d248e569d0acbb8bf0db49f5a",
+      "status": "changed",
+      "publication_sha256": "2f72c15520835a0a6f8e81c87b0df2e8377a481f0372c0a0a42d91b1091e5ec8"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/auth/bearer.py",
+      "repo": "core",
+      "path": "civiccore/auth/bearer.py",
+      "sha256": "6515b07ecf4be9fc344ab05eeef891b165f3e0310387dfa3a59fc2531c5dacb9",
+      "status": "same",
+      "publication_sha256": "6515b07ecf4be9fc344ab05eeef891b165f3e0310387dfa3a59fc2531c5dacb9"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/auth/department_scope.py",
+      "repo": "core",
+      "path": "civiccore/auth/department_scope.py",
+      "sha256": "57905c13074c10acdf07f7a353634bf3e51b1f42f67cd6f7b3d8920dca91f7d1",
+      "status": "new",
+      "publication_sha256": "0b05be1f6ad218eadb8275ff2ed2363e58b5ffbaa88a12dfd6b09b6e6b03dabd"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/auth/staff_key.py",
+      "repo": "core",
+      "path": "civiccore/auth/staff_key.py",
+      "sha256": "ef7dc371bcd7f419d6266cc61aad01884f263edbcca5db7d5ba4dc1e91d251db",
+      "status": "same",
+      "publication_sha256": "ef7dc371bcd7f419d6266cc61aad01884f263edbcca5db7d5ba4dc1e91d251db"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/auth/suite_session.py",
+      "repo": "core",
+      "path": "civiccore/auth/suite_session.py",
+      "sha256": "e33e13634568261accb2ba6706402de013975f3c58117b987cced3cd92c0db2e",
+      "status": "same",
+      "publication_sha256": "e33e13634568261accb2ba6706402de013975f3c58117b987cced3cd92c0db2e"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/auth/trusted_headers.py",
+      "repo": "core",
+      "path": "civiccore/auth/trusted_headers.py",
+      "sha256": "771e7cbf1f5d73dafad082d97ebb6e350a49b15362ce50eb36b261172e3b9c5c",
+      "status": "same",
+      "publication_sha256": "771e7cbf1f5d73dafad082d97ebb6e350a49b15362ce50eb36b261172e3b9c5c"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/catalog/__init__.py",
+      "repo": "core",
+      "path": "civiccore/catalog/__init__.py",
+      "sha256": "e323a7808ae719b4b90530c238dc945a107ee1cf9a9050cb00d7efbf5aa1a823",
+      "status": "changed",
+      "publication_sha256": "e323a7808ae719b4b90530c238dc945a107ee1cf9a9050cb00d7efbf5aa1a823"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/city_profile/__init__.py",
+      "repo": "core",
+      "path": "civiccore/city_profile/__init__.py",
+      "sha256": "c22e26dac2fcb454cbf91bcbf23311fdef9bf854fbb2bba2d76149945986bd72",
+      "status": "same",
+      "publication_sha256": "c22e26dac2fcb454cbf91bcbf23311fdef9bf854fbb2bba2d76149945986bd72"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/city_profile/models.py",
+      "repo": "core",
+      "path": "civiccore/city_profile/models.py",
+      "sha256": "e34b6bbc69f44656ad22217de2b911b5c437fb226b594439f935705c95a47ed6",
+      "status": "same",
+      "publication_sha256": "e34b6bbc69f44656ad22217de2b911b5c437fb226b594439f935705c95a47ed6"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/connectors/__init__.py",
+      "repo": "core",
+      "path": "civiccore/connectors/__init__.py",
+      "sha256": "92d5a39aa8241f8fed6405fd0a8b3068994fdeb66ea3f80975ff708dde673870",
+      "status": "same",
+      "publication_sha256": "92d5a39aa8241f8fed6405fd0a8b3068994fdeb66ea3f80975ff708dde673870"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/connectors/delta.py",
+      "repo": "core",
+      "path": "civiccore/connectors/delta.py",
+      "sha256": "d99e5624e0eebcc434146909d65040eba0023cc84b2d5d03ce1de2b36c70e52f",
+      "status": "same",
+      "publication_sha256": "d99e5624e0eebcc434146909d65040eba0023cc84b2d5d03ce1de2b36c70e52f"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/connectors/imports.py",
+      "repo": "core",
+      "path": "civiccore/connectors/imports.py",
+      "sha256": "1ed6dafe0072eb57327e7d61b12df801f79bfb9ea7ea1738548afb5a002e0606",
+      "status": "same",
+      "publication_sha256": "1ed6dafe0072eb57327e7d61b12df801f79bfb9ea7ea1738548afb5a002e0606"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/connectors/manifest.py",
+      "repo": "core",
+      "path": "civiccore/connectors/manifest.py",
+      "sha256": "15caa167acce428facdf7683085d47dd4a01b02cc2d05df25d6aa1d157bb79bd",
+      "status": "same",
+      "publication_sha256": "15caa167acce428facdf7683085d47dd4a01b02cc2d05df25d6aa1d157bb79bd"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/connectors/sync.py",
+      "repo": "core",
+      "path": "civiccore/connectors/sync.py",
+      "sha256": "ef8bb329bf9d385fd96c617e58a8495989dd76a5d641e0afae3fcf3cba2ca503",
+      "status": "same",
+      "publication_sha256": "ef8bb329bf9d385fd96c617e58a8495989dd76a5d641e0afae3fcf3cba2ca503"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/db/__init__.py",
+      "repo": "core",
+      "path": "civiccore/db/__init__.py",
+      "sha256": "19fc1241d2d81b136813d1ca7ebb47d3831a5ffccec8b548237577ddcd65aebb",
+      "status": "same",
+      "publication_sha256": "19fc1241d2d81b136813d1ca7ebb47d3831a5ffccec8b548237577ddcd65aebb"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/exemptions/__init__.py",
+      "repo": "core",
+      "path": "civiccore/exemptions/__init__.py",
+      "sha256": "83575c21379e697bbbc42b124c8674d8dc99020006f4806237eed0fb71083173",
+      "status": "changed",
+      "publication_sha256": "83575c21379e697bbbc42b124c8674d8dc99020006f4806237eed0fb71083173"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/exemptions/history.py",
+      "repo": "core",
+      "path": "civiccore/exemptions/history.py",
+      "sha256": "b6b1e5be26a6c7a16391d34b6e50e4c08eb19d5cc25788db8917b0b46044b0ea",
+      "status": "new",
+      "publication_sha256": "b6b1e5be26a6c7a16391d34b6e50e4c08eb19d5cc25788db8917b0b46044b0ea"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/exemptions/patterns.py",
+      "repo": "core",
+      "path": "civiccore/exemptions/patterns.py",
+      "sha256": "b8c4ea484f1fe521295d29eebcc36703c4560d274b36c88f5af28f5abded98af",
+      "status": "new",
+      "publication_sha256": "3fe03301b2e01620cab3af063eaf43bd9d0511ce1d5443eeea3f4b18240903bf"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/exports/__init__.py",
+      "repo": "core",
+      "path": "civiccore/exports/__init__.py",
+      "sha256": "7b46221c065defc5c31f148cdc5d2464ff6f665d786499b90a0059474fe9713c",
+      "status": "same",
+      "publication_sha256": "7b46221c065defc5c31f148cdc5d2464ff6f665d786499b90a0059474fe9713c"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/exports/bundle.py",
+      "repo": "core",
+      "path": "civiccore/exports/bundle.py",
+      "sha256": "22075c7ad189a9eb958b16a5cb4ef759213789f63e799e78b585a671a84ea5bd",
+      "status": "same",
+      "publication_sha256": "22075c7ad189a9eb958b16a5cb4ef759213789f63e799e78b585a671a84ea5bd"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/__init__.py",
+      "repo": "core",
+      "path": "civiccore/ingest/__init__.py",
+      "sha256": "6bef6d820315269d126b92aafa02a6d023c6c8706e378003a0cbad434318b791",
+      "status": "same",
+      "publication_sha256": "6bef6d820315269d126b92aafa02a6d023c6c8706e378003a0cbad434318b791"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/chunker.py",
+      "repo": "core",
+      "path": "civiccore/ingest/chunker.py",
+      "sha256": "cf9515ec9aecfa7a5b4bbe077c99711ecce651c6c155a4bef07475e404a96c83",
+      "status": "same",
+      "publication_sha256": "cf9515ec9aecfa7a5b4bbe077c99711ecce651c6c155a4bef07475e404a96c83"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/contracts.py",
+      "repo": "core",
+      "path": "civiccore/ingest/contracts.py",
+      "sha256": "7536789de18c66e150ad16986c44a794c6ad3353c5dd9e1b29b10f24fa5afaca",
+      "status": "same",
+      "publication_sha256": "7536789de18c66e150ad16986c44a794c6ad3353c5dd9e1b29b10f24fa5afaca"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/embedder.py",
+      "repo": "core",
+      "path": "civiccore/ingest/embedder.py",
+      "sha256": "655ae601f7901c847507e7ef4ab7cc3b77463e7ca1011831d9006b44cb3045ea",
+      "status": "same",
+      "publication_sha256": "655ae601f7901c847507e7ef4ab7cc3b77463e7ca1011831d9006b44cb3045ea"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/llm_extractor.py",
+      "repo": "core",
+      "path": "civiccore/ingest/llm_extractor.py",
+      "sha256": "bfa082031b17b4a1af58472eb3faac4cd6cbc91f2d9a2f7e59763f5c92fa5680",
+      "status": "same",
+      "publication_sha256": "bfa082031b17b4a1af58472eb3faac4cd6cbc91f2d9a2f7e59763f5c92fa5680"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/models.py",
+      "repo": "core",
+      "path": "civiccore/ingest/models.py",
+      "sha256": "a10de63e573ec5d4df5d258265f07695e6ed1805b3cf02897828dfe6008f73bd",
+      "status": "same",
+      "publication_sha256": "a10de63e573ec5d4df5d258265f07695e6ed1805b3cf02897828dfe6008f73bd"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/__init__.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/__init__.py",
+      "sha256": "f6d7f512bae3794abd587b16845f42af7689ada1f994aca134389f922a445537",
+      "status": "same",
+      "publication_sha256": "f6d7f512bae3794abd587b16845f42af7689ada1f994aca134389f922a445537"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/base.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/base.py",
+      "sha256": "d2618295496026752492dcbab6230d8973ed51f4a91984f7150e1bb064c36423",
+      "status": "same",
+      "publication_sha256": "d2618295496026752492dcbab6230d8973ed51f4a91984f7150e1bb064c36423"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/csv_parser.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/csv_parser.py",
+      "sha256": "7c8208fed09911e4f8153ab3c7d1fcfc281b5aec016589b697a728769bdcb41c",
+      "status": "same",
+      "publication_sha256": "7c8208fed09911e4f8153ab3c7d1fcfc281b5aec016589b697a728769bdcb41c"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/docx.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/docx.py",
+      "sha256": "224542a9d2ebfdf9d3ef8947c7040ec683d13b507462a9c929e167c6b05529f3",
+      "status": "same",
+      "publication_sha256": "224542a9d2ebfdf9d3ef8947c7040ec683d13b507462a9c929e167c6b05529f3"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/email.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/email.py",
+      "sha256": "a83333d1ed5498fd56c61b47ce897b3d2c3b221070d7d13b000ea95336ea08e1",
+      "status": "same",
+      "publication_sha256": "a83333d1ed5498fd56c61b47ce897b3d2c3b221070d7d13b000ea95336ea08e1"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/html.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/html.py",
+      "sha256": "a0383c330920702a913140377891e3eed43f029a3c756e9dceade4eb6d81b92e",
+      "status": "same",
+      "publication_sha256": "a0383c330920702a913140377891e3eed43f029a3c756e9dceade4eb6d81b92e"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/pdf.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/pdf.py",
+      "sha256": "fe312d998d3224a5cc10ee28c6f76f50a856075b5338370baed56d83ebbc0032",
+      "status": "same",
+      "publication_sha256": "fe312d998d3224a5cc10ee28c6f76f50a856075b5338370baed56d83ebbc0032"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/text.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/text.py",
+      "sha256": "b77c107e8446d92e1fa0ce4f11ed54906e02c2bc5980c19e344c175d635c3441",
+      "status": "same",
+      "publication_sha256": "b77c107e8446d92e1fa0ce4f11ed54906e02c2bc5980c19e344c175d635c3441"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/parsers/xlsx.py",
+      "repo": "core",
+      "path": "civiccore/ingest/parsers/xlsx.py",
+      "sha256": "3bd37c6f389644b630d44fe4964f5f82623469ae2855c04e81437b0fbe9f8fe0",
+      "status": "same",
+      "publication_sha256": "3bd37c6f389644b630d44fe4964f5f82623469ae2855c04e81437b0fbe9f8fe0"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/ingest/pipeline.py",
+      "repo": "core",
+      "path": "civiccore/ingest/pipeline.py",
+      "sha256": "6d1cbe9794d4bf98e22ddbf18ba4bed5bb96e8a0231f87075b92eeebac4bf570",
+      "status": "same",
+      "publication_sha256": "6d1cbe9794d4bf98e22ddbf18ba4bed5bb96e8a0231f87075b92eeebac4bf570"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/__init__.py",
+      "repo": "core",
+      "path": "civiccore/llm/__init__.py",
+      "sha256": "7f8341c07da53f39684a477f9b4fe88ce425a3dc5444f9ac6560eca9787bdac5",
+      "status": "same",
+      "publication_sha256": "7f8341c07da53f39684a477f9b4fe88ce425a3dc5444f9ac6560eca9787bdac5"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/context.py",
+      "repo": "core",
+      "path": "civiccore/llm/context.py",
+      "sha256": "e7df765626e5ff642e0b86c36771379662ce35594b147391fef0566835762daa",
+      "status": "same",
+      "publication_sha256": "e7df765626e5ff642e0b86c36771379662ce35594b147391fef0566835762daa"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/factory.py",
+      "repo": "core",
+      "path": "civiccore/llm/factory.py",
+      "sha256": "0497147ca6d8af7c4b233a4157089fe4911bb49d0ea214f4fce9ac4c65e48aee",
+      "status": "same",
+      "publication_sha256": "0497147ca6d8af7c4b233a4157089fe4911bb49d0ea214f4fce9ac4c65e48aee"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/providers/__init__.py",
+      "repo": "core",
+      "path": "civiccore/llm/providers/__init__.py",
+      "sha256": "4decd4720c452fa27d1b245a603d409b7dc99db1c5015dbdb3ae29d745ac61fc",
+      "status": "same",
+      "publication_sha256": "4decd4720c452fa27d1b245a603d409b7dc99db1c5015dbdb3ae29d745ac61fc"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/providers/anthropic.py",
+      "repo": "core",
+      "path": "civiccore/llm/providers/anthropic.py",
+      "sha256": "dba9eb64c724fe8a209dbac48743f99463f99e0c1c67b1306d9126985348b267",
+      "status": "same",
+      "publication_sha256": "dba9eb64c724fe8a209dbac48743f99463f99e0c1c67b1306d9126985348b267"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/providers/base.py",
+      "repo": "core",
+      "path": "civiccore/llm/providers/base.py",
+      "sha256": "fe430884bcaf7678f625db6203312e1f1dcdce617db36870623e87b5ac066b32",
+      "status": "same",
+      "publication_sha256": "fe430884bcaf7678f625db6203312e1f1dcdce617db36870623e87b5ac066b32"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/providers/config.py",
+      "repo": "core",
+      "path": "civiccore/llm/providers/config.py",
+      "sha256": "db4ee77e2e0a3ac16fd71df4f0979fab89d36b2ff1985c1e2d4498299810fd3a",
+      "status": "changed",
+      "publication_sha256": "d64eb9ed7ca73afafd2c660d875319de18a64335817ecf9fa71d4ddf6e966405"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/providers/ollama.py",
+      "repo": "core",
+      "path": "civiccore/llm/providers/ollama.py",
+      "sha256": "bd1c78980c464dd41c7fdc24d9c362d17d20d343c9eac3c01000609bacd47e2b",
+      "status": "changed",
+      "publication_sha256": "bda95473d96565c3c691b77b3c3732913a6f24752da3c6ee8e22144523bea45b"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/providers/openai.py",
+      "repo": "core",
+      "path": "civiccore/llm/providers/openai.py",
+      "sha256": "d54920131ea2f0f14b8eee8c970dce47bf5ee5886815626f09f765fd8d4f4a30",
+      "status": "same",
+      "publication_sha256": "d54920131ea2f0f14b8eee8c970dce47bf5ee5886815626f09f765fd8d4f4a30"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/providers/registry.py",
+      "repo": "core",
+      "path": "civiccore/llm/providers/registry.py",
+      "sha256": "2733af50366c7e8975c1b552fbe5302ed12d284abd59e65768ac8453d3639870",
+      "status": "same",
+      "publication_sha256": "2733af50366c7e8975c1b552fbe5302ed12d284abd59e65768ac8453d3639870"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/registry/__init__.py",
+      "repo": "core",
+      "path": "civiccore/llm/registry/__init__.py",
+      "sha256": "9223edf2e5652dcee6612a2593299b12e06c6e46f24b4784d9d97bdda333a3d0",
+      "status": "same",
+      "publication_sha256": "9223edf2e5652dcee6612a2593299b12e06c6e46f24b4784d9d97bdda333a3d0"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/registry/models.py",
+      "repo": "core",
+      "path": "civiccore/llm/registry/models.py",
+      "sha256": "f58ccb6ce42a7d344c4de7432ca3623e7865a59c91646736e1d397b565e07b0e",
+      "status": "same",
+      "publication_sha256": "f58ccb6ce42a7d344c4de7432ca3623e7865a59c91646736e1d397b565e07b0e"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/registry/router.py",
+      "repo": "core",
+      "path": "civiccore/llm/registry/router.py",
+      "sha256": "03815bc31f8b2651acee939dd370f44c91a2c92e663ebe25273986540a379b2f",
+      "status": "same",
+      "publication_sha256": "03815bc31f8b2651acee939dd370f44c91a2c92e663ebe25273986540a379b2f"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/registry/schemas.py",
+      "repo": "core",
+      "path": "civiccore/llm/registry/schemas.py",
+      "sha256": "324d0b48abc8d3d0b7a66f9763145a29fed4e81a6b8a59f865b63fb1ab980bfe",
+      "status": "same",
+      "publication_sha256": "324d0b48abc8d3d0b7a66f9763145a29fed4e81a6b8a59f865b63fb1ab980bfe"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/registry/service.py",
+      "repo": "core",
+      "path": "civiccore/llm/registry/service.py",
+      "sha256": "9280f0161a4db25de8182f214fa9d143ef2b1bfc3dac65b1b83b570ed12ee407",
+      "status": "same",
+      "publication_sha256": "9280f0161a4db25de8182f214fa9d143ef2b1bfc3dac65b1b83b570ed12ee407"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/structured.py",
+      "repo": "core",
+      "path": "civiccore/llm/structured.py",
+      "sha256": "9f7ad6645f2a02aa6a41207906be09a6e1adfc70a89c6eb78387e78cb807477a",
+      "status": "same",
+      "publication_sha256": "9f7ad6645f2a02aa6a41207906be09a6e1adfc70a89c6eb78387e78cb807477a"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/templates/__init__.py",
+      "repo": "core",
+      "path": "civiccore/llm/templates/__init__.py",
+      "sha256": "a00806b2b0d3c3b7dd966dee85db8f2ee6178697c6f222c28abe4454518ba341",
+      "status": "same",
+      "publication_sha256": "a00806b2b0d3c3b7dd966dee85db8f2ee6178697c6f222c28abe4454518ba341"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/templates/engine.py",
+      "repo": "core",
+      "path": "civiccore/llm/templates/engine.py",
+      "sha256": "cb4f72ba249be0264c827c4503b64dea8b61fe525ebb1a93870a9ba58b46d5df",
+      "status": "same",
+      "publication_sha256": "cb4f72ba249be0264c827c4503b64dea8b61fe525ebb1a93870a9ba58b46d5df"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/templates/exceptions.py",
+      "repo": "core",
+      "path": "civiccore/llm/templates/exceptions.py",
+      "sha256": "53bbdcfd915d751cc878edc148a39b52424b5c34a4d03ed8120d763464967a96",
+      "status": "same",
+      "publication_sha256": "53bbdcfd915d751cc878edc148a39b52424b5c34a4d03ed8120d763464967a96"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/templates/models.py",
+      "repo": "core",
+      "path": "civiccore/llm/templates/models.py",
+      "sha256": "c1a61785d12d40657aad28ead8f8d27c947634ab159bc48b4309788ae4ed674d",
+      "status": "same",
+      "publication_sha256": "c1a61785d12d40657aad28ead8f8d27c947634ab159bc48b4309788ae4ed674d"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/templates/overrides.py",
+      "repo": "core",
+      "path": "civiccore/llm/templates/overrides.py",
+      "sha256": "6a32018a76d803c74408937b75e6d3ad597f247d533e2d8092ce7bbccc0d0cd1",
+      "status": "same",
+      "publication_sha256": "6a32018a76d803c74408937b75e6d3ad597f247d533e2d8092ce7bbccc0d0cd1"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/templates/resolver.py",
+      "repo": "core",
+      "path": "civiccore/llm/templates/resolver.py",
+      "sha256": "389bf9b01902b046f8986fc3415125c859bf8a4923e07d146d0cdd75587b9636",
+      "status": "same",
+      "publication_sha256": "389bf9b01902b046f8986fc3415125c859bf8a4923e07d146d0cdd75587b9636"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/llm/templates/schemas.py",
+      "repo": "core",
+      "path": "civiccore/llm/templates/schemas.py",
+      "sha256": "f012308c13d12ec8e338335c5ba451d73c171605697a79a8f3dba334f4af1854",
+      "status": "same",
+      "publication_sha256": "f012308c13d12ec8e338335c5ba451d73c171605697a79a8f3dba334f4af1854"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/__init__.py",
+      "repo": "core",
+      "path": "civiccore/migrations/__init__.py",
+      "sha256": "6cb4358063e7a281454ae36e2aa4565e9048e00d193d1da0bab81df47a453703",
+      "status": "same",
+      "publication_sha256": "6cb4358063e7a281454ae36e2aa4565e9048e00d193d1da0bab81df47a453703"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/alembic.ini",
+      "repo": "core",
+      "path": "civiccore/migrations/alembic.ini",
+      "sha256": "d519dafe29ef2eb3cd77de8f8fd769746a45275439a6b3c5f5e34d990cc61092",
+      "status": "same",
+      "publication_sha256": "d839ea54ef0c32638bf23a127a951453e0b39d8cf389565e97607317e52fc905"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/env.py",
+      "repo": "core",
+      "path": "civiccore/migrations/env.py",
+      "sha256": "208de714d58a5b3fa8f3797c05eadba49d0b46105afeb20c50e7685e298fb4cb",
+      "status": "same",
+      "publication_sha256": "208de714d58a5b3fa8f3797c05eadba49d0b46105afeb20c50e7685e298fb4cb"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/guards.py",
+      "repo": "core",
+      "path": "civiccore/migrations/guards.py",
+      "sha256": "c55de91c7189b39537aed6130a1e9f50817f819bd13aa4728ae4e8dd4c863aad",
+      "status": "same",
+      "publication_sha256": "c55de91c7189b39537aed6130a1e9f50817f819bd13aa4728ae4e8dd4c863aad"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/runner.py",
+      "repo": "core",
+      "path": "civiccore/migrations/runner.py",
+      "sha256": "4f3b554197baf06924cc3676d42df083f14f3a9db1456a775601d975499e354e",
+      "status": "same",
+      "publication_sha256": "4f3b554197baf06924cc3676d42df083f14f3a9db1456a775601d975499e354e"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/__init__.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/__init__.py",
+      "sha256": "61c059e42b35e302a4372a1c7697ca495118b123f7303306d7c54ff15173c8c6",
+      "status": "same",
+      "publication_sha256": "61c059e42b35e302a4372a1c7697ca495118b123f7303306d7c54ff15173c8c6"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0001_baseline_v1.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0001_baseline_v1.py",
+      "sha256": "69186f3f798a01d61638ae42993761c3038ced04e143ea8dd292ebc1fc63afb7",
+      "status": "same",
+      "publication_sha256": "69186f3f798a01d61638ae42993761c3038ced04e143ea8dd292ebc1fc63afb7"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0002_llm.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0002_llm.py",
+      "sha256": "fa273e35f651a6298842df0de87bd5548d1a83698adc27e1385ceb28449b00cd",
+      "status": "same",
+      "publication_sha256": "fa273e35f651a6298842df0de87bd5548d1a83698adc27e1385ceb28449b00cd"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0003_local_task_queue.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0003_local_task_queue.py",
+      "sha256": "51276a0dc2737fd1fc2615f26d66d942c1df3be2ef40f1513436cd4579b1ecf0",
+      "status": "same",
+      "publication_sha256": "51276a0dc2737fd1fc2615f26d66d942c1df3be2ef40f1513436cd4579b1ecf0"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0004_catalog.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0004_catalog.py",
+      "sha256": "a9f46f8ca1bcde43a2796dd62891ad36840d1067220b16fdde8583a1f700a06d",
+      "status": "new",
+      "publication_sha256": "a9f46f8ca1bcde43a2796dd62891ad36840d1067220b16fdde8583a1f700a06d"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0005_job_leases.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0005_job_leases.py",
+      "sha256": "a6651789d82cb0c39481f16855449bf09d65644c93a97bab1e33f8d7546157f7",
+      "status": "new",
+      "publication_sha256": "a6651789d82cb0c39481f16855449bf09d65644c93a97bab1e33f8d7546157f7"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0006_rule_history.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0006_rule_history.py",
+      "sha256": "ac29f724f60125de435235655a052ae3738a286467b1d6d8213a22558994a868",
+      "status": "new",
+      "publication_sha256": "ac29f724f60125de435235655a052ae3738a286467b1d6d8213a22558994a868"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0007_module_inventory.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0007_module_inventory.py",
+      "sha256": "41aefee7ff2de883f92eebb7a39de2f0ed8b6bd4fecf88c6ebfd62a0b3cb7456",
+      "status": "new",
+      "publication_sha256": "41aefee7ff2de883f92eebb7a39de2f0ed8b6bd4fecf88c6ebfd62a0b3cb7456"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0008_department_authority.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0008_department_authority.py",
+      "sha256": "fa7328f869594d1af2f4daceb4b362cd8ebe304b7e1ecbefaa22497d08430b4a",
+      "status": "new",
+      "publication_sha256": "56893cb96124f8846a6d3ddbe076fbe0bba7318552588ceb6e6d0b1b78edee63"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/migrations/versions/civiccore_0009_job_artifacts.py",
+      "repo": "core",
+      "path": "civiccore/migrations/versions/civiccore_0009_job_artifacts.py",
+      "sha256": "ee8952caff749c4b9df5cbc15c379f69f7066351ea5f7690525136be1481d9d8",
+      "status": "new",
+      "publication_sha256": "ee8952caff749c4b9df5cbc15c379f69f7066351ea5f7690525136be1481d9d8"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/models/__init__.py",
+      "repo": "core",
+      "path": "civiccore/models/__init__.py",
+      "sha256": "213b3086e533a98047d460720e7a1becd7f6196f4a6db989a39253351b8894c9",
+      "status": "same",
+      "publication_sha256": "213b3086e533a98047d460720e7a1becd7f6196f4a6db989a39253351b8894c9"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/notifications/__init__.py",
+      "repo": "core",
+      "path": "civiccore/notifications/__init__.py",
+      "sha256": "988bcb1091aef4451a1566202a6ec50e3b8908770707b5ad45398923bdb2d6be",
+      "status": "same",
+      "publication_sha256": "988bcb1091aef4451a1566202a6ec50e3b8908770707b5ad45398923bdb2d6be"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/notifications/notice.py",
+      "repo": "core",
+      "path": "civiccore/notifications/notice.py",
+      "sha256": "78c2542686403c647859b27f5a7bf7ff832cd29ca3ff4086b32c6e5fc098247b",
+      "status": "same",
+      "publication_sha256": "78c2542686403c647859b27f5a7bf7ff832cd29ca3ff4086b32c6e5fc098247b"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/onboarding/__init__.py",
+      "repo": "core",
+      "path": "civiccore/onboarding/__init__.py",
+      "sha256": "d4d47bddbea571ade848657d39a128849e7b02c45a2c5476bd4ee933033a5713",
+      "status": "same",
+      "publication_sha256": "d4d47bddbea571ade848657d39a128849e7b02c45a2c5476bd4ee933033a5713"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/onboarding/profile.py",
+      "repo": "core",
+      "path": "civiccore/onboarding/profile.py",
+      "sha256": "76f82f3b710700d4d3913a1ec5575c15499e46c11b4bb9ddffa2455710b93a93",
+      "status": "same",
+      "publication_sha256": "76f82f3b710700d4d3913a1ec5575c15499e46c11b4bb9ddffa2455710b93a93"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/__init__.py",
+      "repo": "core",
+      "path": "civiccore/platform/__init__.py",
+      "sha256": "a8618133480c425c95c6ab8b773261aa430f600603941248148b402341ac9f94",
+      "status": "changed",
+      "publication_sha256": "a8618133480c425c95c6ab8b773261aa430f600603941248148b402341ac9f94"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/backup.py",
+      "repo": "core",
+      "path": "civiccore/platform/backup.py",
+      "sha256": "15396fd6bdeaebbddead4a619e11090b427dfcb8744dccd582bbbaf5ca49b407",
+      "status": "same",
+      "publication_sha256": "15396fd6bdeaebbddead4a619e11090b427dfcb8744dccd582bbbaf5ca49b407"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/health.py",
+      "repo": "core",
+      "path": "civiccore/platform/health.py",
+      "sha256": "41f35066ee9a5c1ea3948605f3acf39c568a8916340598468def3502a0ec1634",
+      "status": "same",
+      "publication_sha256": "41f35066ee9a5c1ea3948605f3acf39c568a8916340598468def3502a0ec1634"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/inventory.py",
+      "repo": "core",
+      "path": "civiccore/platform/inventory.py",
+      "sha256": "b6b1936c8bc2d5ba459370e9406395b3bf899a24ba439ff92ac38ae393fe7dda",
+      "status": "new",
+      "publication_sha256": "b6b1936c8bc2d5ba459370e9406395b3bf899a24ba439ff92ac38ae393fe7dda"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/modules.py",
+      "repo": "core",
+      "path": "civiccore/platform/modules.py",
+      "sha256": "7d3af6bcdc8cc3af90c6c663f5e0ea4571cfe607b0c3ee76a3ce0f966cb8a0c3",
+      "status": "changed",
+      "publication_sha256": "6685ac189604065177346872b06e4a3836d8373929d70270d30e3416cd4b2ab3"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/runtime.py",
+      "repo": "core",
+      "path": "civiccore/platform/runtime.py",
+      "sha256": "8c9ba7958b8fa08e7b0378a78d3693d8a586714555e5de9420a10626283f579a",
+      "status": "same",
+      "publication_sha256": "8c9ba7958b8fa08e7b0378a78d3693d8a586714555e5de9420a10626283f579a"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/task_queue.py",
+      "repo": "core",
+      "path": "civiccore/platform/task_queue.py",
+      "sha256": "438c2e7364ef0232b62a4ea379b22a679c248c8c1ab9c0b3149fd87ec8e5fb46",
+      "status": "changed",
+      "publication_sha256": "dec149f9d984bf4336080f3d159440d3ee41a9cffc2bee6d5d5593e5c1b495dd"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/platform/tasks.py",
+      "repo": "core",
+      "path": "civiccore/platform/tasks.py",
+      "sha256": "cbf2bf5323fb37c5ff58038d77597464b16c6637b205dcf00a03ad274d120847",
+      "status": "changed",
+      "publication_sha256": "00ab6811006772bbf03364e7dd2551bd804ca72ec24b118148a05f434881c08c"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/provenance/__init__.py",
+      "repo": "core",
+      "path": "civiccore/provenance/__init__.py",
+      "sha256": "0f703072d5ba898b13a2683285eb8d57e66815356391103f27d63237467d0ab8",
+      "status": "same",
+      "publication_sha256": "0f703072d5ba898b13a2683285eb8d57e66815356391103f27d63237467d0ab8"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/provenance/contracts.py",
+      "repo": "core",
+      "path": "civiccore/provenance/contracts.py",
+      "sha256": "56dfe26f57056ae1ea85fb8eb808a5259700609483d8e14e67625e123040d57c",
+      "status": "same",
+      "publication_sha256": "56dfe26f57056ae1ea85fb8eb808a5259700609483d8e14e67625e123040d57c"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/release_provenance.py",
+      "repo": "core",
+      "path": "civiccore/release_provenance.py",
+      "sha256": "52df52fe6354b741a0cfb759156601fc6682aa34caed7cead9e624ac70e1faf7",
+      "status": "same",
+      "publication_sha256": "52df52fe6354b741a0cfb759156601fc6682aa34caed7cead9e624ac70e1faf7"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/scaffold/__init__.py",
+      "repo": "core",
+      "path": "civiccore/scaffold/__init__.py",
+      "sha256": "313ad60b0afe49ab6d7632c99d96a13deec90466a74e1d4d375a6c663e4a2266",
+      "status": "changed",
+      "publication_sha256": "313ad60b0afe49ab6d7632c99d96a13deec90466a74e1d4d375a6c663e4a2266"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/scaffold/__main__.py",
+      "repo": "core",
+      "path": "civiccore/scaffold/__main__.py",
+      "sha256": "926a8bb2eede99ffb44ac34a5ff57950df4de748280d37edb38a8cf1c8441819",
+      "status": "new",
+      "publication_sha256": "926a8bb2eede99ffb44ac34a5ff57950df4de748280d37edb38a8cf1c8441819"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/scaffold/cli.py",
+      "repo": "core",
+      "path": "civiccore/scaffold/cli.py",
+      "sha256": "a2228cce93986f97ae26cbdc5ce402ea31c5e83685b6b2cf31c1e52a4ee669d5",
+      "status": "new",
+      "publication_sha256": "a2228cce93986f97ae26cbdc5ce402ea31c5e83685b6b2cf31c1e52a4ee669d5"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/scaffold/project.py",
+      "repo": "core",
+      "path": "civiccore/scaffold/project.py",
+      "sha256": "343d74719e25beec71fdc0b855f4e1a38db1e338e3a4b62ef1c7b3951e070587",
+      "status": "new",
+      "publication_sha256": "18e578b43c1dd8ab4200d86aeca90c8c93c1fc675873587600808b826781eb16"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/scaffold/spec.py",
+      "repo": "core",
+      "path": "civiccore/scaffold/spec.py",
+      "sha256": "603e6d89700bf64b4ffc285c06446b9cf9f66b318613de01ca8b5ef94cc134d2",
+      "status": "new",
+      "publication_sha256": "603e6d89700bf64b4ffc285c06446b9cf9f66b318613de01ca8b5ef94cc134d2"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/scheduling/__init__.py",
+      "repo": "core",
+      "path": "civiccore/scheduling/__init__.py",
+      "sha256": "f887d66fc8bf298e094c46bae19fa42b67e5d26911522913d8c5a546d606b4cc",
+      "status": "same",
+      "publication_sha256": "f887d66fc8bf298e094c46bae19fa42b67e5d26911522913d8c5a546d606b4cc"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/scheduling/cron.py",
+      "repo": "core",
+      "path": "civiccore/scheduling/cron.py",
+      "sha256": "a7c5688dc5a3e5c410466cc92a7d884a88a50fe92974d0a7642b0fbe954f0b08",
+      "status": "same",
+      "publication_sha256": "a7c5688dc5a3e5c410466cc92a7d884a88a50fe92974d0a7642b0fbe954f0b08"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/search/__init__.py",
+      "repo": "core",
+      "path": "civiccore/search/__init__.py",
+      "sha256": "2450f3768c47b0e2869ca1056b188d41b9ba58f88a0865cad5ad854f03801908",
+      "status": "same",
+      "publication_sha256": "2450f3768c47b0e2869ca1056b188d41b9ba58f88a0865cad5ad854f03801908"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/security/__init__.py",
+      "repo": "core",
+      "path": "civiccore/security/__init__.py",
+      "sha256": "376e78b0875c2fd3074935b586cef2b806c371f140085ffc40eeb6aed09b9211",
+      "status": "same",
+      "publication_sha256": "376e78b0875c2fd3074935b586cef2b806c371f140085ffc40eeb6aed09b9211"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/security/at_rest.py",
+      "repo": "core",
+      "path": "civiccore/security/at_rest.py",
+      "sha256": "eb339fa93cff4af29df7f01b3f5552fff56c6bdc676fef6cb9aad8356a610d3e",
+      "status": "same",
+      "publication_sha256": "eb339fa93cff4af29df7f01b3f5552fff56c6bdc676fef6cb9aad8356a610d3e"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/security/config_validation.py",
+      "repo": "core",
+      "path": "civiccore/security/config_validation.py",
+      "sha256": "e4064bf0394ffc7cdc0aafccfc689a2a17667cfd31d8455dc6f8a623d963af45",
+      "status": "same",
+      "publication_sha256": "e4064bf0394ffc7cdc0aafccfc689a2a17667cfd31d8455dc6f8a623d963af45"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/security/host_validation.py",
+      "repo": "core",
+      "path": "civiccore/security/host_validation.py",
+      "sha256": "3e62ec5540713eea903409c88c4e2255b0dd8d54a9d5d23fc69ad15e03c15045",
+      "status": "same",
+      "publication_sha256": "3e62ec5540713eea903409c88c4e2255b0dd8d54a9d5d23fc69ad15e03c15045"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/tasks/__init__.py",
+      "repo": "core",
+      "path": "civiccore/tasks/__init__.py",
+      "sha256": "2b30985e76210900397d5e65b5060786e8fec6478d8762690e8971a37c49d5f1",
+      "status": "changed",
+      "publication_sha256": "2b30985e76210900397d5e65b5060786e8fec6478d8762690e8971a37c49d5f1"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/tasks/artifacts.py",
+      "repo": "core",
+      "path": "civiccore/tasks/artifacts.py",
+      "sha256": "fbb9db7c76ce4b3bd91b3412ba2cfdcc52d3c67959ef117a0a765ee9dc3d972f",
+      "status": "new",
+      "publication_sha256": "fbb9db7c76ce4b3bd91b3412ba2cfdcc52d3c67959ef117a0a765ee9dc3d972f"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/tasks/leased.py",
+      "repo": "core",
+      "path": "civiccore/tasks/leased.py",
+      "sha256": "eef2a9e339274c1caccde7cb3295a9d5bd88da6561090cbfc0a6bf10c8d29e1d",
+      "status": "new",
+      "publication_sha256": "eef2a9e339274c1caccde7cb3295a9d5bd88da6561090cbfc0a6bf10c8d29e1d"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/tasks/registry.py",
+      "repo": "core",
+      "path": "civiccore/tasks/registry.py",
+      "sha256": "96bf04036bdc4be3b9097d7bc85f447105fd5d82e8ef548cd3d88354f7b3fce8",
+      "status": "same",
+      "publication_sha256": "96bf04036bdc4be3b9097d7bc85f447105fd5d82e8ef548cd3d88354f7b3fce8"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/tasks/worker.py",
+      "repo": "core",
+      "path": "civiccore/tasks/worker.py",
+      "sha256": "106d83f412c66d939e5d9a55276b51020c078ee89763135dc53f7c02ae20f76f",
+      "status": "changed",
+      "publication_sha256": "546e4c641b534ca1e8458cd5f5c52add43ba5b9b99a403c1f06829fe3d0af465"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/testing/__init__.py",
+      "repo": "core",
+      "path": "civiccore/testing/__init__.py",
+      "sha256": "359cfd4ae5b7324db08f496a0ee5043456f1ce60a4ae34fa75761a8790b88d50",
+      "status": "same",
+      "publication_sha256": "359cfd4ae5b7324db08f496a0ee5043456f1ce60a4ae34fa75761a8790b88d50"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/testing/mock_city.py",
+      "repo": "core",
+      "path": "civiccore/testing/mock_city.py",
+      "sha256": "c1bac5478d09e0958115da8d4f55f4d5211ec1531062e76829381f5a6c47e389",
+      "status": "same",
+      "publication_sha256": "c1bac5478d09e0958115da8d4f55f4d5211ec1531062e76829381f5a6c47e389"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/verification/__init__.py",
+      "repo": "core",
+      "path": "civiccore/verification/__init__.py",
+      "sha256": "79e2b135ad90bfad95db77a54f7d2c65d96eb13bb8ad1ed0a35e3655dc03a0e7",
+      "status": "same",
+      "publication_sha256": "79e2b135ad90bfad95db77a54f7d2c65d96eb13bb8ad1ed0a35e3655dc03a0e7"
+    },
+    {
+      "archive": "installed-owned-source/civiccore/verification/browser_evidence.py",
+      "repo": "core",
+      "path": "civiccore/verification/browser_evidence.py",
+      "sha256": "493219d45f5c50d5c514a4ea9534ccfab35979d0c58a577a2e9afd01328c7fe1",
+      "status": "same",
+      "publication_sha256": "493219d45f5c50d5c514a4ea9534ccfab35979d0c58a577a2e9afd01328c7fe1"
+    }
+  ],
+  "identity_note": "Publication commit integrates the already-built candidate; it is not claimed to be the original signing/build commit. Archive paths retain original byte hashes. Documentation entrypoints have a distribution addendum.",
+  "publication_note": "Original accepted bytes remain in the immutable source companion. Canonical sources normalize line endings. Release integration fixes remove a shadowed duplicate class, position imports for lint, format regression/acceptance tools and resolve the paired Core source dependency. Current audited manuals supersede build-time README copies. Each mapped file records both original and publication byte hashes."
+}
