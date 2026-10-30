@@ -23,7 +23,7 @@ from civiccore.migrations.versions.civiccore_0001_baseline_v1 import (  # noqa: 
     _SHARED_TABLE_ORDER,
 )
 
-EXPECTED_HEAD = "civiccore_0003_local_task_queue"
+EXPECTED_HEAD = "civiccore_0009_job_artifacts"
 
 
 def _docker_available() -> bool:
