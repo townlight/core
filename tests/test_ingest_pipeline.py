@@ -2,10 +2,10 @@ from pathlib import Path
 
 import pytest
 
-from civiccore.ingest import embedder
-from civiccore.ingest import ingest_bytes, register_handler
-from civiccore.ingest.chunker import chunk_pages
-from civiccore.ingest.parsers import detect_parser
+from townlight_core.ingest import embedder
+from townlight_core.ingest import ingest_bytes, register_handler
+from townlight_core.ingest.chunker import chunk_pages
+from townlight_core.ingest.parsers import detect_parser
 
 
 def test_shared_ingest_exports_pdf_parser_and_sentence_chunks() -> None:
@@ -42,7 +42,7 @@ def test_register_handler_takes_precedence_for_custom_suffix() -> None:
 
     register_handler(CustomParser())
 
-    from civiccore.ingest.pipeline import _detect_handler
+    from townlight_core.ingest.pipeline import _detect_handler
 
     assert _detect_handler(Path("longmont.citycode")).__class__.__name__ == "CustomParser"
 
@@ -64,7 +64,7 @@ async def test_ingest_bytes_uses_ingest_file_path(monkeypatch: pytest.MonkeyPatc
     async def fake_commit():
         calls["committed"] = True
 
-    monkeypatch.setattr("civiccore.ingest.pipeline.ingest_file", fake_ingest_file)
+    monkeypatch.setattr("townlight_core.ingest.pipeline.ingest_file", fake_ingest_file)
 
     class FakeSession:
         commit = staticmethod(fake_commit)

@@ -5,7 +5,7 @@ from datetime import UTC, datetime
 import httpx
 import pytest
 
-from civiccore.connectors import (
+from townlight_core.connectors import (
     SyncCircuitPolicy,
     SyncCircuitState,
     SyncRetryExhausted,

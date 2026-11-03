@@ -1,4 +1,4 @@
-<a id="civiccore-cleanroom-harness"></a>
+<a id="townlight_core-cleanroom-harness"></a>
 
 # Townlight Core Cleanroom Harness
 
@@ -22,7 +22,7 @@ then runs an offline smoke with Docker networking disabled.
 From a fresh clone:
 
 ```bash
-bash scripts/run-civiccore-cleanroom.sh <commit-sha>
+bash scripts/run-townlight_core-cleanroom.sh <commit-sha>
 ```
 
 The host must have Docker and a usable Python interpreter on `PATH`. The
@@ -33,13 +33,13 @@ comparison.
 The script defaults to two runs so auditors can compare stable manifests:
 
 ```bash
-CLEANROOM_RUN_COUNT=2 bash scripts/run-civiccore-cleanroom.sh <commit-sha>
+CLEANROOM_RUN_COUNT=2 bash scripts/run-townlight_core-cleanroom.sh <commit-sha>
 ```
 
 Evidence is written to:
 
 ```text
-docs/evidence/co6-civiccore-cleanroom-<commit-prefix>/
+docs/evidence/co6-townlight_core-cleanroom-<commit-prefix>/
 ```
 
 ## Pinned Inputs
@@ -74,9 +74,9 @@ runs pass when those stable manifest hashes match.
 
 Network is allowed only for provisioning and verification endpoints:
 
-- `https://github.com/CivicSuite/civiccore.git`
-- `https://github.com/CivicSuite/civiccore/releases/download/v0.22.1/*`
-- `https://api.github.com/repos/CivicSuite/civiccore/*`
+- `https://github.com/Townlight/townlight_core.git`
+- `https://github.com/Townlight/townlight_core/releases/download/v0.22.1/*`
+- `https://api.github.com/repos/Townlight/townlight_core/*`
 - `https://github.com/sigstore/cosign/releases/download/v3.0.6/cosign-linux-amd64`
 - `https://pypi.org/*`
 - `https://files.pythonhosted.org/*`

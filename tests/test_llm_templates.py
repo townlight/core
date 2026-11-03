@@ -2,7 +2,7 @@
 
 Engine tests are pure unit tests (no DB). Resolver tests use a fresh
 testcontainer Postgres per test (function scope) so each scenario starts from
-an empty schema upgraded to civiccore HEAD — preventing cross-test bleed.
+an empty schema upgraded to townlight_core HEAD — preventing cross-test bleed.
 
 Hard Rule 4a: no test.skip / xfail / inside-test importorskip. The Docker
 importorskip at module top is acceptable per the existing test_baseline_idempotency
@@ -34,21 +34,21 @@ testcontainers = pytest.importorskip(
 )
 PostgresContainer = testcontainers.PostgresContainer
 
-from civiccore.llm.templates.engine import RenderedPrompt, render_template  # noqa: E402
-from civiccore.llm.templates.exceptions import (  # noqa: E402
+from townlight_core.llm.templates.engine import RenderedPrompt, render_template  # noqa: E402
+from townlight_core.llm.templates.exceptions import (  # noqa: E402
     PromptTemplateNotFoundError,
     PromptTemplateRenderError,
 )
-from civiccore.llm.templates.models import PromptTemplate  # noqa: E402
-from civiccore.llm.templates.overrides import (  # noqa: E402
+from townlight_core.llm.templates.models import PromptTemplate  # noqa: E402
+from townlight_core.llm.templates.overrides import (  # noqa: E402
     register_template_override,
     unregister_template_override,
 )
-from civiccore.llm.templates.resolver import (  # noqa: E402
-    CIVICCORE_DEFAULT_APP,
+from townlight_core.llm.templates.resolver import (  # noqa: E402
+    TOWNLIGHT_CORE_DEFAULT_APP,
     resolve_template,
 )
-from civiccore.migrations.runner import upgrade_to_head  # noqa: E402
+from townlight_core.migrations.runner import upgrade_to_head  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -84,7 +84,7 @@ def _database_url_env(pg_container):
 def _make_template(
     *,
     template_name: str,
-    consumer_app: str = "civiccore",
+    consumer_app: str = "townlight_core",
     is_override: bool = False,
     version: int = 1,
     is_active: bool = True,
@@ -126,7 +126,7 @@ def pg_container():
 
 @pytest_asyncio.fixture(loop_scope="function")
 async def session(pg_container):
-    """AsyncSession against a fresh DB upgraded to civiccore HEAD."""
+    """AsyncSession against a fresh DB upgraded to townlight_core HEAD."""
     # 1. Upgrade schema via the runner (uses DATABASE_URL).
     with _database_url_env(pg_container):
         upgrade_to_head()
@@ -158,7 +158,7 @@ def test_render_template_substitutes_system_and_user():
     """$name and $msg substitute into both system_prompt and user_prompt_template."""
     tmpl = _make_template(
         template_name="greet",
-        consumer_app="civiccore",
+        consumer_app="townlight_core",
         version=3,
         system_prompt="hi $name",
         user_prompt_template="say $msg",
@@ -170,7 +170,7 @@ def test_render_template_substitutes_system_and_user():
     assert result.system == "hi alice"
     assert result.user == "say hello"
     assert result.template_name == "greet"
-    assert result.consumer_app == "civiccore"
+    assert result.consumer_app == "townlight_core"
     assert result.version == 3
 
 
@@ -240,12 +240,12 @@ def test_render_template_does_not_collide_with_json_braces():
 
 
 @pytest.mark.asyncio
-async def test_resolver_returns_civiccore_default_when_only_default_exists(session):
-    """A civiccore default is returned when no app-specific override exists."""
+async def test_resolver_returns_townlight_core_default_when_only_default_exists(session):
+    """A townlight_core default is returned when no app-specific override exists."""
     session.add(
         _make_template(
             template_name="t1",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             is_override=False,
             is_active=True,
         )
@@ -253,21 +253,21 @@ async def test_resolver_returns_civiccore_default_when_only_default_exists(sessi
     await session.commit()
 
     found = await resolve_template(
-        session, template_name="t1", consumer_app="civicrecords-ai"
+        session, template_name="t1", consumer_app="townlight_records"
     )
 
     assert found.template_name == "t1"
-    assert found.consumer_app == CIVICCORE_DEFAULT_APP
+    assert found.consumer_app == TOWNLIGHT_CORE_DEFAULT_APP
     assert found.is_override is False
 
 
 @pytest.mark.asyncio
-async def test_resolver_app_override_wins_over_civiccore_default(session):
-    """When an app override exists, it wins over the civiccore default."""
+async def test_resolver_app_override_wins_over_townlight_core_default(session):
+    """When an app override exists, it wins over the townlight_core default."""
     session.add(
         _make_template(
             template_name="t2",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             is_override=False,
             system_prompt="DEFAULT system",
         )
@@ -275,7 +275,7 @@ async def test_resolver_app_override_wins_over_civiccore_default(session):
     session.add(
         _make_template(
             template_name="t2",
-            consumer_app="civicrecords-ai",
+            consumer_app="townlight_records",
             is_override=True,
             system_prompt="OVERRIDE system",
         )
@@ -283,37 +283,37 @@ async def test_resolver_app_override_wins_over_civiccore_default(session):
     await session.commit()
 
     found = await resolve_template(
-        session, template_name="t2", consumer_app="civicrecords-ai"
+        session, template_name="t2", consumer_app="townlight_records"
     )
 
-    assert found.consumer_app == "civicrecords-ai"
+    assert found.consumer_app == "townlight_records"
     assert found.is_override is True
     assert found.system_prompt == "OVERRIDE system"
 
 
 @pytest.mark.asyncio
-async def test_resolver_civiccore_app_skips_step1(session):
-    """When consumer_app == 'civiccore', step 1 (override lookup) is skipped.
+async def test_resolver_townlight_core_app_skips_step1(session):
+    """When consumer_app == 'townlight_core', step 1 (override lookup) is skipped.
 
-    Even if a civiccore + is_override=True row exists (operator misconfiguration),
-    a consumer_app='civiccore' resolution returns the canonical default
+    Even if a townlight_core + is_override=True row exists (operator misconfiguration),
+    a consumer_app='townlight_core' resolution returns the canonical default
     (is_override=False) row.
     """
     # Misplaced override row (same app as the default — operator slip).
     session.add(
         _make_template(
             template_name="t3",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             is_override=True,
             version=1,
-            system_prompt="WEIRD override-on-civiccore",
+            system_prompt="WEIRD override-on-townlight_core",
         )
     )
     # Canonical default.
     session.add(
         _make_template(
             template_name="t3",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             is_override=False,
             version=2,
             system_prompt="canonical default",
@@ -322,7 +322,7 @@ async def test_resolver_civiccore_app_skips_step1(session):
     await session.commit()
 
     found = await resolve_template(
-        session, template_name="t3", consumer_app=CIVICCORE_DEFAULT_APP
+        session, template_name="t3", consumer_app=TOWNLIGHT_CORE_DEFAULT_APP
     )
 
     assert found.is_override is False
@@ -335,7 +335,7 @@ async def test_resolver_inactive_templates_ignored(session):
     session.add(
         _make_template(
             template_name="t4",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             is_active=False,
         )
     )
@@ -343,7 +343,7 @@ async def test_resolver_inactive_templates_ignored(session):
 
     with pytest.raises(PromptTemplateNotFoundError):
         await resolve_template(
-            session, template_name="t4", consumer_app="civicrecords-ai"
+            session, template_name="t4", consumer_app="townlight_records"
         )
 
 
@@ -353,7 +353,7 @@ async def test_resolver_highest_version_wins(session):
     session.add(
         _make_template(
             template_name="t5",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             version=1,
             is_active=True,
             system_prompt="v1",
@@ -362,7 +362,7 @@ async def test_resolver_highest_version_wins(session):
     session.add(
         _make_template(
             template_name="t5",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             version=2,
             is_active=True,
             system_prompt="v2",
@@ -371,7 +371,7 @@ async def test_resolver_highest_version_wins(session):
     await session.commit()
 
     found = await resolve_template(
-        session, template_name="t5", consumer_app="civicrecords-ai"
+        session, template_name="t5", consumer_app="townlight_records"
     )
 
     assert found.version == 2
@@ -384,7 +384,7 @@ async def test_resolver_inactive_higher_version_skipped_active_lower_returned(se
     session.add(
         _make_template(
             template_name="t6",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             version=1,
             is_active=True,
             system_prompt="v1-active",
@@ -393,7 +393,7 @@ async def test_resolver_inactive_higher_version_skipped_active_lower_returned(se
     session.add(
         _make_template(
             template_name="t6",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             version=2,
             is_active=False,
             system_prompt="v2-inactive",
@@ -402,7 +402,7 @@ async def test_resolver_inactive_higher_version_skipped_active_lower_returned(se
     await session.commit()
 
     found = await resolve_template(
-        session, template_name="t6", consumer_app="civicrecords-ai"
+        session, template_name="t6", consumer_app="townlight_records"
     )
 
     assert found.version == 1
@@ -414,16 +414,16 @@ async def test_resolver_missing_template_raises_actionable_error(session):
     """Empty DB raises NotFound carrying both template_name and consumer_app."""
     with pytest.raises(PromptTemplateNotFoundError) as excinfo:
         await resolve_template(
-            session, template_name="nope", consumer_app="civicrecords-ai"
+            session, template_name="nope", consumer_app="townlight_records"
         )
 
     err = excinfo.value
     # Constructor exposes these attributes per the spec.
     assert err.template_name == "nope"
-    assert err.consumer_app == "civicrecords-ai"
+    assert err.consumer_app == "townlight_records"
     msg = str(err)
     assert "nope" in msg
-    assert "civicrecords-ai" in msg
+    assert "townlight_records" in msg
 
 
 def test_resolver_uses_template_name_not_old_name_column():
@@ -435,27 +435,27 @@ def test_resolver_uses_template_name_not_old_name_column():
 
 @pytest.mark.asyncio
 async def test_resolver_uses_consumer_app_not_null_fallback(session):
-    """The civiccore default uses consumer_app='civiccore', NOT IS NULL.
+    """The townlight_core default uses consumer_app='townlight_core', NOT IS NULL.
 
     Per ADR-0004, the legacy IS NULL fallback is removed; the default tier
-    is keyed on the literal string 'civiccore'.
+    is keyed on the literal string 'townlight_core'.
     """
     session.add(
         _make_template(
             template_name="t8",
-            consumer_app=CIVICCORE_DEFAULT_APP,  # literal "civiccore"
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,  # literal "townlight_core"
             is_override=False,
             is_active=True,
         )
     )
     await session.commit()
 
-    # Resolution from a different consumer_app finds the civiccore default.
+    # Resolution from a different consumer_app finds the townlight_core default.
     found = await resolve_template(
-        session, template_name="t8", consumer_app="civicrecords-ai"
+        session, template_name="t8", consumer_app="townlight_records"
     )
 
-    assert found.consumer_app == CIVICCORE_DEFAULT_APP
+    assert found.consumer_app == TOWNLIGHT_CORE_DEFAULT_APP
     # Belt-and-suspenders: the column value is non-null.
     assert found.consumer_app is not None
 
@@ -472,13 +472,13 @@ async def test_resolver_db_override_wins_over_code_override(session):
     # Register code override
     code_tmpl = _make_template(
         template_name="contested",
-        consumer_app="civicrecords-ai",
+        consumer_app="townlight_records",
         is_override=True,
         system_prompt="CODE OVERRIDE",
         user_prompt_template="from code",
     )
     register_template_override(
-        consumer_app="civicrecords-ai",
+        consumer_app="townlight_records",
         template_name="contested",
         template=code_tmpl,
     )
@@ -486,7 +486,7 @@ async def test_resolver_db_override_wins_over_code_override(session):
         # Persist DB override (different prompt body)
         db_override = _make_template(
             template_name="contested",
-            consumer_app="civicrecords-ai",
+            consumer_app="townlight_records",
             is_override=True,
             is_active=True,
             system_prompt="DB OVERRIDE",
@@ -498,76 +498,76 @@ async def test_resolver_db_override_wins_over_code_override(session):
         resolved = await resolve_template(
             session,
             template_name="contested",
-            consumer_app="civicrecords-ai",
+            consumer_app="townlight_records",
         )
         assert resolved.system_prompt == "DB OVERRIDE"
     finally:
         unregister_template_override(
-            consumer_app="civicrecords-ai", template_name="contested"
+            consumer_app="townlight_records", template_name="contested"
         )
 
 
 @pytest.mark.asyncio
-async def test_resolver_code_override_wins_over_civiccore_default(session):
-    """No DB app override; code-level override beats civiccore default."""
+async def test_resolver_code_override_wins_over_townlight_core_default(session):
+    """No DB app override; code-level override beats townlight_core default."""
     code_tmpl = _make_template(
         template_name="t1",
-        consumer_app="civicrecords-ai",
+        consumer_app="townlight_records",
         is_override=True,
         system_prompt="CODE OVERRIDE",
         user_prompt_template="x",
     )
     register_template_override(
-        consumer_app="civicrecords-ai",
+        consumer_app="townlight_records",
         template_name="t1",
         template=code_tmpl,
     )
     try:
-        # civiccore default in DB
-        civiccore_default = _make_template(
+        # townlight_core default in DB
+        townlight_core_default = _make_template(
             template_name="t1",
-            consumer_app="civiccore",
+            consumer_app="townlight_core",
             is_override=False,
             is_active=True,
-            system_prompt="CIVICCORE DEFAULT",
+            system_prompt="TOWNLIGHT_CORE DEFAULT",
             user_prompt_template="y",
         )
-        session.add(civiccore_default)
+        session.add(townlight_core_default)
         await session.commit()
         resolved = await resolve_template(
             session,
             template_name="t1",
-            consumer_app="civicrecords-ai",
+            consumer_app="townlight_records",
         )
         assert resolved.system_prompt == "CODE OVERRIDE"
     finally:
         unregister_template_override(
-            consumer_app="civicrecords-ai", template_name="t1"
+            consumer_app="townlight_records", template_name="t1"
         )
 
 
 @pytest.mark.asyncio
-async def test_resolver_civiccore_app_skips_code_override(session):
-    """consumer_app='civiccore' skips both step 1 (DB override) and step 2
-    (code override). civiccore owns its own defaults."""
+async def test_resolver_townlight_core_app_skips_code_override(session):
+    """consumer_app='townlight_core' skips both step 1 (DB override) and step 2
+    (code override). townlight_core owns its own defaults."""
     code_tmpl = _make_template(
         template_name="t2",
-        consumer_app="civiccore",
+        consumer_app="townlight_core",
         system_prompt="CODE",
         user_prompt_template="x",
     )
-    # Register a code override under civiccore (operator could theoretically
-    # do this; resolver must ignore it for consumer_app='civiccore' callers).
+    # Register a code override under townlight_core (operator could theoretically
+    # do this; resolver must ignore it for consumer_app='townlight_core' callers).
     register_template_override(
-        consumer_app="civiccore",
+        consumer_app="townlight_core",
         template_name="t2",
         template=code_tmpl,
     )
     try:
-        # civiccore DB default
+        # townlight_core DB default
         db_default = _make_template(
             template_name="t2",
-            consumer_app="civiccore",
+            consumer_app="townlight_core",
             is_active=True,
             system_prompt="DB DEFAULT",
             user_prompt_template="y",
@@ -575,13 +575,13 @@ async def test_resolver_civiccore_app_skips_code_override(session):
         session.add(db_default)
         await session.commit()
         resolved = await resolve_template(
-            session, template_name="t2", consumer_app="civiccore"
+            session, template_name="t2", consumer_app="townlight_core"
         )
-        # Returns DB default; ignores any registered code override under civiccore
+        # Returns DB default; ignores any registered code override under townlight_core
         assert resolved.system_prompt == "DB DEFAULT"
     finally:
         unregister_template_override(
-            consumer_app="civiccore", template_name="t2"
+            consumer_app="townlight_core", template_name="t2"
         )
 
 
@@ -590,25 +590,25 @@ async def test_resolver_code_override_alone_is_resolvable(session):
     """No DB row at all; code override is the only source. Resolver returns it."""
     code_tmpl = _make_template(
         template_name="solo",
-        consumer_app="civicrecords-ai",
+        consumer_app="townlight_records",
         is_override=True,
         system_prompt="ONLY IN CODE",
         user_prompt_template="x",
     )
     register_template_override(
-        consumer_app="civicrecords-ai",
+        consumer_app="townlight_records",
         template_name="solo",
         template=code_tmpl,
     )
     try:
         # Empty DB; only the code override exists.
         resolved = await resolve_template(
-            session, template_name="solo", consumer_app="civicrecords-ai"
+            session, template_name="solo", consumer_app="townlight_records"
         )
         assert resolved.system_prompt == "ONLY IN CODE"
     finally:
         unregister_template_override(
-            consumer_app="civicrecords-ai", template_name="solo"
+            consumer_app="townlight_records", template_name="solo"
         )
 
 
@@ -623,7 +623,7 @@ async def test_resolver_then_render_e2e(session):
     session.add(
         _make_template(
             template_name="e2e",
-            consumer_app=CIVICCORE_DEFAULT_APP,
+            consumer_app=TOWNLIGHT_CORE_DEFAULT_APP,
             system_prompt="You are a $role.",
             user_prompt_template="Process this: $user_input",
             version=1,
@@ -632,7 +632,7 @@ async def test_resolver_then_render_e2e(session):
     await session.commit()
 
     tmpl = await resolve_template(
-        session, template_name="e2e", consumer_app="civicrecords-ai"
+        session, template_name="e2e", consumer_app="townlight_records"
     )
     rendered = render_template(
         tmpl, {"role": "summarizer", "user_input": "the meeting minutes"}
@@ -641,5 +641,5 @@ async def test_resolver_then_render_e2e(session):
     assert rendered.system == "You are a summarizer."
     assert rendered.user == "Process this: the meeting minutes"
     assert rendered.template_name == "e2e"
-    assert rendered.consumer_app == CIVICCORE_DEFAULT_APP
+    assert rendered.consumer_app == TOWNLIGHT_CORE_DEFAULT_APP
     assert rendered.version == 1

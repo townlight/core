@@ -12,7 +12,7 @@ import httpx
 import pytest
 import respx
 
-from civiccore.llm.providers import OllamaConfig, OllamaProvider
+from townlight_core.llm.providers import OllamaConfig, OllamaProvider
 
 
 @pytest.mark.asyncio
@@ -41,7 +41,7 @@ async def test_think_level_string_is_sent():
 
 
 def test_config_accepts_think_and_builds_provider():
-    from civiccore.llm.factory import build_provider
+    from townlight_core.llm.factory import build_provider
 
     provider = build_provider("ollama", OllamaConfig(base_url="http://t", think=False))
     assert isinstance(provider, OllamaProvider)

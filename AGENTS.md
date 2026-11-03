@@ -1,14 +1,29 @@
 # AGENTS.md
 
-This project uses Agent Pipeline for Codex.
+Scott's bounded completion contract governs this work. Legacy pipeline profiles
+apply only when explicitly invoked; they do not authorize delegation, extra
+features or repeated gates. Preserve repository-required CI and data safeguards.
 
 ## Project Orientation
 
-- Purpose: TODO
-- Primary users: TODO
-- Stack: TODO
-- Test command: TODO
-- Lint/static command: TODO
+- Purpose: Townlight's shared identity, provenance, ingestion, catalog,
+  exemption, scaffold, migration, task and recovery contracts.
+- Primary users: owning Townlight products and platform administrators.
+- Stack: Python 3.11+, FastAPI, SQLAlchemy, Alembic and PostgreSQL/pgvector.
+- Distribution/import: `townlight-core` / `townlight_core`, version `1.3.0.dev2`.
+- Test command: `python -m pytest tests/`; PostgreSQL tests require the declared
+  disposable Docker database. Report skips and installed acceptance separately.
+- Lint/static command: `python -m ruff check .`; release command:
+  `bash scripts/verify-release.sh`.
+
+Catalog, exemption and scaffold contracts are implemented in this candidate.
+The CO-7 placeholder ADRs describe their historical freeze, not current absence.
+Keep original ADRs, signed releases and receipts unchanged. Fresh initialization
+uses new identifiers; do not migrate an existing legacy database or profile.
+The sole approved old active identifier is the Windows profile path
+`%LOCALAPPDATA%\CivicSuite`. It does not authorize old package or product names.
+No import shim is provided. Candidate source tests are not signed Windows
+installed acceptance or authorization to publish.
 
 ## Order Of Operations
 
@@ -47,4 +62,6 @@ This project uses Agent Pipeline for Codex.
 
 ## Custom Project Rules
 
-TODO: add project-specific conventions, branch policy, documentation requirements, UI/QA gates, security constraints, and release rules.
+Use one candidate and exact source/dependency pins. Preserve owning-product
+authorization and data boundaries; shared contracts do not grant cross-product
+authority. Reuse unaffected evidence with its original candidate identity.

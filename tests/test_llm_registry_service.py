@@ -1,7 +1,7 @@
-"""Tests for civiccore.llm.registry.service and .router.
+"""Tests for townlight_core.llm.registry.service and .router.
 
 Mirrors the testcontainer pattern from tests/test_llm_templates.py:
-function-scoped Postgres container, schema upgraded to civiccore HEAD,
+function-scoped Postgres container, schema upgraded to townlight_core HEAD,
 fresh AsyncSession per test for full isolation.
 
 Hard Rule 4a: no test.skip / xfail / inside-test importorskip. The Docker
@@ -33,8 +33,8 @@ testcontainers = pytest.importorskip(
 )
 PostgresContainer = testcontainers.PostgresContainer
 
-from civiccore.llm.context import DEFAULT_CONTEXT_WINDOW  # noqa: E402
-from civiccore.llm.registry import (  # noqa: E402
+from townlight_core.llm.context import DEFAULT_CONTEXT_WINDOW  # noqa: E402
+from townlight_core.llm.registry import (  # noqa: E402
     MissingModelError,
     ModelRegistry,
     get_active_model,
@@ -42,8 +42,8 @@ from civiccore.llm.registry import (  # noqa: E402
     model_registry_router,
     require_active_model,
 )
-from civiccore.llm.registry.router import get_session  # noqa: E402
-from civiccore.migrations.runner import upgrade_to_head  # noqa: E402
+from townlight_core.llm.registry.router import get_session  # noqa: E402
+from townlight_core.migrations.runner import upgrade_to_head  # noqa: E402
 
 
 # ---------------------------------------------------------------------------

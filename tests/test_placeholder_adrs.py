@@ -2,19 +2,19 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import civiccore.catalog
-import civiccore.exemptions
-import civiccore.scaffold
+import townlight_core.catalog
+import townlight_core.exemptions
+import townlight_core.scaffold
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 HISTORICAL_DEFERRAL_ADRS = {
-    "civiccore.scaffold": REPO_ROOT / "docs/adr/ADR-0003-defer-civiccore-scaffold.md",
+    "townlight_core.scaffold": REPO_ROOT / "docs/adr/ADR-0003-defer-civiccore-scaffold.md",
 }
 
 RESUMPTION_ADRS = {
-    "civiccore.scaffold": REPO_ROOT / "docs/adr/ADR-0007-beta-module-scaffold.md",
+    "townlight_core.scaffold": REPO_ROOT / "docs/adr/ADR-0007-beta-module-scaffold.md",
 }
 
 
@@ -22,11 +22,11 @@ def test_placeholder_namespaces_have_freeze_line_adrs() -> None:
     for namespace, path in HISTORICAL_DEFERRAL_ADRS.items():
         text = path.read_text(encoding="utf-8")
 
-        assert namespace in text
+        assert namespace.replace("townlight_core", "civiccore") in text
         assert "Status: Accepted" in text
         assert "Explicit downstream consumption rule" in text
         assert "no module depends" in text
-        assert "versioned CivicCore release artifact" in text
+        assert "versioned CivicCore release artifact" in text  # Exact historical decision.
 
 
 def test_placeholder_adr_index_lists_all_placeholder_namespaces() -> None:
@@ -43,23 +43,23 @@ def test_scaffold_resumption_retains_historical_deferral_and_names_new_contract(
     historical = (REPO_ROOT / "docs/adr/ADR-0003-defer-civiccore-scaffold.md").read_text(
         encoding="utf-8"
     )
-    current = RESUMPTION_ADRS["civiccore.scaffold"].read_text(encoding="utf-8")
+    current = RESUMPTION_ADRS["townlight_core.scaffold"].read_text(encoding="utf-8")
 
     assert "Status: Accepted" in historical
     assert "Defer" in historical
     assert "Supersedes: ADR-0003" in current
     assert "not released" in current
     assert "generate_module_project" in current
-    assert callable(civiccore.scaffold.generate_module_project)
-    assert callable(civiccore.scaffold.plan_module_project)
-    assert callable(civiccore.scaffold.main)
+    assert callable(townlight_core.scaffold.generate_module_project)
+    assert callable(townlight_core.scaffold.plan_module_project)
+    assert callable(townlight_core.scaffold.main)
 
     index = (REPO_ROOT / "docs/adr/index.md").read_text(encoding="utf-8")
-    assert RESUMPTION_ADRS["civiccore.scaffold"].name in index
+    assert RESUMPTION_ADRS["townlight_core.scaffold"].name in index
 
 
 def test_scaffold_package_still_withholds_downstream_dependency() -> None:
-    docstring = " ".join((civiccore.scaffold.__doc__ or "").split())
+    docstring = " ".join((townlight_core.scaffold.__doc__ or "").split())
 
     assert "ADR-0003-defer-civiccore-scaffold.md" in docstring
     assert "No downstream module may" in docstring
@@ -74,5 +74,5 @@ def test_catalog_resumption_retains_historical_deferral_and_names_open_scope():
     current = (REPO_ROOT / "docs/adr/ADR-0004-beta-shared-catalog.md").read_text(encoding="utf-8")
     assert "Status: Accepted" in historical
     assert "installed-module inventory" in current
-    assert callable(civiccore.catalog.import_catalog)
-    assert callable(civiccore.catalog.connectors_for)
+    assert callable(townlight_core.catalog.import_catalog)
+    assert callable(townlight_core.catalog.connectors_for)

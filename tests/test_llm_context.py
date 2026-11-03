@@ -1,11 +1,11 @@
-"""Unit tests for civiccore.llm.context.
+"""Unit tests for townlight_core.llm.context.
 
 Pure unit tests — no DB, no live providers, no skips.
 """
 
 from __future__ import annotations
 
-from civiccore.llm.context import (
+from townlight_core.llm.context import (
     DEFAULT_CONTEXT_WINDOW,
     ContextBlock,
     TokenBudget,

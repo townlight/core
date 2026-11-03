@@ -1,14 +1,14 @@
-> **Townlight Beta 1 public release:** [signed Windows installer, exact owned source, documentation and acceptance](https://github.com/townlight/townlight/releases/tag/townlight-beta-1). [Online manuals](https://townlight.github.io/manuals/core.html). The retained manual edition describes the accepted candidate before publication; publication changes distribution only. Component versions and signed bytes are unchanged.
+> **Prepared naming, Access and Notice candidate — 2 November 2026.** Build, signing, installed acceptance and publication remain pending. Earlier signed releases and receipts apply only to their identified artifacts.
 
 # Townlight Core
 
-**Townlight Beta 1** · Existing component versions retained · AGPL-3.0-only
+**Townlight Beta 1** · Naming candidate; component versions advanced · AGPL-3.0-only
 
 Core provides the shared contracts, ingestion, identity helpers, task infrastructure and recovery foundation used by Townlight. Staff encounter these capabilities through Setup, Settings and System Health. Business decisions stay with their owning product.
 
 ## Start here
 
-Staff should use the operating manual. Administrators should read first-run, configuration and recovery before changing a deployment. Developers should read the exact API/schema reference and matching source companion. This edition accompanies Townlight Beta 1; use the release link above for the signed candidate and exact source/documentation archives.
+Staff should use the operating manual. Administrators should read first-run, configuration and recovery before changing a deployment. Developers should read the exact API/schema reference and matching source companion. This edition describes the prepared source candidate; obtain its installer only after signing and installed acceptance identify the exact artifact.
 
 - [Operating manual](docs/beta-1/manuals/core.html) · [Printable PDF](docs/beta-1/pdf/Townlight-Core-Manual-Beta-1.pdf) · [Editable Word manual](docs/beta-1/docx/Townlight-Core-Manual-Beta-1.docx)
 - [API and data dictionary](docs/beta-1/api/core.html) · [OpenAPI JSON](docs/beta-1/api/core-openapi.json)
@@ -18,17 +18,15 @@ Staff should use the operating manual. Administrators should read first-run, con
 
 | Identity | Value |
 | --- | --- |
-| Public documentation identity | Townlight Beta 1 |
-| Installer version | 1.6.0.1 |
-| Product component | civiccore 1.3.0.dev1 |
-| Native desktop source version | 1.6.0-1 |
-| Candidate MSI SHA256 | `98bcdef11ebdf5c767f620c904ff49f85115fde3b5c23f62703b111e645aaf86` |
-| Corresponding-source SHA256 | `84a23e1297e42d17b16cfc9e51b2dd78bc46414c0de8ad7ebd2466c1a409d06b` |
-| Current owned software license | AGPL-3.0-only |
-| Supported acceptance profile | Windows x64 fresh install; inspections-preview; separate Station configuration |
+| Documentation | Townlight Beta 1 naming, Access and Notice candidate |
+| Intended installer version | 1.7.0.1; build and acceptance pending |
+| Native desktop source version | 1.7.0-1 |
+| Product component | townlight-core 1.3.0.dev2 |
+| Principal import package | townlight_core |
+| Candidate hashes | Pending build, signing and installed acceptance |
+| License | AGPL-3.0-only |
 
-
-“Townlight Beta 1” identifies this coordinated beta delivery. It does not renumber the installer, native binary, Python packages or historical receipts. Component versions may differ. This documentation is a later companion to unchanged signed bytes, not a rebuilt installer. Historical release pages and manuals describe their own versions and are not the download instructions for this private candidate.
+Use a fresh profile and empty database. Existing unmarked city data is refused before initialization; no in-place upgrade is supported. Preserve the existing `%LOCALAPPDATA%\CivicSuite` profile, data and recovery material. Historical releases retain their original identities.
 
 ## What staff can do
 
@@ -67,7 +65,7 @@ Versioned saves use expected prior revision identifiers where defined. Reopen an
 
 ### Capacity and platform statements
 
-This beta has synthetic single-profile workflow evidence. It does not have a published benchmark for concurrent staff capacity, minimum RAM/CPU, large-source limits or a field SLA. Do not turn a developer machine’s specification into a supported minimum. Installer size is 2,092,122,112 bytes before installation; allow additional disk for extracted runtime, database, originals, exports, media and backups. Select equipment/storage after sizing those actual workloads.
+This beta has synthetic single-profile workflow evidence. It does not have a published benchmark for concurrent staff capacity, minimum RAM/CPU, large-source limits or a field SLA. Do not turn a developer machine’s specification into a supported minimum. The new installer size remains pending its build;  allow additional disk for extracted runtime, database, originals, exports, media and backups. Select equipment/storage after sizing those actual workloads.
 
 The exact [runtime payload lock](docs/beta-1/reference/runtime-payload-lock.json) records pinned files, sizes and hashes. The [component metadata](docs/beta-1/reference/component-metadata.json) records shipped dependency declarations. These references are more precise than a manually copied dependency list. Third-party and historical license notices must accompany their matching payloads.
 
@@ -77,14 +75,14 @@ The exact [runtime payload lock](docs/beta-1/reference/runtime-payload-lock.json
 | Input | Administrator setup choices, named staff accounts, source material submitted through the owning product, and protected backup storage. |
 | Retained records | Named local accounts; native sessions; source and department authority; task receipts; profile configuration; coherent backup manifests; catalog, exemption and scaffold contracts. |
 | Output | Ready local services, permission-aware shared contracts, task results, diagnostics and coherent backup or restore receipts. |
-| Connections | All products use selected Core contracts. Core does not create unrestricted access between products. Notice and Access are supporting components, rather than additional products in this nine-product beta. |
+| Connections | All products use selected Core contracts. Core does not create unrestricted access between products. Access and Notice provide the bounded staff workflows documented in their current manuals; installed acceptance remains pending. |
 
 
 ## Setup and operation
 
 1. Obtain the identified signed private candidate and its corresponding-source companion from the beta coordinator. The landing pages in this documentation are not an installer download service.
-2. On the intended fresh Windows test installation, verify the MSI hash and publisher signature before installing. Preserve unrelated profiles and recovery material. This candidate has fresh-install acceptance; historical in-place upgrades are unverified.
-3. Launch Townlight under the intended named Windows account. Choose the storage folders. Select **Townlight Inspections candidate** (`inspections-preview`) for all eight desktop products. A narrower default selection will not expose all workspaces.
+2. On the intended fresh Windows test installation, verify the MSI hash and publisher signature before installing. Preserve unrelated profiles and recovery material. Installed acceptance for this source candidate remains pending; no in-place legacy upgrade is supported.
+3. Launch Townlight under the intended named Windows account. Choose the storage folders. Select **Townlight Inspections candidate** (`inspections-preview`) for the bounded desktop composition, including Access and Notice. A narrower default selection will not expose all workspaces.
 4. Enter the city profile, time zone and contacts. Create the first named local administrator, sign in and choose protected backup storage. **Continue without local AI** is valid for the deterministic workflows.
 5. Run Health Check and wait for readiness. Open Townlight. In System Health select **Finish Records Migration** to activate the canonical Python/PostgreSQL runtime. Do not fabricate migration receipts or seed accounts.
 6. Create named staff through Settings. Import authorized sources using each product’s source library. All examples in this package are synthetic; they are not municipal authority.
@@ -93,9 +91,9 @@ The exact [runtime payload lock](docs/beta-1/reference/runtime-payload-lock.json
 ## Configuration
 ### Native deployment configuration
 
-Use Setup, Settings and System Health for supported staff operation. Administrators provision folders, backup storage, named accounts and the city profile. Select `inspections-preview` for the full eight-workspace desktop. Station remains a separate service boundary. Do not use a standalone product’s demo server as a substitute for the installed workspace.
+Use Setup, Settings and System Health for supported staff operation. Administrators provision folders, backup storage, named accounts and the city profile. Select `inspections-preview` for the bounded desktop composition, including Access and Notice. Station remains a separate service boundary. Do not use a standalone product’s demo server as a substitute for the installed workspace.
 
-Technical deployments use `TOWNLIGHT_PRODUCT_PROFILE`, `TOWNLIGHT_PROFILE_ROOT`, `DATABASE_URL`, `CIVICSUITE_RUNTIME_PORT`, `PORTAL_MODE` and the runtime-managed secret files. Treat database URLs and native session proofs as secrets. The installed native domain runtime explicitly refuses non-loopback binding. `PORTAL_MODE=private` is the accepted posture; changing it does not by itself commission an internet portal, authentication provider or reverse proxy.
+Technical deployments use `TOWNLIGHT_PRODUCT_PROFILE`, `TOWNLIGHT_PROFILE_ROOT`, `DATABASE_URL`, `TOWNLIGHT_RUNTIME_PORT`, `PORTAL_MODE` and the runtime-managed secret files. Treat database URLs and native session proofs as secrets. The installed native domain runtime explicitly refuses non-loopback binding. `PORTAL_MODE=private` is the accepted posture; changing it does not by itself commission an internet portal, authentication provider or reverse proxy.
 
 The isolated documentation exporter sets a fictional profile and unusable synthetic database origin only to read schemas; those values are not deployment configuration. Keep deployment values in the intended process/account scope. An already-running process does not automatically inherit later environment edits.
 
@@ -180,15 +178,34 @@ Shared catalog, exemption and module-generator code exists in this private candi
 
 ## Development and repository map
 
+### Fresh source checkout and exact local wheel
+
+This renamed candidate is not yet published on a package index. From this
+exact candidate checkout, build its wheel before installing consumers. Use a
+separate empty development environment, never an existing municipal profile:
+
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip build
+.\.venv\Scripts\python.exe -m build --wheel --outdir ..\candidate-wheels
+.\.venv\Scripts\python.exe -m pip install ..\candidate-wheels\townlight_core-1.3.0.dev2-py3-none-any.whl
+.\.venv\Scripts\python.exe -c "import townlight_core; assert townlight_core.__version__ == '1.3.0.dev2'"
+```
+
+Consumers install this exact Core wheel first, then their matching local
+candidate wheel. The corresponding-source manifest identifies the source
+commit; a moving default branch is not a reproducible candidate pin. Package
+installation does not initialize a database or establish installed acceptance.
+
 Use the corresponding source for the candidate rather than assuming the public default branch matches it. The source companion contains `installed-owned-source`, product build inputs, desktop Rust/browser sources, locks and `BUILD.md`. It excludes credentials and third-party binary/model payloads. Use the recorded runtime lock when reproducing packaging.
 
 Relevant source contracts:
 
-- `civiccore/auth`
-- `civiccore/catalog`
-- `civiccore/exemptions`
-- `civiccore/scaffold`
-- `civicsuite_runtime/services.py`
+- `townlight_core/auth`
+- `townlight_core/catalog`
+- `townlight_core/exemptions`
+- `townlight_core/scaffold`
+- `townlight_runtime/services.py`
 - `desktop/src-tauri/src/supervisor.rs`
 
 The desktop package defines `npm run build`, `npm test`, `npm run test:browser` and its Tauri command. Python products retain their own `pyproject.toml`, tests and migrations; use the matching checkout’s declared dependencies and test configuration. Do not run a sample server against a production profile. This documentation build validates documentation only and reuses the separately identified installed acceptance; it does not claim a new complete application CI run.

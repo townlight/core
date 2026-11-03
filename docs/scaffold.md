@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
-# `civiccore.scaffold`
+# `townlight_core.scaffold`
 
 The generator that turns one validated module id into a working Townlight module skeleton.
 ADR-0007 records the contract; ADR-0003 remains the historical deferral.
@@ -8,8 +8,8 @@ ADR-0007 records the contract; ADR-0003 remains the historical deferral.
 
 | Path (inside the new project directory) | Purpose |
 | --- | --- |
-| `pyproject.toml` | AGPL-3.0-only module package with a `civiccore>=` floor. |
-| `src/<package>/manifest.json` | Validates through `civiccore.platform.ModuleManifest`. |
+| `pyproject.toml` | AGPL-3.0-only module package with a `townlight_core>=` floor. |
+| `src/<package>/manifest.json` | Validates through `townlight_core.platform.ModuleManifest`. |
 | `src/<package>/manifest.py` | `load_manifest()` — typed access, validated on load. |
 | `src/<package>/app.py` | Minimal FastAPI staff surface using Core bearer auth. |
 | `migrations/env.py` | Alembic env owning only the module schema; creates the schema before configuring the context. |
@@ -20,8 +20,8 @@ ADR-0007 records the contract; ADR-0003 remains the historical deferral.
 ## CLI
 
 ```
-python -m civiccore.scaffold plan  notes --name "Notes" --description "..."      # JSON plan
-python -m civiccore.scaffold generate notes --name "Notes" --description "..." --target ./modules
+python -m townlight_core.scaffold plan  notes --name "Notes" --description "..."      # JSON plan
+python -m townlight_core.scaffold generate notes --name "Notes" --description "..." --target ./modules
 ```
 
 `generate` refuses an existing directory, an unsafe module id, or a non-directory target and
@@ -39,7 +39,7 @@ token and no insecure fallback.
 
 `work/beta-foundations/scaffold-01/pg-acceptance/harness.py` starts one disposable, owned
 PostgreSQL 17 cluster, applies Core's real chain with
-`civiccore.migrations.runner.upgrade_to_head` (head `civiccore_0006_rule_history`), then runs
+`townlight_core.migrations.runner.upgrade_to_head` (head `townlight_core_0006_rule_history`), then runs
 the generated module's own chain from `migrations/`. It asserts the module stamps
 `civicnotes_0001_baseline`, creates only schema `civicnotes`, leaves every Core table and the
 Core revision untouched, is idempotent on re-run, survives a cluster stop/start, and

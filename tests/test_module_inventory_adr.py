@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import civiccore.platform.inventory as inventory
+import townlight_core.platform.inventory as inventory
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -26,7 +26,7 @@ def test_inventory_adr_records_contract_and_retains_historical_deferrals() -> No
     # The non-claims the contract must keep making.
     assert "No scanning, network access, package enumeration" in current
     assert "Advice separated from evidence" in current
-    assert "civiccore.catalog" in current
+    assert "civiccore.catalog" in current  # Dated ADR's original identity.
     assert "build_module_registry" in current
 
     historical = (REPO_ROOT / "docs/adr/ADR-0001-defer-civiccore-catalog.md").read_text(
@@ -46,14 +46,14 @@ def test_inventory_module_documents_the_non_claims_it_must_uphold() -> None:
 
     assert "never scans a machine" in docstring
     assert "exactly one module resolver" in docstring
-    assert "civiccore.platform.modules.build_module_registry" in docstring
+    assert "townlight_core.platform.modules.build_module_registry" in docstring
     assert "not installation evidence" in docstring
     assert "reference data about *vendor systems*" in docstring
     assert "caller-supplied" in docstring
 
 
 def test_inventory_contract_is_importable_from_the_platform_namespace() -> None:
-    import civiccore.platform as platform
+    import townlight_core.platform as platform
 
     for name in (
         "ModuleInventory",

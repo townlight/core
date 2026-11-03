@@ -21,13 +21,13 @@ Two preferred channels, in order:
    is the fastest path; it is private to maintainers until disclosure.
 2. **Email** — if you cannot use the advisory flow, email the maintainer
    listed at https://github.com/townlight/core (the `Maintained by`
-   link in the README) with subject prefix `[civiccore-security]`.
+   link in the README) with subject prefix `[townlight_core-security]`.
 
 ### What to include
 
 - A description of the vulnerability and where it lives in the codebase.
 - A reproducer (minimal code or steps).
-- The civiccore version affected.
+- The townlight_core version affected.
 - Your assessment of impact (data exposure, privilege escalation, denial
   of service, etc.).
 - Whether you believe downstream consumers (records-ai, future modules)
@@ -46,7 +46,7 @@ Two preferred channels, in order:
 
 In scope:
 
-- Code in `civiccore/`.
+- Code in `townlight_core/`.
 - Build / packaging configuration that ships in the release artifact.
 - The migration runner and any SQL it generates.
 - LLM provider abstraction (sanitization, prompt-injection defense, secret

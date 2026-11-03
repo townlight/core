@@ -61,8 +61,8 @@ def test_live_parity_allows_new_post_baseline_releases_with_attestation_assets()
     entries = _ledger()["entries"]
     live_releases = {entry["tag"]: set(entry["release_assets"]) for entry in entries}
     live_releases["v1.0"] = {
-        "civiccore-1.0.0-py3-none-any.whl",
-        "civiccore-1.0.0.tar.gz",
+        "townlight_core-1.0.0-py3-none-any.whl",
+        "townlight_core-1.0.0.tar.gz",
         "SHA256SUMS.txt",
         "release-attestation.json",
         "release-attestation.json.bundle",
@@ -75,7 +75,7 @@ def test_live_parity_rejects_unledgered_releases_without_attestation_assets() ->
     module = _ledger_check_module()
     entries = _ledger()["entries"]
     live_releases = {entry["tag"]: set(entry["release_assets"]) for entry in entries}
-    live_releases["v0.22.2"] = {"civiccore-0.22.2-py3-none-any.whl"}
+    live_releases["v0.22.2"] = {"townlight_core-0.22.2-py3-none-any.whl"}
 
     try:
         module.validate_live_release_parity(entries, live_releases)

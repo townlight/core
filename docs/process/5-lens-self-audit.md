@@ -1,13 +1,13 @@
 # 5-lens self-audit (before every push)
 
-This is the implementation-side counterpart to the verification-side audit protocol at `C:\Users\scott\OneDrive\Desktop\Claude\CIVICSUITE_AUDIT_PROTOCOL.md`. The verification protocol governs how the auditing agent (Claude) audits work that has already landed. This document governs how the implementing agent (Codex) audits its own work *before* a push, so the verification turn finds less to fix.
+This is the implementation-side counterpart to the verification-side audit protocol at `C:\Users\scott\OneDrive\Desktop\Claude\TOWNLIGHT_AUDIT_PROTOCOL.md`. The verification protocol governs how the auditing agent (Claude) audits work that has already landed. This document governs how the implementing agent (Codex) audits its own work *before* a push, so the verification turn finds less to fix.
 
 Both Codex and Claude read this file. The rule body, the artifact-state checklist, and the report format below are shared. The implementing-agent-side discipline (chat-promise rejection) and the verifier-side discipline (mandatory 10-section output) live in their respective files.
 
 ## Roles in this project
 
 - **Implementing agent:** Codex. Writes code, docs, status artifacts across 26 module repos. Runs this 5-lens self-audit before every push.
-- **Auditing agent:** Claude. Verifies Codex's claims against actual artifacts. Produces the mandatory 10-section output defined in `CIVICSUITE_AUDIT_PROTOCOL.md`.
+- **Auditing agent:** Claude. Verifies Codex's claims against actual artifacts. Produces the mandatory 10-section output defined in `TOWNLIGHT_AUDIT_PROTOCOL.md`.
 
 ## The rule
 
@@ -27,30 +27,30 @@ Each lens is *hostile* — assume the diff lies until evidence proves otherwise.
 
 2. **UX.** For any user-visible string, message, label, or workflow change: read it cold as if you'd never seen the feature. Does it make sense to a first-time operator? Does it match the copy in adjacent module READMEs (terminology, voice, formality)? Does an error path have a "Next step" line? Does the install script's "Generated secrets visible via docker exec env" warning actually appear in the doc's table of contents? Hostile means: assume the user is confused until the copy proves it doesn't confuse them.
 
-3. **Tests.** For any logic / data-flow / public-interface change: is there a test? Does it run? Does it lock the behavior, or does it merely *exercise* the code path? Does it actually execute in CI, or does it skip? CivicSuite-specific: does the test cover the LIVE-STATE classification path AND the SHAPE-GUARD negative-assertion path? Hostile means: a green check is not a real assertion; "passes" is not "covers." Skip predicates lie by default — verify they don't apply.
+3. **Tests.** For any logic / data-flow / public-interface change: is there a test? Does it run? Does it lock the behavior, or does it merely *exercise* the code path? Does it actually execute in CI, or does it skip? Townlight-specific: does the test cover the LIVE-STATE classification path AND the SHAPE-GUARD negative-assertion path? Hostile means: a green check is not a real assertion; "passes" is not "covers." Skip predicates lie by default — verify they don't apply.
 
-4. **Docs.** For every code change: did the umbrella CHANGELOG move with it? The per-module CHANGELOG? The `.agent-workflows/HANDOFF_<latest>.md` (per-module if applicable, umbrella always)? The umbrella PR body? The `docs/release-recovery-status.md`? The audit punchlist row in `audit-civicsuite-2026-05-09/sprint-punchlist.md`? Hostile means: a doc that's silent about a change you just made is wrong, not "OK because the code is right."
+4. **Docs.** For every code change: did the umbrella CHANGELOG move with it? The per-module CHANGELOG? The `.agent-workflows/HANDOFF_<latest>.md` (per-module if applicable, umbrella always)? The umbrella PR body? The `docs/release-recovery-status.md`? The audit punchlist row in `audit-townlight-2026-05-09/sprint-punchlist.md`? Hostile means: a doc that's silent about a change you just made is wrong, not "OK because the code is right."
 
 5. **QA.** Read the final state, not the diff. Open the changed files as the next agent walking in cold. Are there contradictions across files? Does the umbrella CHANGELOG say one thing while the module CHANGELOG says another? Does the audit punchlist top-totals row reconcile with the row count? Are status words used per the audit protocol (`Closed` / `Implemented` / `Open` / `Deferred by Scott` / `Blocked`, never `done` / `ready` / `taggable` / `shippable`)? Does `verify-suite-state.py --remote-only` show what the CHANGELOG claims? Hostile means: assume drift until cross-file reading proves there is none.
 
 ## Artifact-state checklist
 
-This is the specific drift that has bitten CivicSuite most. Run every item before push.
+This is the specific drift that has bitten Townlight most. Run every item before push.
 
-- [ ] Audit punchlist (`audit-civicsuite-2026-05-09/sprint-punchlist.md`) top-totals row matches the actual row count by severity. Every `[x]` row has a `Cross-ref: <finding-id>` AND a proof citation (commit SHA, PR number, file path, or verifier output).
+- [ ] Audit punchlist (`audit-townlight-2026-05-09/sprint-punchlist.md`) top-totals row matches the actual row count by severity. Every `[x]` row has a `Cross-ref: <finding-id>` AND a proof citation (commit SHA, PR number, file path, or verifier output).
 - [ ] No row says `(this commit)` — replace with the actual SHA before pushing.
 - [ ] Umbrella PR body matches branch state: no stale `N of M` counts, no checkbox left unchecked for an item now Closed, no missing run IDs. Has `release-tag` label if and only if the PR includes truth artifacts (spec, verifier, modules.json, CHANGELOG, release-recovery-status, downstream-pins).
 - [ ] Umbrella CHANGELOG matches what shipped — no "All exit criteria met" if there was a carve-out, no stale test counts. Per-module CHANGELOG also updated for module-level changes.
-- [ ] `.agent-workflows/HANDOFF_<latest>.md` names the current branch, current HEAD, current PR, current tag (if any), and the CivicSuite-wide verifier output (`VERIFY-SUITE-STATE: PASSED` or named failures).
+- [ ] `.agent-workflows/HANDOFF_<latest>.md` names the current branch, current HEAD, current PR, current tag (if any), and the Townlight-wide verifier output (`VERIFY-SUITE-STATE: PASSED` or named failures).
 - [ ] Verification log on tag candidates: no "Ready to tag" claim without the tag-blocking gates Closed with proof. The release-lockstep-gate green status is captured.
 - [ ] Status words: no `done`, `green`, `ready`, `taggable`, `shippable`, `complete` unless the release gate actually supports them (`VERIFY-SUITE-STATE: PASSED` + `release-lockstep-gate` green + release object exists with all artifacts).
 - [ ] Working tree clean except intentional/declared uncommitted work. The pre-existing dirty `installer/dist/` and `installer/generated/` files predate the recovery sweep — state this explicitly in the report rather than silently accepting them.
 - [ ] Cleanroom claims qualified: CI cleanroom skips are CI-only; local cleanroom skips are local-only; never collapse them.
 - [ ] Whole-PR diff scope check: `git diff --name-status main..HEAD` must contain only the slice's intended file set. `git status --short` is not sufficient; sibling commits can land unrelated files.
 - [ ] Non-ASCII scan on every new/modified durable doc: em-dashes, arrows, section signs should be ASCII unless intentional. Run `LC_ALL=C.UTF-8 grep -P '[^\x00-\x7F]' <files>` before push.
-- [ ] **SHA citations are full-length.** Every SHA256 citation is exactly 64 hex characters; every SHA1 citation is exactly 40. Run `grep -E '[a-f0-9]{56,63}\b' <docs>` and inspect any hits as candidates for truncation. Origin receipt: CivicClerk B1 handoff 2026-05-10 required PR #119 to correct.
+- [ ] **SHA citations are full-length.** Every SHA256 citation is exactly 64 hex characters; every SHA1 citation is exactly 40. Run `grep -E '[a-f0-9]{56,63}\b' <docs>` and inspect any hits as candidates for truncation. Origin receipt: Townlight Meetings B1 handoff 2026-05-10 required PR #119 to correct.
 - [ ] **release-lockstep-gate alignment.** If the umbrella PR has the `release-tag` label, verify every required truth artifact path appears in `gh pr diff <n>`: spec §18 truth table, `scripts/verify-suite-state.py` (if version constants changed), `installer/modules.json`, `CHANGELOG.md`, `docs/release-recovery-status.md`, `docs/release-lockstep/downstream-pins.md`. Origin receipt: release-lockstep-gate exists because Sprint A landed 7 false v1.0 tags that bypassed truth coordination.
-- [ ] **Tag-move record present if any tag moves happened.** Completion handoff includes a tag-move table (Tag / Initial SHA / Final SHA / Moves / Notes) for every tag that moved during the sprint. Origin receipt: CivicRecords AI v1.5.0 — 4 tag moves recorded.
+- [ ] **Tag-move record present if any tag moves happened.** Completion handoff includes a tag-move table (Tag / Initial SHA / Final SHA / Moves / Notes) for every tag that moved during the sprint. Origin receipt: Townlight Records v1.5.0 — 4 tag moves recorded.
 
 ## Post-push SHA-propagation step
 
@@ -96,7 +96,7 @@ Artifact-state: [pass | findings: ...]
 Post-push propagation: [pass | findings: ...]
 ```
 
-If any lens has findings, fix before push. If after a push Claude (auditor) still finds drift, that is direct evidence this rule isn't sticking; Claude's directive will add a new artifact-state check to this document or a new entry to section 22 of `CIVICSUITE_AUDIT_PROTOCOL.md`.
+If any lens has findings, fix before push. If after a push Claude (auditor) still finds drift, that is direct evidence this rule isn't sticking; Claude's directive will add a new artifact-state check to this document or a new entry to section 22 of `TOWNLIGHT_AUDIT_PROTOCOL.md`.
 
 ## Chat-promise rejection
 
@@ -104,7 +104,7 @@ A chat-side promise ("I will keep this in mind") is not a behavior change. The b
 
 ## Cross-references
 
-- `C:\Users\scott\OneDrive\Desktop\Claude\CIVICSUITE_AUDIT_PROTOCOL.md` — the verification-side audit protocol (Claude reads this). The mandatory 10-section output shape and the verifier's evidence-pass rules live there. Section 21 ("Implementation-side rule pointer") and section 22 ("Known drift patterns") pair with this document.
-- `C:\Users\scott\OneDrive\Desktop\Claude\CIVICSUITE_AUDIT_GATE.md` — the short mandatory gate Claude reads every turn.
+- `C:\Users\scott\OneDrive\Desktop\Claude\TOWNLIGHT_AUDIT_PROTOCOL.md` — the verification-side audit protocol (Claude reads this). The mandatory 10-section output shape and the verifier's evidence-pass rules live there. Section 21 ("Implementation-side rule pointer") and section 22 ("Known drift patterns") pair with this document.
+- `C:\Users\scott\OneDrive\Desktop\Claude\TOWNLIGHT_AUDIT_GATE.md` — the short mandatory gate Claude reads every turn.
 - `~/.codex/skills/project-control-plane/SKILL.md` — Codex's skill that points at this file as the before-every-push discipline.
 - `C:\Users\scott\OneDrive\Desktop\Claude\agentic-pipeline\` — the agentic-pipeline plugin. v0.2 governs execution (4-phase module-release). v0.3 governs audit handoff (this document + the protocol + the gate).

@@ -1,6 +1,6 @@
 # Department-scoped shared authority
 
-`civiccore.auth.department_scope` is Core's single authorization contract for department-scoped
+`townlight_core.auth.department_scope` is Core's single authorization contract for department-scoped
 material. It answers one question for every consumer: *may this already-authenticated subject
 reach this department in this deployment scope, and with which roles?* Search results and
 snippets, export bundles and model context all pass through the same object, so there is no
@@ -13,7 +13,7 @@ search service (see [What this does not do](#what-this-does-not-do)).
 ## The trust boundary
 
 The only admissible source of a department claim is the persisted, server-side grant ledger
-`civiccore_department_grant_events`, read through `active_department_grants` and keyed by
+`townlight_core_department_grant_events`, read through `active_department_grants` and keyed by
 `(scope_id, subject, department_id)`.
 
 A department named in a request body, query string, cookie, HTTP header, environment variable,
@@ -22,13 +22,13 @@ parameter that accepts one, and `DepartmentAuthority` cannot be constructed with
 resolver's private provenance token:
 
 ```python
-from civiccore.auth import DepartmentAuthority
+from townlight_core.auth import DepartmentAuthority
 DepartmentAuthority(...)   # AuthorityProvenanceError: caller-supplied claims are not authority
 ```
 
-Credential verification stays where it already lives: `civiccore.auth.bearer`,
-`civiccore.auth.trusted_headers` (with `enforce_trusted_proxy_source` proving the proxy really
-is the proxy), `civiccore.auth.staff_key` and `civiccore.auth.suite_session`. This module only
+Credential verification stays where it already lives: `townlight_core.auth.bearer`,
+`townlight_core.auth.trusted_headers` (with `enforce_trusted_proxy_source` proving the proxy really
+is the proxy), `townlight_core.auth.staff_key` and `townlight_core.auth.suite_session`. This module only
 consumes the `AuthenticatedPrincipal` those helpers return, and only for the four identity
 sources in `TRUSTED_AUTH_METHODS`.
 
@@ -85,11 +85,11 @@ erase the authority history that allowed earlier access.
 Reusing the shipped helpers rather than adding new engines:
 
 - `scope_search_results(authority, records, department_for=...)` — drops results before snippets
-  or facets are built. Internally uses `civiccore.search.roles_grant_access`.
+  or facets are built. Internally uses `townlight_core.search.roles_grant_access`.
 - `authorize_export(authority, department_id=..., purpose=...)` — the gate a static export bundle
-  must pass before `civiccore.exports` writes anything.
+  must pass before `townlight_core.exports` writes anything.
 - `scope_model_context_chunks(authority, chunks, department_for=...)` — returns the exact
-  `chunks` list `civiccore.llm.context.assemble_context` accepts, so there is one context
+  `chunks` list `townlight_core.llm.context.assemble_context` accepts, so there is one context
   builder and one permission gate in front of it.
 
 ## What this does not do
@@ -110,7 +110,7 @@ Reusing the shipped helpers rather than adding new engines:
 Contract tests (no database): `tests/test_department_authority.py`.
 
 Real PostgreSQL: `work/beta-foundations/core-authority-01/harness.py` starts one disposable owned
-cluster, applies the real Core chain to head `civiccore_0008_authority`, and asserts nine checks
+cluster, applies the real Core chain to head `townlight_core_0008_authority`, and asserts nine checks
 covering deny-by-default on real rows, idempotent attributed grants, two-department isolation of
 results/snippets/exports, immediate revocation with retained history, scope isolation, database
 append-only/CHECK guards, concurrent sequence assignment, and restart survival.
@@ -118,4 +118,4 @@ append-only/CHECK guards, concurrent sequence assignment, and restart survival.
 ## Compatibility
 
 Purely additive: no existing table, function or export changed meaning. The pre-existing public
-symbols of `civiccore.auth` remain exported, and the new names are added alongside them.
+symbols of `townlight_core.auth` remain exported, and the new names are added alongside them.

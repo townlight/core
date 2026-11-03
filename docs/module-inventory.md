@@ -4,7 +4,7 @@ Status: private beta candidate (Core 1.3.0.dev1 source). Not released, not insta
 packaged. See [ADR-0008](adr/ADR-0008-beta-module-inventory.md) for the decision record and
 `outputs/beta-plan/core-module-inventory-01/` for executed evidence.
 
-`civiccore.platform.inventory` records what one deployment scope *declares* it has installed and
+`townlight_core.platform.inventory` records what one deployment scope *declares* it has installed and
 enabled, and derives deterministic suggestions from those declarations. It is the installed-module
 half of CORE-08 / `C1.catalog.modules`.
 
@@ -14,13 +14,13 @@ half of CORE-08 / `C1.catalog.modules`.
   endpoint. There is no network call anywhere in this module.
 * **Not an installer.** No package is downloaded, installed, enabled, disabled, repaired or
   uninstalled here, and no runtime action is triggered.
-* **Not the municipal systems catalog.** `civiccore.catalog` describes *vendor systems* (domains,
+* **Not the municipal systems catalog.** `townlight_core.catalog` describes *vendor systems* (domains,
   vendors, protocol templates). This module describes *Townlight module packages*. A catalog row
   never implies a module is installed, and an inventory row never implies a vendor is connected.
   The two do not share tables or rows.
 * **Not a second resolver.** Admission, minimum Core version, dependency minimums, transitive
   blocking and required cycles all come from
-  `civiccore.platform.modules.build_module_registry`. This module only stores declarations and
+  `townlight_core.platform.modules.build_module_registry`. This module only stores declarations and
   asks that resolver what they admit.
 * **Not proof.** A recommendation is advice over declared metadata. It does not prove a package
   is present, running, healthy or licensed.
@@ -28,7 +28,7 @@ half of CORE-08 / `C1.catalog.modules`.
 ## Public surface
 
 ```python
-from civiccore.platform import (
+from townlight_core.platform import (
     ModuleInventory, ModuleInventoryEntry, ModuleRecommendation,
     record_inventory, current_inventory, inventory_revision, inventory_history,
     require_installed, module_recommendations,
@@ -36,8 +36,8 @@ from civiccore.platform import (
 )
 ```
 
-Import these from `civiccore.platform` (as with `civiccore.catalog` and
-`civiccore.exemptions.history`), not from the package root.
+Import these from `townlight_core.platform` (as with `townlight_core.catalog` and
+`townlight_core.exemptions.history`), not from the package root.
 
 ### Declaring an inventory
 
@@ -47,7 +47,7 @@ outcome = await record_inventory(
     ModuleInventory(
         scope_id="city-a",              # caller-supplied deployment scope
         revision=1,                    # next revision; append-only
-        civiccore_version="1.3.0.dev1",
+        townlight_core_version="1.3.0.dev1",
         entries=[ModuleInventoryEntry(module_id="records", version="1.8.0",
                                       enabled=True, manifest=manifest)],
     ),
@@ -76,7 +76,7 @@ declared and compatible"), and plain `operator_action` copy.
 | `install` | The package was handed in as available, is not declared installed, and every required dependency would be satisfied. |
 | `enable` | Declared installed but switched off, and turning it on would be admitted. |
 | `resolve-dependency` | A required module dependency is missing, below its minimum version, blocked, or cyclically required. |
-| `upgrade-core` | The module needs a newer CivicCore than this deployment declares. |
+| `upgrade-core` | The module needs a newer Townlight Core than this deployment declares. |
 | `not-supported` | The module does not support the declared install profile (e.g. `windows_local`). |
 
 A module that is installed, enabled and admitted produces **no** recommendation. Silence is not
@@ -106,12 +106,12 @@ history cannot be rewritten even outside this library.
 
 ## Persistence
 
-Migration `civiccore_0007_module_inventory` (down_revision `civiccore_0006_rule_history`) adds,
+Migration `townlight_core_0007_module_inventory` (down_revision `townlight_core_0006_rule_history`) adds,
 additively:
 
-* `civiccore_module_inventory` — one row per `(scope_id, revision)`: profile, declared
-  CivicCore version, content SHA-256, recorder, time.
-* `civiccore_module_inventory_entries` — one row per declared module: version, enabled flag and
+* `townlight_core_module_inventory` — one row per `(scope_id, revision)`: profile, declared
+  Townlight Core version, content SHA-256, recorder, time.
+* `townlight_core_module_inventory_entries` — one row per declared module: version, enabled flag and
   the full manifest as `jsonb`, keyed `(scope_id, revision, module_id)` with a composite foreign
   key to the header.
 

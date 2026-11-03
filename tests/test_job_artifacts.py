@@ -17,10 +17,10 @@ from pathlib import Path
 
 import pytest
 
-import civiccore.tasks.artifacts as module
-from civiccore.platform import LocalTaskEnvelope
-from civiccore.platform.task_queue import StaleTaskClaim
-from civiccore.tasks.artifacts import (
+import townlight_core.tasks.artifacts as module
+from townlight_core.platform import LocalTaskEnvelope
+from townlight_core.platform.task_queue import StaleTaskClaim
+from townlight_core.tasks.artifacts import (
     MAX_ARTIFACT_BYTES,
     REFUSAL_REASONS,
     ArtifactProposal,
@@ -336,7 +336,7 @@ def test_unknown_refusal_reason_is_rejected() -> None:
 
 
 def test_artifact_namespace_is_importable_and_exported() -> None:
-    import civiccore.tasks as tasks
+    import townlight_core.tasks as tasks
 
     for name in (
         "ArtifactProposal",

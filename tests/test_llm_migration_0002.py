@@ -1,4 +1,4 @@
-"""Tests for civiccore_0002_llm migration.
+"""Tests for townlight_core_0002_llm migration.
 
 Validates:
 - New columns (template_name, consumer_app, is_override) exist after upgrade_to_head()
@@ -23,15 +23,15 @@ testcontainers = pytest.importorskip(
 )
 PostgresContainer = testcontainers.PostgresContainer
 
-import civiccore  # noqa: E402
-from civiccore.migrations.runner import current_revision, upgrade_to_head  # noqa: E402
-from civiccore.migrations.versions.civiccore_0001_baseline_v1 import (  # noqa: E402
+import townlight_core  # noqa: E402
+from townlight_core.migrations.runner import current_revision, upgrade_to_head  # noqa: E402
+from townlight_core.migrations.versions.townlight_core_0001_baseline_v1 import (  # noqa: E402
     _SHARED_TABLE_ORDER,
 )
 
-EXPECTED_HEAD = "civiccore_0009_job_artifacts"
+EXPECTED_HEAD = "townlight_core_0009"
 
-_ALEMBIC_INI = Path(civiccore.__file__).parent / "migrations" / "alembic.ini"
+_ALEMBIC_INI = Path(townlight_core.__file__).parent / "migrations" / "alembic.ini"
 
 
 def _docker_available() -> bool:
@@ -119,7 +119,7 @@ def test_0002_prompt_templates_has_new_columns(engine, pg_container):
     """After upgrade_to_head(), prompt_templates has the Phase 2 override columns.
 
     Verifies:
-    - Current revision is the latest CivicCore head
+    - Current revision is the latest TownlightCore head
     - template_name column exists (renamed from name)
     - consumer_app column exists
     - is_override column exists
@@ -160,11 +160,11 @@ def test_0002_prompt_templates_has_new_columns(engine, pg_container):
 def test_0002_upgrade_from_0001_baseline(pg_container):
     """Incremental upgrade from 0001 through 0002 transforms prompt_templates correctly.
 
-    Step 1: Apply only civiccore_0001_baseline_v1 — verify old schema shape (name column).
+    Step 1: Apply only townlight_core_0001_baseline_v1 — verify old schema shape (name column).
     Step 2: Apply upgrade_to_head() — verify 0002 shape plus any later head migrations.
     """
     # Step 1: only 0001 applied
-    _upgrade_to_revision(pg_container, "civiccore_0001_baseline_v1")
+    _upgrade_to_revision(pg_container, "townlight_core_0001")
 
     url = pg_container.get_connection_url()
     eng = sa.create_engine(url, future=True)

@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://civicsuite.dev/schemas/release-attestation.v1.json",
-  "title": "CivicSuite Release Attestation",
+  "$id": "https://townlight.dev/schemas/release-attestation.v1.json",
+  "title": "Townlight Release Attestation",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "subject", "build", "artifacts", "evidence_bundles"],
   "properties": {
     "schema_version": {
       "const": 1,
-      "description": "Versioned CivicSuite release-attestation contract."
+      "description": "Versioned Townlight release-attestation contract."
     },
     "subject": {
       "type": "object",

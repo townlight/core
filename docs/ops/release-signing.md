@@ -1,8 +1,8 @@
 # Release Signing and Provenance
 
 Townlight Core is the canonical home for Townlight release-provenance gate logic.
-Downstream modules should call `python -m civiccore.release_provenance` or a
-thin local wrapper around `civiccore.release_provenance.main()`.
+Downstream modules should call `python -m townlight_core.release_provenance` or a
+thin local wrapper around `townlight_core.release_provenance.main()`.
 
 Release provenance is a pre-flight gate, not post-publication forensics. A
 failing gate produces no release assets. There is no dev-process exemption, no
@@ -25,7 +25,7 @@ The acceptable release shape is:
    `docs/ops/release-attestation.schema.json`.
 4. Serialize the attestation canonically with sorted JSON object keys, no extra
    whitespace, and UTF-8 bytes. In Python, use
-   `civiccore.release_provenance.canonical_json_bytes()`.
+   `townlight_core.release_provenance.canonical_json_bytes()`.
 5. Sign the attestation with keyless Sigstore/cosign from GitHub Actions OIDC.
 6. Run the adversarial fixture suite before checking the real release:
 
@@ -37,7 +37,7 @@ The acceptable release shape is:
 
    ```bash
    python scripts/verify-release-provenance.py vX.Y.Z \
-     --repo CivicSuite/civiccore \
+     --repo Townlight/townlight_core \
      --attestation release-attestation.json \
      --bundle release-attestation.json.bundle \
      --artifacts-dir dist \
@@ -50,7 +50,7 @@ The acceptable release shape is:
 The exact Sigstore certificate identity must be pinned per repo and per tag:
 
 ```text
-https://github.com/CivicSuite/civiccore/.github/workflows/release.yml@refs/tags/vX.Y.Z
+https://github.com/Townlight/townlight_core/.github/workflows/release.yml@refs/tags/vX.Y.Z
 ```
 
 Do not replace this with an org-wide or repo-wide wildcard. A wildcard requires
@@ -87,12 +87,12 @@ For online verification, download the release assets and run:
 ```bash
 cosign verify-blob release-attestation.json \
   --bundle release-attestation.json.bundle \
-  --certificate-identity "https://github.com/CivicSuite/civiccore/.github/workflows/release.yml@refs/tags/vX.Y.Z" \
+  --certificate-identity "https://github.com/Townlight/townlight_core/.github/workflows/release.yml@refs/tags/vX.Y.Z" \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com
 
 sha256sum -c SHA256SUMS.txt
 python scripts/verify-release-provenance.py vX.Y.Z \
-  --repo CivicSuite/civiccore \
+  --repo Townlight/townlight_core \
   --attestation release-attestation.json \
   --bundle release-attestation.json.bundle \
   --artifacts-dir .
@@ -130,7 +130,7 @@ review environment cannot validate the bundle, the auditor treats that as
   offline reviewer can distinguish "signature invalid" from "reviewer lacks
   the required trust-root material."
 
-## CivicCore v0.22.0 Historical Defect Statement
+## Townlight Core v0.22.0 Historical Defect Statement
 
 Historical pre-baseline artifact: `v0.22.0`
 
@@ -148,7 +148,7 @@ Reproducer after the new model is active:
 
 ```bash
 python scripts/verify-release-provenance.py v0.22.0 \
-  --repo CivicSuite/civiccore \
+  --repo Townlight/townlight_core \
   --attestation release-attestation.json \
   --bundle release-attestation.json.bundle \
   --artifacts-dir .
@@ -184,10 +184,10 @@ instead of inventing a false path.
 
 The strengthened gate surfaced an org-wide historical provenance baseline
 problem during the synthetic development phase: all 119 checked historical
-CivicSuite release tags failed under the earlier tag-signature bar, split
+Townlight release tags failed under the earlier tag-signature bar, split
 between lightweight tags and unsigned annotated tag objects. That finding is
 now understood as evidence that GitHub-native tags cannot carry the trust
-burden for CivicSuite.
+burden for Townlight.
 
 Historical releases are disclosed honestly rather than mass-deleted. The new
 baseline begins with releases that include Sigstore-signed release attestations
@@ -227,9 +227,9 @@ actual file.
 The historical provenance disclosure is operative policy as of 2026-05-05 and
 lives at `docs/ops/historical-provenance.md`.
 
-The policy names `civiccore v0.22.1`, released 2026-05-05 at 16:23:36Z, as the
-first attested CivicCore baseline release and links the live release
-attestation, CivicCore Tier 1 retrofit ledger, and CO-4 cross-module retrofit
+The policy names `townlight_core v0.22.1`, released 2026-05-05 at 16:23:36Z, as the
+first attested Townlight Core baseline release and links the live release
+attestation, Townlight Core Tier 1 retrofit ledger, and CO-4 cross-module retrofit
 report.
 
 Do not change the baseline release, edit historical public release notes, or

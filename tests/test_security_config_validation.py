@@ -3,7 +3,7 @@
 import pytest
 from cryptography.fernet import Fernet
 
-from civiccore.security import (
+from townlight_core.security import (
     ConfigValidationError,
     looks_like_placeholder,
     parse_csv_setting,

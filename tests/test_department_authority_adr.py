@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import civiccore.auth.department_scope as authority
+import townlight_core.auth.department_scope as authority
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -23,7 +23,7 @@ def test_authority_adr_records_the_trust_boundary_and_non_claims() -> None:
     assert "Implemented in the private beta candidate" in current
     assert "not released" in current
     # The trust boundary is the point of the ADR and must stay stated.
-    assert "civiccore_department_grant_events" in current
+    assert "civiccore_department_grant_events" in current  # Dated ADR's original identity.
     assert "privil" in current.lower()  # the escalation shape it prevents
     assert "active_department_grants" in current
     assert "deny by default" in current.lower()
@@ -62,7 +62,7 @@ def test_authority_module_documents_the_non_claims_it_must_uphold() -> None:
 
 
 def test_authority_contract_is_importable_from_the_auth_namespace() -> None:
-    import civiccore.auth as auth
+    import townlight_core.auth as auth
 
     for name in (
         "DepartmentAuthority",

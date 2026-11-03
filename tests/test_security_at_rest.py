@@ -3,7 +3,7 @@ from __future__ import annotations
 import pytest
 from cryptography.fernet import Fernet
 
-from civiccore.security import AtRestDecryptionError, decrypt_json, encrypt_json, is_encrypted
+from townlight_core.security import AtRestDecryptionError, decrypt_json, encrypt_json, is_encrypted
 
 
 def test_encrypt_json_round_trips_dict_payload() -> None:

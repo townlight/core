@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import uuid
 
-from civiccore.search import (
+from townlight_core.search import (
     access_level_allows,
     filter_records_by_access_level,
     normalize_access_value,

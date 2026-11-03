@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from civiccore.release_provenance import (
+from townlight_core.release_provenance import (
     GitHubProvenanceClient,
     build_release_attestation,
     canonical_json_bytes,
@@ -44,11 +44,11 @@ def test_adversarial_release_provenance_fixtures_are_enforced() -> None:
 
 
 def test_release_attestation_builder_uses_exact_workflow_identity(tmp_path: Path) -> None:
-    artifact = tmp_path / "civiccore-0.22.1-py3-none-any.whl"
+    artifact = tmp_path / "townlight_core-0.22.1-py3-none-any.whl"
     artifact.write_text("wheel bytes", encoding="utf-8")
 
     attestation = build_release_attestation(
-        repo="CivicSuite/civiccore",
+        repo="Townlight/townlight_core",
         tag_name="v0.22.1",
         tag_ref_type="commit",
         tag_ref_sha="a" * 40,
@@ -61,17 +61,17 @@ def test_release_attestation_builder_uses_exact_workflow_identity(tmp_path: Path
     assert attestation["schema_version"] == 1
     assert (
         attestation["build"]["workflow_identity"]
-        == "https://github.com/CivicSuite/civiccore/.github/workflows/release.yml@refs/tags/v0.22.1"
+        == "https://github.com/Townlight/townlight_core/.github/workflows/release.yml@refs/tags/v0.22.1"
     )
     assert attestation["build"]["oidc_issuer"] == "https://token.actions.githubusercontent.com"
     assert attestation["artifacts"] == [
         {
-            "name": "civiccore-0.22.1-py3-none-any.whl",
+            "name": "townlight_core-0.22.1-py3-none-any.whl",
             "sha256": "67c0d8f7de19e30c2d5891030a0b37cbfcdd240852b53055c0b28290ad52290b",
         }
     ]
     assert canonical_json_bytes(attestation).decode("utf-8").startswith(
-        '{"artifacts":[{"name":"civiccore-0.22.1-py3-none-any.whl"'
+        '{"artifacts":[{"name":"townlight_core-0.22.1-py3-none-any.whl"'
     )
 
 
@@ -99,10 +99,10 @@ def test_github_provenance_client_uses_public_api_without_gh_cli(
     monkeypatch.setenv("GH_TOKEN", "token-for-test")
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
 
-    result = GitHubProvenanceClient().tag_ref("CivicSuite/civiccore", "v0.22.1")
+    result = GitHubProvenanceClient().tag_ref("Townlight/townlight_core", "v0.22.1")
 
     assert result["object"]["sha"] == "abc123"
-    assert captured["url"] == "https://api.github.com/repos/CivicSuite/civiccore/git/ref/tags/v0.22.1"
+    assert captured["url"] == "https://api.github.com/repos/Townlight/townlight_core/git/ref/tags/v0.22.1"
     assert captured["headers"]["Authorization"] == "Bearer token-for-test"
-    assert captured["headers"]["User-agent"] == "civiccore-release-provenance"
+    assert captured["headers"]["User-agent"] == "townlight_core-release-provenance"
     assert captured["timeout"] == 30

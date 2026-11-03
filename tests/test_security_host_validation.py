@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from civiccore.security import (
+from townlight_core.security import (
     BLOCK_REASON,
     extract_odbc_host,
     is_blocked_host,

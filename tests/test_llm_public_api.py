@@ -1,22 +1,22 @@
-"""Smoke test: civiccore.llm public API is fully importable and complete.
+"""Smoke test: townlight_core.llm public API is fully importable and complete.
 
 This test exists so that any future refactor that breaks a public symbol
 fails CI immediately. The list of expected public symbols is the contract
-that downstream apps (records-ai, civicclerk) rely on.
+that downstream apps (records-ai, townlight_meetings) rely on.
 """
 from __future__ import annotations
 
 
-def test_civiccore_llm_imports_cleanly():
-    """Importing civiccore.llm must not error and must register built-in providers."""
-    import civiccore.llm  # noqa: F401
-    from civiccore.llm.providers import PROVIDER_REGISTRY
+def test_townlight_core_llm_imports_cleanly():
+    """Importing townlight_core.llm must not error and must register built-in providers."""
+    import townlight_core.llm  # noqa: F401
+    from townlight_core.llm.providers import PROVIDER_REGISTRY
     assert {"ollama", "openai", "anthropic"}.issubset(set(PROVIDER_REGISTRY.keys()))
 
 
 def test_public_api_surface_is_complete():
     """All expected symbols are exposed at the package root."""
-    import civiccore.llm as llm
+    import townlight_core.llm as llm
     expected = {
         # Providers
         "LLMProvider", "PROVIDER_REGISTRY", "register_provider",
@@ -28,7 +28,7 @@ def test_public_api_surface_is_complete():
         # Templates
         "PromptTemplate", "PromptTemplateCreate", "PromptTemplateRead",
         "RenderedPrompt", "render_template", "resolve_template",
-        "CIVICCORE_DEFAULT_APP",
+        "TOWNLIGHT_CORE_DEFAULT_APP",
         "PromptTemplateError", "PromptTemplateNotFoundError",
         "PromptTemplateRenderError",
         "OVERRIDE_REGISTRY", "register_template_override",
@@ -49,7 +49,7 @@ def test_public_api_surface_is_complete():
         "DEFAULT_MAX_ATTEMPTS",
     }
     missing = expected - set(dir(llm))
-    assert not missing, f"Missing public symbols in civiccore.llm: {missing}"
+    assert not missing, f"Missing public symbols in townlight_core.llm: {missing}"
 
 
 def test_public_api_has_no_cost_tracking():
@@ -57,27 +57,27 @@ def test_public_api_has_no_cost_tracking():
 
     Token budget is allowed (context-window math). Cost/dollar/spend is not.
     """
-    import civiccore.llm as llm
+    import townlight_core.llm as llm
     forbidden_substrings = ("cost", "dollar", "spend", "billing", "budget_enforce")
     surface = " ".join(dir(llm)).lower()
     for sub in forbidden_substrings:
         # "budget" alone is fine (TokenBudget). Forbid the more loaded terms.
         assert sub not in surface, (
-            f"Forbidden cost-tracking surface present in civiccore.llm: {sub}. "
-            "Per ADR-0004, no cost tracking in civiccore."
+            f"Forbidden cost-tracking surface present in townlight_core.llm: {sub}. "
+            "Per ADR-0004, no cost tracking in townlight_core."
         )
 
 
 def test_public_api_no_live_provider_calls_at_import():
-    """Importing civiccore.llm must not make any live HTTP/provider call.
+    """Importing townlight_core.llm must not make any live HTTP/provider call.
 
     This test is a smoke check that import time is purely registration —
     no network. (If this passed once, that's mostly proof; the test exists
     so any future code that adds an import-time call will be caught.)
     """
     # If import-time made a real call, the import would slow drastically or
-    # fail without network. The previous test_civiccore_llm_imports_cleanly
+    # fail without network. The previous test_townlight_core_llm_imports_cleanly
     # would have flaked. This explicit test exists as a documentation hook.
-    import civiccore.llm  # noqa: F401
+    import townlight_core.llm  # noqa: F401
     # No assertion — successful import + the imports_cleanly test passing
     # is the assertion.

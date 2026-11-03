@@ -29,16 +29,16 @@ def test_release_workflow_uploads_explicit_downloaded_asset_files() -> None:
     publish_script = workflow["jobs"]["publish-release"]["steps"][0]["run"]
 
     assert release_tag["required"] is True
-    assert release_tag["default"] == "v1.2.1"
+    assert release_tag["default"] == "v1.3.0.dev2"
     assert "v*" in tag_triggers
-    assert "civiccore-*-freeze" in tag_triggers
+    assert "townlight_core-*-freeze" in tag_triggers
     assert workflow["jobs"]["cleanroom-rehearsal"]["if"] == "github.event_name == 'workflow_dispatch'"
     assert release_cleanroom["needs"] == ["create-draft-release"]
     assert workflow["jobs"]["publish-release"]["needs"] == ["release-cleanroom-rehearsal"]
     assert download_step["uses"] == "actions/download-artifact@v8"
-    assert download_step["with"]["name"] == "civiccore-dist"
+    assert download_step["with"]["name"] == "townlight_core-dist"
     assert download_step["with"]["path"] == "release-assets/"
-    assert "civiccore-*-freeze) latest_flag=(--latest=false)" in create_release_script
+    assert "townlight_core-*-freeze) latest_flag=(--latest=false)" in create_release_script
     assert "Cleanroom rehearsal: PASSED in workflow run ${WORKFLOW_RUN_ID}" in create_release_script
     assert "Verified clean install of ${WHEEL_URL} from cold caches" in create_release_script
     assert "docs/evidence/co8-civiccore-procurement-evidence-pack/index.md" in create_release_script
@@ -53,10 +53,10 @@ def test_release_workflow_uploads_explicit_downloaded_asset_files() -> None:
     assert "gh release download" in release_cleanroom["steps"][3]["run"]
     assert "python -m pip install --no-cache-dir --force-reinstall" in release_cleanroom["steps"][4]["run"]
     assert "TESTING=1 python" in release_cleanroom["steps"][4]["run"]
-    assert "docker builder prune --all --force --filter \"label=civicsuite-cleanroom=1\"" in release_cleanroom["steps"][2]["run"]
+    assert "docker builder prune --all --force --filter \"label=townlight-cleanroom=1\"" in release_cleanroom["steps"][2]["run"]
     assert "system prune" not in release_cleanroom["steps"][2]["run"]
     assert "--draft=false" in publish_script
-    assert "civiccore-*-freeze) latest_flag=(--latest=false)" in publish_script
+    assert "townlight_core-*-freeze) latest_flag=(--latest=false)" in publish_script
 
 
 def test_ci_workflow_runs_full_release_verification_gate() -> None:

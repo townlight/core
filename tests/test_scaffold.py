@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0-only
-"""Contract tests for ``civiccore.scaffold`` (ADR-0007).
+"""Contract tests for ``townlight_core.scaffold`` (ADR-0007).
 
 These tests assert the properties the beta plan actually needs, not a framework:
 the generated project is a valid module by Core's own manifest contract, its code
@@ -20,9 +20,9 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-import civiccore.scaffold
-from civiccore.platform import ModuleManifest, build_module_registry, validate_windows_local_manifest
-from civiccore.scaffold import (
+import townlight_core.scaffold
+from townlight_core.platform import ModuleManifest, build_module_registry, validate_windows_local_manifest
+from townlight_core.scaffold import (
     InvalidModuleSpecError,
     ModuleSpec,
     PathContainmentError,
@@ -39,7 +39,7 @@ SYNTHETIC_SPEC = {
     "name": "CivicNotes (synthetic)",
     "description": "Synthetic module used to prove the generator contract.",
     "version": "0.1.0",
-    "civiccore_min_version": "1.3.0.dev1",
+    "townlight_core_min_version": "1.3.0.dev1",
     "staff_roles": ("notes_editor",),
     "route_path": "/notes",
 }
@@ -68,7 +68,7 @@ def test_spec_derives_every_identity_from_module_id() -> None:
         "civic notes",
         "civicnotes;rm -rf",
         "notes.exe",
-        "civiccore",
+        "townlight_core",
         "tests",
         "json",
         "import",
@@ -82,7 +82,7 @@ def test_unsafe_or_reserved_module_ids_are_refused_not_sanitised(module_id: str)
         make_spec(module_id=module_id)
 
     with pytest.raises(InvalidModuleSpecError):
-        civiccore.scaffold.spec.assert_admissible_module_id(module_id)
+        townlight_core.scaffold.spec.assert_admissible_module_id(module_id)
 
 
 def test_plan_is_complete_and_pure(tmp_path: Path) -> None:
@@ -124,12 +124,12 @@ def test_generated_manifest_is_valid_under_core_contracts() -> None:
     assert manifest.migrations[0].id == "civicnotes_0001_baseline"
 
     # Off by default; an operator selects it explicitly and then it resolves enabled.
-    default_registry = build_module_registry([payload], civiccore_version="1.3.0.dev1")
+    default_registry = build_module_registry([payload], townlight_core_version="1.3.0.dev1")
     assert default_registry.entries[0].status == "disabled"
 
     registry = build_module_registry(
         [payload],
-        civiccore_version="1.3.0.dev1",
+        townlight_core_version="1.3.0.dev1",
         selected_module_ids={"civicnotes"},
     )
     entry = registry.entries[0]
@@ -151,7 +151,7 @@ def test_generated_sources_carry_agpl_spdx_and_no_secrets() -> None:
 
     pyproject = next(item.content for item in plan.files if item.relative_path == "pyproject.toml")
     assert 'license = "AGPL-3.0-only"' in pyproject
-    assert "civiccore>=" in pyproject
+    assert "townlight_core>=" in pyproject
 
 
 def test_generated_health_probe_is_the_only_unauthenticated_route() -> None:
@@ -235,7 +235,7 @@ def test_generated_migration_owns_only_its_own_schema(tmp_path: Path) -> None:
     assert 'revision = "civicnotes_0001_baseline"' in baseline
     assert "down_revision = None" in baseline
     assert "CREATE SCHEMA IF NOT EXISTS civicnotes" in baseline
-    assert "civiccore" not in baseline.replace("civiccore.scaffold", "")
+    assert "townlight_core" not in baseline.replace("townlight_core.scaffold", "")
     assert "DROP TABLE" not in baseline.split("def downgrade")[0]
     assert "upgrade_to_head" in env_py
     # Alembic creates its version table in civicnotes before the baseline revision runs,
@@ -291,7 +291,7 @@ def test_file_target_is_refused(tmp_path: Path) -> None:
 
 
 def test_planned_paths_are_contained_and_parent_traversal_is_refused(monkeypatch) -> None:
-    from civiccore.scaffold import project as project_module
+    from townlight_core.scaffold import project as project_module
 
     plan = plan_module_project(make_spec())
     poisoned = type(plan)(
@@ -333,7 +333,7 @@ def test_cli_reports_refusal_and_creates_project(tmp_path: Path) -> None:
             "-X",
             "utf8",
             "-m",
-            "civiccore.scaffold",
+            "townlight_core.scaffold",
             "generate",
             "civicnotes",
             "--name",
@@ -362,7 +362,7 @@ def test_cli_reports_refusal_and_creates_project(tmp_path: Path) -> None:
             "-X",
             "utf8",
             "-m",
-            "civiccore.scaffold",
+            "townlight_core.scaffold",
             "generate",
             "../escape",
             "--name",

@@ -2,17 +2,17 @@
 
 `exemption_rules` holds a consumer's *working* rules. It can be edited, disabled or
 renumbered, so it cannot prove which cited text produced a past suggestion. Core therefore
-keeps a separate append-only history in `civiccore_rule_versions`, added by
-`civiccore_0006_rule_history`. See [ADR-0006](adr/ADR-0006-rule-version-history.md).
+keeps a separate append-only history in `townlight_core_rule_versions`, added by
+`townlight_core_0006_rule_history`. See [ADR-0006](adr/ADR-0006-rule-version-history.md).
 
-Apply Core migrations through `civiccore_0006_rule_history`. The migration is additive: no
+Apply Core migrations through `townlight_core_0006_rule_history`. The migration is additive: no
 existing table, row or column is altered, so a consumer that never calls the history API keeps
 its current behaviour.
 
 ## Writing
 
 ```python
-from civiccore.exemptions.history import record_rule_version
+from townlight_core.exemptions.history import record_rule_version
 
 outcome = await record_rule_version(
     session,
@@ -60,12 +60,12 @@ row that belongs to another jurisdiction. Retrieval never falls back to the work
 an edited working row cannot masquerade as a cited version.
 
 `current_rules(session, state_code, rule_ids=None)` returns only the latest version of each
-rule as `civiccore.exemptions.Rule`, ordered by `(category, rule_id)`, ready for
-`civiccore.exemptions.evaluate`. A superseded definition is never evaluated as current.
+rule as `townlight_core.exemptions.Rule`, ordered by `(category, rule_id)`, ready for
+`townlight_core.exemptions.evaluate`. A superseded definition is never evaluated as current.
 
 ## Database guarantees
 
-Triggers refuse UPDATE and DELETE on `civiccore_rule_versions`, and refuse an insert that
+Triggers refuse UPDATE and DELETE on `townlight_core_rule_versions`, and refuse an insert that
 binds an existing rule id to a second jurisdiction. Rollback of the migration is a no-op on
 purpose: deleting cited history would destroy provenance. Recover through backup/restore.
 

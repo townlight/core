@@ -17,7 +17,7 @@
   "attestation": {
     "schema_version": 1,
     "subject": {
-      "repo": "CivicSuite/civiccore",
+      "repo": "Townlight/townlight_core",
       "tag": "vfixture-renamed-workflow",
       "tag_ref_type": "commit",
       "tag_ref_sha": "commit-good",
@@ -25,17 +25,17 @@
       "target_tree": "tree-good"
     },
     "build": {
-      "workflow_identity": "https://github.com/CivicSuite/civiccore/.github/workflows/release-renamed.yml@refs/tags/vfixture-renamed-workflow",
+      "workflow_identity": "https://github.com/Townlight/townlight_core/.github/workflows/release-renamed.yml@refs/tags/vfixture-renamed-workflow",
       "workflow_path": ".github/workflows/release-renamed.yml",
       "workflow_run_id": "123456789",
       "oidc_issuer": "https://token.actions.githubusercontent.com"
     },
-    "artifacts": [{"name": "civiccore-0.22.0.whl", "sha256": "67c0d8f7de19e30c2d5891030a0b37cbfcdd240852b53055c0b28290ad52290b"}]
+    "artifacts": [{"name": "townlight_core-0.22.0.whl", "sha256": "67c0d8f7de19e30c2d5891030a0b37cbfcdd240852b53055c0b28290ad52290b"}]
   },
-  "artifact_payloads": [{"name": "civiccore-0.22.0.whl", "content": "wheel bytes"}],
+  "artifact_payloads": [{"name": "townlight_core-0.22.0.whl", "content": "wheel bytes"}],
   "sigstore": {
     "verified": true,
-    "identity": "https://github.com/CivicSuite/civiccore/.github/workflows/release-renamed.yml@refs/tags/vfixture-renamed-workflow",
+    "identity": "https://github.com/Townlight/townlight_core/.github/workflows/release-renamed.yml@refs/tags/vfixture-renamed-workflow",
     "issuer": "https://token.actions.githubusercontent.com"
   }
 }

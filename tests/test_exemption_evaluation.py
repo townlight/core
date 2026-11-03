@@ -1,6 +1,6 @@
 from uuid import uuid4
 import pytest
-from civiccore.exemptions import (
+from townlight_core.exemptions import (
     Rule,
     RuleEvaluationError,
     evaluate,

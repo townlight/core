@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from civiccore.onboarding import (
+from townlight_core.onboarding import (
     DEFAULT_PROFILE_FIELDS,
     completed_profile_fields,
     compute_onboarding_status,

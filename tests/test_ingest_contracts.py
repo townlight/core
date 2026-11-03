@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from civiccore.ingest import (
+from townlight_core.ingest import (
     CitedSentence,
     CitationValidationError,
     DiscoveredRecord,

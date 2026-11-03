@@ -1,4 +1,4 @@
-"""Idempotency test for civiccore_0001_baseline_v1. Blocks Phase 1 Part A PR merge per ADR-0003 §5."""
+"""Idempotency test for townlight_core_0001_baseline_v1. Blocks Phase 1 Part A PR merge per ADR-0003 §5."""
 
 from __future__ import annotations
 
@@ -18,12 +18,12 @@ testcontainers = pytest.importorskip(
 )
 PostgresContainer = testcontainers.PostgresContainer
 
-from civiccore.migrations.runner import current_revision, upgrade_to_head  # noqa: E402
-from civiccore.migrations.versions.civiccore_0001_baseline_v1 import (  # noqa: E402
+from townlight_core.migrations.runner import current_revision, upgrade_to_head  # noqa: E402
+from townlight_core.migrations.versions.townlight_core_0001_baseline_v1 import (  # noqa: E402
     _SHARED_TABLE_ORDER,
 )
 
-EXPECTED_HEAD = "civiccore_0009_job_artifacts"
+EXPECTED_HEAD = "townlight_core_0009"
 
 
 def _docker_available() -> bool:
@@ -46,7 +46,7 @@ def _docker_available() -> bool:
 def pg_container():
     """Ephemeral Postgres 17 + pgvector container shared across this module's tests.
 
-    Uses the same ``pgvector/pgvector:pg17`` image as CivicRecords' docker-compose
+    Uses the same ``pgvector/pgvector:pg17`` image as TownlightRecords' docker-compose
     stack so the extension stanza in the baseline migration (``CREATE EXTENSION
     IF NOT EXISTS vector``) can succeed. Plain ``postgres:17`` lacks the
     pgvector control file and would fail the ``document_chunks`` table DDL.
@@ -135,10 +135,10 @@ def test_baseline_runs_clean_on_empty_db(engine, pg_container):
 def test_baseline_is_idempotent(engine, pg_container):
     """Re-running the baseline against an already-populated DB is a no-op.
 
-    Proves the ``idempotent_*`` op wrappers (see ``civiccore.migrations.guards``)
+    Proves the ``idempotent_*`` op wrappers (see ``townlight_core.migrations.guards``)
     skip existing objects rather than destructively recreating them — which
-    is what makes the extracted civiccore baseline safe to ship alongside
-    already-deployed civicrecords databases (ADR-0003 §3).
+    is what makes the extracted townlight_core baseline safe to ship alongside
+    already-deployed townlight_records databases (ADR-0003 §3).
     """
     with _database_url_env(pg_container):
         upgrade_to_head()

@@ -1,4 +1,4 @@
-"""Tests for civiccore.llm.structured.StructuredOutput.
+"""Tests for townlight_core.llm.structured.StructuredOutput.
 
 All tests use a fake LLMProvider with canned responses - NO live provider
 calls, NO DB, NO network.
@@ -10,8 +10,8 @@ from collections.abc import Sequence
 import pytest
 from pydantic import BaseModel
 
-from civiccore.llm.providers.base import LLMProvider
-from civiccore.llm.structured import StructuredOutput, StructuredOutputFailure
+from townlight_core.llm.providers.base import LLMProvider
+from townlight_core.llm.structured import StructuredOutput, StructuredOutputFailure
 
 
 class _FakeProvider(LLMProvider):
@@ -169,7 +169,7 @@ def test_structured_output_no_live_calls() -> None:
     this no-op test simply imports the helper module to confirm it loads
     without pulling in httpx-bound live clients at import time.
     """
-    from civiccore.llm import structured as _structured  # noqa: F401
+    from townlight_core.llm import structured as _structured  # noqa: F401
 
     assert _structured.StructuredOutput is StructuredOutput
     assert _structured.StructuredOutputFailure is StructuredOutputFailure

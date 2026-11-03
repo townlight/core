@@ -7,7 +7,7 @@ from copy import deepcopy
 
 import pytest
 
-from civiccore.testing import (
+from townlight_core.testing import (
     DEMO_TOWN_CONTRACT_SCHEMA_VERSION,
     DEMO_TOWN_DEFAULT_SEED,
     DEMO_TOWN_FIXTURE_ID,
@@ -54,7 +54,7 @@ def test_demo_town_contract_is_versioned_and_explicitly_fictional() -> None:
 
     assert manifest["schema_version"] == DEMO_TOWN_CONTRACT_SCHEMA_VERSION == "1.0.0"
     assert manifest["fixture_id"] == DEMO_TOWN_FIXTURE_ID
-    assert manifest["fixture_version"] == DEMO_TOWN_FIXTURE_VERSION == "1.0.0"
+    assert manifest["fixture_version"] == DEMO_TOWN_FIXTURE_VERSION == "1.0.1"
     assert manifest["deterministic_seed"] == DEMO_TOWN_DEFAULT_SEED
     assert manifest["generation_mode"] == DEMO_TOWN_GENERATION_MODE == "static-canonical-v1"
     assert manifest["municipality"] == {
@@ -91,7 +91,7 @@ def test_demo_town_fixture_and_artifact_hashes_are_deterministic() -> None:
     assert first["fixture_sha256"] == _canonical_sha256(fixture_without_hash)
     assert first["fixture_sha256"] == DEMO_TOWN_FIXTURE_SHA256_V1
     assert DEMO_TOWN_FIXTURE_SHA256_V1 == (
-        "a9c242a3f2618a69d7effb1d0d17d2df06f6744c8c351bba4065d315c94575b4"
+        "d9aaa79403cfca2711e8031439fbab8bf9f70a20b8afc293faef8edd683ffbd6"
     )
     assert len(first["fixture_sha256"]) == 64
 
