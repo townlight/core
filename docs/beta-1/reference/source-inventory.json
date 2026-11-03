@@ -5,7 +5,7 @@
   "products": {
     "core": {
       "repository": "townlight/core",
-      "repository_head": "cb374b2a582ebd8811c6191c856982e3399c48ff",
+      "repository_head": "ac2ead46938208820cb0bcae511475abef290da3",
       "working_tree_modified": true,
       "principal_import": "townlight_core",
       "source": [
@@ -35309,8 +35309,8 @@
         },
         {
           "source": "desktop/src/main.js",
-          "sha256": "2d4697da1f1370bf326e45d323bec739b15ba2dcc259825388549953f971093e",
-          "bytes": 356385,
+          "sha256": "1c3cd828e8c142fbcb0242a172c967dcbc56dacec400c8063a339238bfae5c02",
+          "bytes": 356383,
           "routes": [],
           "models": [],
           "configuration": []
