@@ -5,9 +5,9 @@ MODE="${1:-online}"
 EVIDENCE_DIR="${CLEANROOM_EVIDENCE_DIR:-/evidence}"
 RUN_LABEL="${CLEANROOM_RUN_LABEL:-cleanroom}"
 RELEASE_TAG="${CLEANROOM_RELEASE_TAG:-v0.22.1}"
-RELEASE_BASE_URL="https://github.com/Townlight/townlight_core/releases/download/${RELEASE_TAG}"
+RELEASE_BASE_URL="https://github.com/townlight/core/releases/download/${RELEASE_TAG}"
 OIDC_ISSUER="https://token.actions.githubusercontent.com"
-WORKFLOW_IDENTITY="https://github.com/Townlight/townlight_core/.github/workflows/release.yml@refs/tags/${RELEASE_TAG}"
+WORKFLOW_IDENTITY="https://github.com/CivicSuite/civiccore/.github/workflows/release.yml@refs/tags/${RELEASE_TAG}"
 
 mkdir -p "${EVIDENCE_DIR}/logs" "${EVIDENCE_DIR}/release-assets"
 
@@ -77,8 +77,8 @@ PY
 
 download_release_assets() {
     local assets=(
-        "townlight_core-0.22.1-py3-none-any.whl"
-        "townlight_core-0.22.1.tar.gz"
+        "civiccore-0.22.1-py3-none-any.whl"
+        "civiccore-0.22.1.tar.gz"
         "SHA256SUMS.txt"
         "release-attestation.json"
         "release-attestation.json.bundle"
@@ -104,7 +104,7 @@ online() {
         bash -lc "cd '${EVIDENCE_DIR}/release-assets' && cosign verify-blob release-attestation.json --bundle release-attestation.json.bundle --certificate-identity '${WORKFLOW_IDENTITY}' --certificate-oidc-issuer '${OIDC_ISSUER}'"
     run_step "live-release-provenance" \
         python scripts/verify-release-provenance.py "${RELEASE_TAG}" \
-            --repo Townlight/townlight_core \
+            --repo CivicSuite/civiccore \
             --attestation "${EVIDENCE_DIR}/release-assets/release-attestation.json" \
             --bundle "${EVIDENCE_DIR}/release-assets/release-attestation.json.bundle" \
             --artifacts-dir "${EVIDENCE_DIR}/release-assets"
@@ -175,7 +175,7 @@ manifest = {
     "sprint_id": "CO-6",
     "result": "PASS",
     "target": {
-        "repo": "Townlight/townlight_core",
+        "repo": "CivicSuite/civiccore",
         "repo_url": os.environ.get("TOWNLIGHT_CORE_REPO_URL", ""),
         "commit": os.environ["TOWNLIGHT_CORE_COMMIT"],
     },
@@ -190,15 +190,15 @@ manifest = {
     },
     "release": {
         "tag": "v0.22.1",
-        "workflow_identity": "https://github.com/Townlight/townlight_core/.github/workflows/release.yml@refs/tags/v0.22.1",
+        "workflow_identity": "https://github.com/CivicSuite/civiccore/.github/workflows/release.yml@refs/tags/v0.22.1",
         "oidc_issuer": "https://token.actions.githubusercontent.com",
         "assets": release_assets,
     },
     "network": {
         "allowed_during_provisioning_and_verification": [
-            "https://github.com/Townlight/townlight_core.git",
-            "https://github.com/Townlight/townlight_core/releases/download/v0.22.1/*",
-            "https://api.github.com/repos/Townlight/townlight_core/*",
+            "https://github.com/townlight/core.git",
+            "https://github.com/townlight/core/releases/download/v0.22.1/*",
+            "https://api.github.com/repos/CivicSuite/civiccore/*",
             "https://github.com/sigstore/cosign/releases/download/v3.0.6/cosign-linux-amd64",
             "https://pypi.org/*",
             "https://files.pythonhosted.org/*",
