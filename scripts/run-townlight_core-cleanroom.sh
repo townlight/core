@@ -10,7 +10,7 @@ SHORT_SHA="${TARGET_COMMIT:0:12}"
 EVIDENCE_ROOT="${2:-docs/evidence/co6-townlight_core-cleanroom-${SHORT_SHA}}"
 RUN_COUNT="${CLEANROOM_RUN_COUNT:-2}"
 IMAGE_TAG="townlight_core-cleanroom:${SHORT_SHA}"
-REPO_URL="${TOWNLIGHT_CORE_REPO_URL:-https://github.com/Townlight/townlight_core.git}"
+REPO_URL="${TOWNLIGHT_CORE_REPO_URL:-https://github.com/townlight/core.git}"
 
 if ! command -v docker >/dev/null 2>&1; then
     echo "Docker is required to run the TownlightCore cleanroom harness." >&2
