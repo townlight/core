@@ -1,8 +1,8 @@
-# Townlight Core Longmont Ingestion Proof - 2026-05-21
+# CivicCore Longmont Ingestion Proof - 2026-05-21
 
-Purpose: prove the shared Townlight Core ingestion pipeline parses a real municipal PDF, chunks it, embeds every chunk with the local Ollama embedding model, and persists rows into the Townlight Core `documents` and `document_chunks` pgvector schema.
+Purpose: prove the shared CivicCore ingestion pipeline parses a real municipal PDF, chunks it, embeds every chunk with the local Ollama embedding model, and persists rows into the CivicCore `documents` and `document_chunks` pgvector schema.
 
-Command class: local proof script using `testcontainers.postgres.PostgresContainer("pgvector/pgvector:pg17")`, `townlight_core.migrations.runner.upgrade_to_head()`, and `townlight_core.ingest.ingest_file()`.
+Command class: local proof script using `testcontainers.postgres.PostgresContainer("pgvector/pgvector:pg17")`, `civiccore.migrations.runner.upgrade_to_head()`, and `civiccore.ingest.ingest_file()`.
 
 Corpus:
 
@@ -37,5 +37,5 @@ Acceptance facts:
 - Sentence-aware chunk rows persisted: `1789`.
 - Ollama `nomic-embed-text` vectors persisted: `1789`.
 - Vector dimensionality: `768`.
-- Database schema: Townlight Core baseline migration `documents` / `document_chunks` on pgvector PostgreSQL.
+- Database schema: CivicCore baseline migration `documents` / `document_chunks` on pgvector PostgreSQL.
 

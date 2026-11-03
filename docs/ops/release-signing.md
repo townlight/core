@@ -162,7 +162,7 @@ FAIL: Live release verification requires --attestation and --bundle under the Si
 
 This release is ledgered as pre-gate, no attestation, do not promote as
 baseline in
-[`docs/ops/townlight_core-tier1-retrofit-ledger.md`](townlight_core-tier1-retrofit-ledger.md).
+[`docs/ops/civiccore-tier1-retrofit-ledger.md`](civiccore-tier1-retrofit-ledger.md).
 Do not add attestation assets, edit release notes, delete, or recreate it
 without explicit chat authorization for that specific release.
 

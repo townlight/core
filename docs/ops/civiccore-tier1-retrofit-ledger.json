@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "repo": "Townlight/townlight_core",
+  "repo": "CivicSuite/civiccore",
   "sprint_id": "CO-3",
   "baseline_tag": "v0.22.1",
   "checked_at": "2026-05-05T00:00:00-06:00",
@@ -8,7 +8,7 @@
     "command": "gh release list --limit 200",
     "release_count": 25,
     "latest_release": "v0.22.1",
-    "latest_release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.22.1"
+    "latest_release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.22.1"
   },
   "policy": {
     "baseline_rule": "Use v0.22.1 or a later Sigstore-attested release as the provenance baseline.",
@@ -19,32 +19,32 @@
     {
       "tag": "v0.22.1",
       "published_at": "2026-05-05T16:23:36Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.22.1",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.22.1",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "46c99854adbce6dc8a056ae5215278bb1eba9a19",
       "target_commit": "46c99854adbce6dc8a056ae5215278bb1eba9a19",
       "release_assets": [
-        "townlight_core-0.22.1-py3-none-any.whl",
-        "townlight_core-0.22.1.tar.gz",
+        "civiccore-0.22.1-py3-none-any.whl",
+        "civiccore-0.22.1.tar.gz",
         "SHA256SUMS.txt",
         "release-attestation.json",
         "release-attestation.json.bundle"
       ],
       "ledger_status": "attested_baseline",
       "attestation_status": "sigstore_verified",
-      "rationale": "First TownlightCore release produced after the Sigstore release-provenance gate. The release workflow signed and verified release-attestation.json before publication, and the direct cosign verification command returned Verified OK.",
+      "rationale": "First CivicCore release produced after the Sigstore release-provenance gate. The release workflow signed and verified release-attestation.json before publication, and the direct cosign verification command returned Verified OK.",
       "downstream_rule": "Use this tag, or a later attested tag, when procurement-grade release provenance is required."
     },
     {
       "tag": "v0.22.0",
       "published_at": "2026-05-03T06:39:51Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.22.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.22.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "483a224aaf2ae08868bd4cd4caf842bfda97db94",
       "target_commit": "483a224aaf2ae08868bd4cd4caf842bfda97db94",
       "release_assets": [
-        "townlight_core-0.22.0-py3-none-any.whl",
-        "townlight_core-0.22.0.tar.gz",
+        "civiccore-0.22.0-py3-none-any.whl",
+        "civiccore-0.22.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -55,13 +55,13 @@
     {
       "tag": "v0.21.0",
       "published_at": "2026-05-02T17:00:33Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.21.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.21.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "a701834c125dbdcefab35994c1ce04a3dafd36dd",
       "target_commit": "4a1eb718ee9565a9a1911da9eff71a5c9f0b3e3e",
       "release_assets": [
-        "townlight_core-0.21.0-py3-none-any.whl",
-        "townlight_core-0.21.0.tar.gz",
+        "civiccore-0.21.0-py3-none-any.whl",
+        "civiccore-0.21.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -72,13 +72,13 @@
     {
       "tag": "v0.20.0",
       "published_at": "2026-05-02T15:06:14Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.20.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.20.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "ad66681132c28bf17c48681c82943d153897b099",
       "target_commit": "ad66681132c28bf17c48681c82943d153897b099",
       "release_assets": [
-        "townlight_core-0.20.0-py3-none-any.whl",
-        "townlight_core-0.20.0.tar.gz",
+        "civiccore-0.20.0-py3-none-any.whl",
+        "civiccore-0.20.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -89,13 +89,13 @@
     {
       "tag": "v0.19.0",
       "published_at": "2026-05-02T10:26:56Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.19.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.19.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "8d187ce9da4ffbbf9a5cb0a2a9cedf3181e3f030",
       "target_commit": "7ae2acbe01568b8f1397975286754179f9836a52",
       "release_assets": [
-        "townlight_core-0.19.0-py3-none-any.whl",
-        "townlight_core-0.19.0.tar.gz",
+        "civiccore-0.19.0-py3-none-any.whl",
+        "civiccore-0.19.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -106,13 +106,13 @@
     {
       "tag": "v0.18.1",
       "published_at": "2026-05-02T06:37:09Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.18.1",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.18.1",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "fd068e72767901a9541185fe782071ec2ffddc3b",
       "target_commit": "fd068e72767901a9541185fe782071ec2ffddc3b",
       "release_assets": [
-        "townlight_core-0.18.1-py3-none-any.whl",
-        "townlight_core-0.18.1.tar.gz",
+        "civiccore-0.18.1-py3-none-any.whl",
+        "civiccore-0.18.1.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -123,13 +123,13 @@
     {
       "tag": "v0.18.0",
       "published_at": "2026-05-02T06:25:30Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.18.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.18.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "0785e34b65470803299273acef8f033570071b41",
       "target_commit": "0785e34b65470803299273acef8f033570071b41",
       "release_assets": [
-        "townlight_core-0.18.0-py3-none-any.whl",
-        "townlight_core-0.18.0.tar.gz",
+        "civiccore-0.18.0-py3-none-any.whl",
+        "civiccore-0.18.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -140,13 +140,13 @@
     {
       "tag": "v0.17.0",
       "published_at": "2026-05-01T23:40:12Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.17.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.17.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "d8cd894a5e41583bda40cdb19960a60ea64e3205",
       "target_commit": "e9dca05ad2b45c6b19cf97fb829cb7c8e1946343",
       "release_assets": [
-        "townlight_core-0.17.0-py3-none-any.whl",
-        "townlight_core-0.17.0.tar.gz",
+        "civiccore-0.17.0-py3-none-any.whl",
+        "civiccore-0.17.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -157,13 +157,13 @@
     {
       "tag": "v0.16.0",
       "published_at": "2026-04-30T05:23:09Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.16.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.16.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "a8d287e40d2c9ded183f0d3e35c6c5fb4d89137c",
       "target_commit": "a8d287e40d2c9ded183f0d3e35c6c5fb4d89137c",
       "release_assets": [
-        "townlight_core-0.16.0-py3-none-any.whl",
-        "townlight_core-0.16.0.tar.gz",
+        "civiccore-0.16.0-py3-none-any.whl",
+        "civiccore-0.16.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -174,13 +174,13 @@
     {
       "tag": "v0.15.0",
       "published_at": "2026-04-30T03:51:46Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.15.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.15.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "27702e2fe3ddb659a224f9c57f86b960da1792a7",
       "target_commit": "27702e2fe3ddb659a224f9c57f86b960da1792a7",
       "release_assets": [
-        "townlight_core-0.15.0-py3-none-any.whl",
-        "townlight_core-0.15.0.tar.gz",
+        "civiccore-0.15.0-py3-none-any.whl",
+        "civiccore-0.15.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -191,13 +191,13 @@
     {
       "tag": "v0.14.1",
       "published_at": "2026-04-30T03:16:15Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.14.1",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.14.1",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "22c31133f0932cd3f579d7e5862f928f44e6f686",
       "target_commit": "36080f75c372c62e27e0407ec3f6cbb2dbbd4012",
       "release_assets": [
-        "townlight_core-0.14.1-py3-none-any.whl",
-        "townlight_core-0.14.1.tar.gz",
+        "civiccore-0.14.1-py3-none-any.whl",
+        "civiccore-0.14.1.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -208,13 +208,13 @@
     {
       "tag": "v0.14.0",
       "published_at": "2026-04-30T02:42:46Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.14.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.14.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "bf9136c0af6f46786c5cfca2487b7e0e5bf0b26b",
       "target_commit": "09bfe262f91b897799c49a0c7708feabfa067239",
       "release_assets": [
-        "townlight_core-0.14.0-py3-none-any.whl",
-        "townlight_core-0.14.0.tar.gz",
+        "civiccore-0.14.0-py3-none-any.whl",
+        "civiccore-0.14.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -225,13 +225,13 @@
     {
       "tag": "v0.13.0",
       "published_at": "2026-04-29T23:45:49Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.13.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.13.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "27fbbc872b81be6d4b2930313e56dcee66d974b1",
       "target_commit": "5657806c9b583a2426b5cd028726fd5fda77963e",
       "release_assets": [
-        "townlight_core-0.13.0-py3-none-any.whl",
-        "townlight_core-0.13.0.tar.gz",
+        "civiccore-0.13.0-py3-none-any.whl",
+        "civiccore-0.13.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -242,13 +242,13 @@
     {
       "tag": "v0.12.0",
       "published_at": "2026-04-29T22:36:17Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.12.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.12.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "d2f24b28ba05cc0b3c601babf389cea2713c11d0",
       "target_commit": "d2f24b28ba05cc0b3c601babf389cea2713c11d0",
       "release_assets": [
-        "townlight_core-0.12.0-py3-none-any.whl",
-        "townlight_core-0.12.0.tar.gz",
+        "civiccore-0.12.0-py3-none-any.whl",
+        "civiccore-0.12.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -259,13 +259,13 @@
     {
       "tag": "v0.11.0",
       "published_at": "2026-04-29T21:09:30Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.11.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.11.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "b21001b1cebd7de01ac8011d4ec342ab99d9bf86",
       "target_commit": "b21001b1cebd7de01ac8011d4ec342ab99d9bf86",
       "release_assets": [
-        "townlight_core-0.11.0-py3-none-any.whl",
-        "townlight_core-0.11.0.tar.gz"
+        "civiccore-0.11.0-py3-none-any.whl",
+        "civiccore-0.11.0.tar.gz"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
       "attestation_status": "none_pre_gate",
@@ -275,13 +275,13 @@
     {
       "tag": "v0.10.0",
       "published_at": "2026-04-29T20:08:51Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.10.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.10.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "9bfcf754fce7e8298ffc6423358938bba68aa8c1",
       "target_commit": "8db660e546f002352b3df5f2519bb2a92d3282e7",
       "release_assets": [
-        "townlight_core-0.10.0-py3-none-any.whl",
-        "townlight_core-0.10.0.tar.gz"
+        "civiccore-0.10.0-py3-none-any.whl",
+        "civiccore-0.10.0.tar.gz"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
       "attestation_status": "none_pre_gate",
@@ -291,13 +291,13 @@
     {
       "tag": "v0.9.0",
       "published_at": "2026-04-29T18:32:51Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.9.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.9.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "52ca2c866d5e3f665c890b6aab13a34262f2c317",
       "target_commit": "8010e9fd9b5ab599f579c257f24f3c1ae3cea3e2",
       "release_assets": [
-        "townlight_core-0.9.0-py3-none-any.whl",
-        "townlight_core-0.9.0.tar.gz",
+        "civiccore-0.9.0-py3-none-any.whl",
+        "civiccore-0.9.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -308,13 +308,13 @@
     {
       "tag": "v0.8.0",
       "published_at": "2026-04-29T17:48:23Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.8.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.8.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "d4336082b20d2df3467b76d987feee54f2ec802e",
       "target_commit": "b7cfaeb9d9490ff0c68aad255df6f69da912d6be",
       "release_assets": [
-        "townlight_core-0.8.0-py3-none-any.whl",
-        "townlight_core-0.8.0.tar.gz",
+        "civiccore-0.8.0-py3-none-any.whl",
+        "civiccore-0.8.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -325,13 +325,13 @@
     {
       "tag": "v0.7.0",
       "published_at": "2026-04-29T16:43:12Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.7.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.7.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "3dc905a865d397551384d35d1fa7dc0978e6d964",
       "target_commit": "943da60abd6ef4e906b63eecbf7dcbc8de77550d",
       "release_assets": [
-        "townlight_core-0.7.0-py3-none-any.whl",
-        "townlight_core-0.7.0.tar.gz",
+        "civiccore-0.7.0-py3-none-any.whl",
+        "civiccore-0.7.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -342,13 +342,13 @@
     {
       "tag": "v0.6.0",
       "published_at": "2026-04-29T16:07:58Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.6.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.6.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "64c1f62f9c4224f987853864bd598a70f78806c0",
       "target_commit": "95890075c7886e66c9711e0e8e84517a705e3530",
       "release_assets": [
-        "townlight_core-0.6.0-py3-none-any.whl",
-        "townlight_core-0.6.0.tar.gz",
+        "civiccore-0.6.0-py3-none-any.whl",
+        "civiccore-0.6.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -359,13 +359,13 @@
     {
       "tag": "v0.5.0",
       "published_at": "2026-04-29T15:23:28Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.5.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.5.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "bcb9b7852ba200302371bec3f425726230c435b3",
       "target_commit": "bcb9b7852ba200302371bec3f425726230c435b3",
       "release_assets": [
-        "townlight_core-0.5.0-py3-none-any.whl",
-        "townlight_core-0.5.0.tar.gz",
+        "civiccore-0.5.0-py3-none-any.whl",
+        "civiccore-0.5.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -376,13 +376,13 @@
     {
       "tag": "v0.4.0",
       "published_at": "2026-04-29T04:38:47Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.4.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.4.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "8c3eedc411570bba67c11ee750bfb2c168999026",
       "target_commit": "fab33a41f1c4c3ef3684dee1069f7069d31ac115",
       "release_assets": [
-        "townlight_core-0.4.0-py3-none-any.whl",
-        "townlight_core-0.4.0.tar.gz",
+        "civiccore-0.4.0-py3-none-any.whl",
+        "civiccore-0.4.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -393,13 +393,13 @@
     {
       "tag": "v0.3.0",
       "published_at": "2026-04-28T06:28:20Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.3.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.3.0",
       "tag_ref_type": "lightweight_tag",
       "tag_ref_sha": "7b3fbbf79b6c71513fac399658fe47195722b5e5",
       "target_commit": "7b3fbbf79b6c71513fac399658fe47195722b5e5",
       "release_assets": [
-        "townlight_core-0.3.0-py3-none-any.whl",
-        "townlight_core-0.3.0.tar.gz",
+        "civiccore-0.3.0-py3-none-any.whl",
+        "civiccore-0.3.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -410,13 +410,13 @@
     {
       "tag": "v0.2.0",
       "published_at": "2026-04-25T18:11:21Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.2.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.2.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "11ba8a6fa0c3c85f76d049eb76356e4eb6b5bfa8",
       "target_commit": "a8246ed34405d97be1e20adabd7dc8536e1246eb",
       "release_assets": [
-        "townlight_core-0.2.0-py3-none-any.whl",
-        "townlight_core-0.2.0.tar.gz",
+        "civiccore-0.2.0-py3-none-any.whl",
+        "civiccore-0.2.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",
@@ -427,13 +427,13 @@
     {
       "tag": "v0.1.0",
       "published_at": "2026-04-24T23:30:45Z",
-      "release_url": "https://github.com/Townlight/townlight_core/releases/tag/v0.1.0",
+      "release_url": "https://github.com/CivicSuite/civiccore/releases/tag/v0.1.0",
       "tag_ref_type": "annotated_tag_object",
       "tag_ref_sha": "feaefd2366d30ceead5a324e15c475a503b3be34",
       "target_commit": "9ac20f0274fbe6fc9730bdc509d5e6d4cedf6231",
       "release_assets": [
-        "townlight_core-0.1.0-py3-none-any.whl",
-        "townlight_core-0.1.0.tar.gz",
+        "civiccore-0.1.0-py3-none-any.whl",
+        "civiccore-0.1.0.tar.gz",
         "SHA256SUMS.txt"
       ],
       "ledger_status": "pre_gate_no_attestation_do_not_promote",

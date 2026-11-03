@@ -9,7 +9,7 @@ from types import ModuleType
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-LEDGER = REPO_ROOT / "docs" / "ops" / "townlight_core-tier1-retrofit-ledger.json"
+LEDGER = REPO_ROOT / "docs" / "ops" / "civiccore-tier1-retrofit-ledger.json"
 LEDGER_CHECK = REPO_ROOT / "scripts" / "check-tier1-ledger.py"
 
 

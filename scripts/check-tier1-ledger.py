@@ -44,8 +44,9 @@ def _entry_tags(entries: list[dict[str, Any]]) -> list[str]:
 def validate_ledger(ledger: dict[str, Any]) -> list[dict[str, Any]]:
     if ledger.get("schema_version") != 1:
         raise LedgerError("schema_version must be 1")
-    if ledger.get("repo") != "Townlight/townlight_core":
-        raise LedgerError("repo must be Townlight/townlight_core")
+    # This immutable historical ledger retains its original organization/name.
+    if ledger.get("repo") != "CivicSuite/civiccore":
+        raise LedgerError("historical ledger identity does not match its original repository")
     if ledger.get("baseline_tag") != "v0.22.1":
         raise LedgerError("baseline_tag must be v0.22.1")
 
@@ -136,9 +137,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--ledger",
         type=Path,
-        default=Path("docs/ops/townlight_core-tier1-retrofit-ledger.json"),
+        default=Path("docs/ops/civiccore-tier1-retrofit-ledger.json"),
     )
-    parser.add_argument("--repo", default="Townlight/townlight_core")
+    parser.add_argument("--repo", default="townlight/core")
     parser.add_argument(
         "--live",
         action="store_true",

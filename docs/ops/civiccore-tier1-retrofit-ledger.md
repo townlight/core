@@ -1,4 +1,4 @@
-<a id="townlight_core-tier-1-retrofit-ledger"></a>
+<a id="civiccore-tier-1-retrofit-ledger"></a>
 
 # Townlight Core Tier 1 Retrofit Ledger
 
@@ -22,7 +22,7 @@ repo-controlled ledger plus documentation truth update.
   matrix permits it.
 
 Structured source of truth:
-[`docs/ops/townlight_core-tier1-retrofit-ledger.json`](townlight_core-tier1-retrofit-ledger.json).
+[`docs/ops/civiccore-tier1-retrofit-ledger.json`](civiccore-tier1-retrofit-ledger.json).
 
 Verification:
 
@@ -42,11 +42,11 @@ but the live check permits them only when the GitHub release exposes both
 - Live releases scanned: 25
 - Latest release: `v0.22.1`
 - Baseline release:
-  [`v0.22.1`](https://github.com/Townlight/townlight_core/releases/tag/v0.22.1)
+  [`v0.22.1`](https://github.com/CivicSuite/civiccore/releases/tag/v0.22.1)
 - Baseline target commit:
   `46c99854adbce6dc8a056ae5215278bb1eba9a19`
 - Baseline Sigstore identity:
-  `https://github.com/Townlight/townlight_core/.github/workflows/release.yml@refs/tags/v0.22.1`
+  `https://github.com/CivicSuite/civiccore/.github/workflows/release.yml@refs/tags/v0.22.1`
 
 ## Entries
 

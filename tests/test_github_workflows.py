@@ -29,7 +29,7 @@ def test_release_workflow_uploads_explicit_downloaded_asset_files() -> None:
     publish_script = workflow["jobs"]["publish-release"]["steps"][0]["run"]
 
     assert release_tag["required"] is True
-    assert release_tag["default"] == "v1.2.1"
+    assert release_tag["default"] == "v1.3.0.dev2"
     assert "v*" in tag_triggers
     assert "townlight_core-*-freeze" in tag_triggers
     assert workflow["jobs"]["cleanroom-rehearsal"]["if"] == "github.event_name == 'workflow_dispatch'"
@@ -41,8 +41,8 @@ def test_release_workflow_uploads_explicit_downloaded_asset_files() -> None:
     assert "townlight_core-*-freeze) latest_flag=(--latest=false)" in create_release_script
     assert "Cleanroom rehearsal: PASSED in workflow run ${WORKFLOW_RUN_ID}" in create_release_script
     assert "Verified clean install of ${WHEEL_URL} from cold caches" in create_release_script
-    assert "docs/evidence/co8-townlight_core-procurement-evidence-pack/index.md" in create_release_script
-    assert "docs/ops/co-9-townlight_core-v1-closeout.md" in create_release_script
+    assert "docs/evidence/co8-civiccore-procurement-evidence-pack/index.md" in create_release_script
+    assert "docs/ops/co-9-civiccore-v1-closeout.md" in create_release_script
     assert "python scripts/verify-release-provenance.py ${TAG}" in create_release_script
     assert '"${latest_flag[@]}" \\' in create_release_script
     assert "--draft" in create_release_script

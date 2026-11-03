@@ -10,7 +10,7 @@ on:
       release_tag:
         description: "Published release tag to rehearse from cold caches"
         required: true
-        default: "v1.2.1"
+        default: "v1.3.0.dev2"
 
 permissions:
   contents: write
@@ -234,9 +234,9 @@ jobs:
           Release provenance:
           - The Git tag is a release pointer; the trust artifact is release-attestation.json plus release-attestation.json.bundle.
           - Pre-flight provenance fixtures and live attestation verification ran before publication in workflow run ${WORKFLOW_RUN_ID}.
-          - Procurement evidence pack: https://github.com/${REPO}/blob/${GITHUB_SHA}/docs/evidence/co8-townlight_core-procurement-evidence-pack/index.md
+          - Historical procurement evidence pack: https://github.com/${REPO}/blob/${GITHUB_SHA}/docs/evidence/co8-civiccore-procurement-evidence-pack/index.md
           - Historical provenance policy: https://github.com/${REPO}/blob/${GITHUB_SHA}/docs/ops/historical-provenance.md
-          - CO-9 closeout report, when present for the release tag: https://github.com/${REPO}/blob/${GITHUB_SHA}/docs/ops/co-9-townlight_core-v1-closeout.md
+          - Historical CO-9 closeout report: https://github.com/${REPO}/blob/${GITHUB_SHA}/docs/ops/co-9-civiccore-v1-closeout.md
           - Verify with:
 
           ```bash
