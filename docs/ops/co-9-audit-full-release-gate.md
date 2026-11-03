@@ -2,14 +2,14 @@
 
 Date: 2026-05-05.
 
-Repo: `CivicSuite/civiccore`.
+Repo: `Townlight/townlight_core`.
 
 Audit mode: release-gate.
 
 Auditor: Codex, no subagents.
 
 Post-publication addendum: the `v1.0` GitHub release is now published at
-[`civiccore v1.0`](https://github.com/CivicSuite/civiccore/releases/tag/v1.0).
+[`townlight_core v1.0`](https://github.com/Townlight/townlight_core/releases/tag/v1.0).
 The live tag target is `a699814c6b97ff3ef13ecd9f04b5f4a2d76f7438`, release
 workflow run `25408733597` completed successfully, and the release page carries
 the wheel, sdist, `SHA256SUMS.txt`, `release-attestation.json`, and
@@ -19,7 +19,7 @@ former PR/main-CI and release-publication gaps.
 
 ## 1. Executive Audit
 
-Scope: CivicCore local release-prep checkout for CO-9 v1.0, plus live GitHub
+Scope: Townlight Core local release-prep checkout for CO-9 v1.0, plus live GitHub
 remote state. Post-publication addendum scope includes the merged `main`
 source tree and live `v1.0` GitHub release.
 
@@ -29,7 +29,7 @@ Local-vs-live parity: checked before release-prep edits. Local `main`,
 merged `main` commit and `v1.0` target
 `a699814c6b97ff3ef13ecd9f04b5f4a2d76f7438`.
 
-Overall verdict: PASS for CivicCore `v1.0` publication posture. No open
+Overall verdict: PASS for Townlight Core `v1.0` publication posture. No open
 Blocker or Critical findings remain. PR CI, main CI, release workflow,
 publication, and post-publication release-asset checks are now complete.
 
@@ -57,24 +57,24 @@ paths, and now publishes notes with evidence-pack and provenance commands.
 
 | Lane | Status | Evidence summary | Blocker |
 |---|---|---|---|
-| Remote parity | Checked | `origin` is `https://github.com/CivicSuite/civiccore.git`; pre-edit local main matched `origin/main` at `a1c52c9`. | None |
+| Remote parity | Checked | `origin` is `https://github.com/Townlight/townlight_core.git`; pre-edit local main matched `origin/main` at `a1c52c9`. | None |
 | Local-vs-live commit truth | Checked | Post-publication local `main`, `origin/main`, and `v1.0^{}` match `a699814c6b97ff3ef13ecd9f04b5f4a2d76f7438`. | None |
 | CI/workflow presence | Checked | Four workflows present; workflow YAML parse test passes. | None |
-| Windows install path | Checked | `bash scripts/verify-release.sh` built and installed `civiccore-1.0.0` in a fresh venv. | None |
+| Windows install path | Checked | `bash scripts/verify-release.sh` built and installed `townlight_core-1.0.0` in a fresh venv. | None |
 | Linux or Unix install path | Checked | Git Bash path passed locally; GitHub Linux CI and release workflow completed successfully for `v1.0`. | None |
 | Platform parity verdict | Checked | Local Windows verification and GitHub Linux CI/release verification are green for `v1.0`. | None |
-| First boot | Checked | Library import smoke checks `civiccore.__version__ == "1.0.0"` and public helpers. | None |
+| First boot | Checked | Library import smoke checks `townlight_core.__version__ == "1.0.0"` and public helpers. | None |
 | Required post-install steps | Checked | Docs describe wheel install plus SHA256/Sigstore verification; no app bootstrap required. | None |
 | Migrations | Checked | Baseline idempotency tests and migration tests collected and passed in release verifier. | None |
-| Seed/bootstrap requirements | Not applicable | CivicCore is a library with no seed data path. | None |
+| Seed/bootstrap requirements | Not applicable | Townlight Core is a library with no seed data path. | None |
 | Runtime dependency and model requirements | Checked | LLM provider tests are mocked; no live model pull at import. | None |
-| First-boot dependency truth | Checked | README/manual identify CivicCore as a library, not an end-user app. | None |
+| First-boot dependency truth | Checked | README/manual identify Townlight Core as a library, not an end-user app. | None |
 | Secrets and credential handling | Checked | Remote URL carries no embedded token; security config validation tests pass. | None |
 | Auth and session handling | Checked | Bearer/trusted-header auth tests passed. | None |
 | Authorization and role boundaries | Checked | Role parsing, trusted proxy source checks, and optional auth helpers are tested. | None |
 | Response-schema sensitive-data exposure | Checked | Public API tests and security tests cover exposed helper surface; no app responses ship. | None |
 | Audit and compliance logging | Checked | Audit chain and persisted audit hash tests pass. | None |
-| External and admin surfaces | Checked | CivicCore exposes library/admin router primitives only; no standalone public service. | None |
+| External and admin surfaces | Checked | Townlight Core exposes library/admin router primitives only; no standalone public service. | None |
 | Connector implementation completeness | Checked | Docs now distinguish shipped local/import/sync primitives from unshipped vendor adapters. | None |
 | Connector docs truth | Checked | README/manual/docs index scoped vendor-specific adapters as unshipped. | None |
 | Background jobs and schedulers | Checked | Scheduling helpers ship; scheduler runtime/task queue remain module-owned. | None |
@@ -85,7 +85,7 @@ paths, and now publishes notes with evidence-pack and provenance commands.
 | Partial states | Not applicable | Static local HTML renders all sections. | None |
 | Accessibility cues | Checked | Keyboard focus sample and contrast ratios recorded in browser QA. | None |
 | Docs truthfulness | Checked | Version/install copy moved to v1.0; ingest docs drift fixed. | None |
-| Version consistency | Checked | `pyproject.toml`, `civiccore.__version__`, smoke test, docs, and SBOM align on `1.0.0`/`v1.0`. | None |
+| Version consistency | Checked | `pyproject.toml`, `townlight_core.__version__`, smoke test, docs, and SBOM align on `1.0.0`/`v1.0`. | None |
 | Release artifact consistency | Checked | Workflow expected assets are wheel, sdist, SHA256SUMS, attestation JSON, and bundle. | None |
 | Test realism | Checked | 273 tests collected in the post-publication quality pause; release verifier runs full test suite, ruff, build, fresh install. | None |
 | Runtime, build, and test verification | Checked | `VERIFY-RELEASE: PASSED`. | None |
@@ -96,11 +96,11 @@ paths, and now publishes notes with evidence-pack and provenance commands.
 
 | Claim | Source | Verdict | Evidence |
 |---|---|---|---|
-| CivicCore is a shared platform library, not an end-user app. | README, manual, docs index | True | No app boot path; import smoke only. |
+| Townlight Core is a shared platform library, not an end-user app. | README, manual, docs index | True | No app boot path; import smoke only. |
 | v1.0 is the downstream productization release. | README, docs index, closeout | True | Package version `1.0.0`; install URL uses `v1.0`. |
 | v0.22.1 remains the first attested baseline. | Historical policy, ledger | True | Baseline tag and ledger unchanged. |
-| Freeze tag is `civiccore-m1-freeze`. | CO-7 evidence, release list | True | Live release and live Tier 1 check verify attestation assets. |
-| Final v1.0 SBOM is present. | CO-8 evidence pack | True | `sbom-v1.0-pip-inspect.json`; test verifies `civiccore` `1.0.0`. |
+| Freeze tag is `townlight_core-m1-freeze`. | CO-7 evidence, release list | True | Live release and live Tier 1 check verify attestation assets. |
+| Final v1.0 SBOM is present. | CO-8 evidence pack | True | `sbom-v1.0-pip-inspect.json`; test verifies `townlight_core` `1.0.0`. |
 | Release workflow publishes exact asset paths. | `.github/workflows/release.yml` | True | Workflow test asserts no wildcard `release-assets/*` upload. |
 | Release notes include auditor commands. | `.github/workflows/release.yml` | True | Test asserts evidence-pack and provenance command text. |
 | Docs landing page install path is current. | `docs/index.html` | True | Browser QA copy checks passed. |
@@ -132,7 +132,7 @@ Can defer if consciously accepted:
 
 ## 5. Next-Sprint Watchlist
 
-Architecture: Keep downstream modules pinned to `civiccore-m1-freeze` until
+Architecture: Keep downstream modules pinned to `townlight_core-m1-freeze` until
 their compatibility matrices move deliberately.
 
 Security and compliance debt: Preserve release bundles and trust-root context
@@ -141,13 +141,13 @@ for offline procurement review.
 UX debt: Future docs pages should avoid long status paragraphs if the static
 landing page becomes more app-like.
 
-Docs debt: CivicClerk must reference the freeze tag and CO-8/CO-9 evidence pack
+Docs debt: Townlight Meetings must reference the freeze tag and CO-8/CO-9 evidence pack
 when its productization lane starts.
 
 Install and bootstrap debt: Downstream modules need cleanroom harnesses pinned
-to the freeze tag, not moving CivicCore main.
+to the freeze tag, not moving Townlight Core main.
 
-Test debt: Add downstream compatibility tests as soon as CivicClerk begins.
+Test debt: Add downstream compatibility tests as soon as Townlight Meetings begins.
 
 Operational and release debt: Keep post-publication release verification linked
 from the release record for every future release.
@@ -163,7 +163,7 @@ separates preflight, build/attest/verify, and publication jobs.
 Findings: none open.
 
 Verification gaps: None for the shipped `v1.0` source tree; downstream
-module compatibility remains tracked outside this CivicCore audit.
+module compatibility remains tracked outside this Townlight Core audit.
 
 ## 7. Security And Authorization Deep Dive
 
@@ -175,7 +175,7 @@ commit, and target tree. The remote URL contains no credential-bearing token.
 
 Findings: none open.
 
-Verification gaps: None for CivicCore `v1.0`; the Sigstore bundle is published
+Verification gaps: None for Townlight Core `v1.0`; the Sigstore bundle is published
 with the GitHub release.
 
 ## 8. UI/UX Deep Dive
@@ -196,11 +196,11 @@ Verdict: PASS.
 
 Strengths: The docs now distinguish the downstream productization release
 (`v1.0`) from the first attested baseline (`v0.22.1`) and the freeze-line tag
-(`civiccore-m1-freeze`). This avoids overstating historical releases.
+(`townlight_core-m1-freeze`). This avoids overstating historical releases.
 
 Findings: none open.
 
-Verification gaps: None for CivicCore `v1.0`; CivicClerk gating moved to its
+Verification gaps: None for Townlight Core `v1.0`; Townlight Meetings gating moved to its
 own productization lane after the release went live.
 
 ## 10. Documentation Deep Dive
@@ -209,7 +209,7 @@ Verdict: PASS.
 
 Strengths: README, text README, user manual, docs index, changelog, evidence
 pack, closeout report, release workflow notes, and Tier 1 ledger docs were
-updated together. The docs drift that described `civiccore.ingest` as entirely
+updated together. The docs drift that described `townlight_core.ingest` as entirely
 unshipped was corrected.
 
 Findings: none open.
@@ -222,8 +222,8 @@ verification commands.
 
 Verdict: PASS.
 
-Strengths: CivicCore has no seed/bootstrap path. The install path is a GitHub
-release wheel; verifier built `civiccore-1.0.0`, installed it into a fresh venv,
+Strengths: Townlight Core has no seed/bootstrap path. The install path is a GitHub
+release wheel; verifier built `townlight_core-1.0.0`, installed it into a fresh venv,
 and imported public helpers.
 
 Findings: none open.
@@ -235,7 +235,7 @@ available through the GitHub release URL.
 
 Verdict: PASS.
 
-Strengths: `pyproject.toml`, `civiccore/__init__.py`, smoke tests, README,
+Strengths: `pyproject.toml`, `townlight_core/__init__.py`, smoke tests, README,
 README.txt, manuals, docs landing page, changelog, and final SBOM agree on
 package version `1.0.0` and release tag `v1.0`. Historical `v0.22.1` references
 remain as baseline history, not current install copy.
@@ -256,7 +256,7 @@ workflow note content, smoke version, and live ledger parity rules.
 Findings: none open.
 
 Verification gaps: Mutation/adversarial downstream compatibility remains for
-CivicClerk and CivicCode lanes, not CO-9 CivicCore release prep.
+Townlight Meetings and Townlight Code lanes, not CO-9 Townlight Core release prep.
 
 ## 14. Runtime QA Deep Dive
 
@@ -266,18 +266,18 @@ Verdict: PASS for local runtime QA.
 
 - `python -m pytest tests/test_tier1_retrofit_ledger.py tests/test_co8_procurement_evidence_pack.py tests/test_github_workflows.py tests/test_smoke.py -q` -> 16 passed, 1 warning.
 - `python -m ruff check ...` -> all checks passed.
-- `python scripts/check-tier1-ledger.py --live` -> 25 historical tags ledgered; post-baseline `civiccore-m1-freeze` attestation assets verified live.
+- `python scripts/check-tier1-ledger.py --live` -> 25 historical tags ledgered; post-baseline `townlight_core-m1-freeze` attestation assets verified live.
 - `python -m pytest --collect-only -q` -> 273 tests collected.
 - Browser QA summary -> PASS.
 - `bash scripts/verify-release.sh` -> full test suite passed, ruff passed, version lockstep `1.0.0`, build passed, fresh venv install/import smoke passed, `VERIFY-RELEASE: PASSED`.
 
 [DEV-REPORTED]
 
-- CO-7 downstream temporary harnesses: CivicClerk 553 passed; CivicCode 162 passed.
+- CO-7 downstream temporary harnesses: Townlight Meetings 553 passed; Townlight Code 162 passed.
 
 Findings: none open.
 
-Verification gaps: None for CivicCore `v1.0` release publication; downstream
+Verification gaps: None for Townlight Core `v1.0` release publication; downstream
 module compatibility remains separate.
 
 ## 15. Cross-Cutting Synthesis
@@ -294,9 +294,9 @@ published `v1.0` release and its attestation assets.
 
 | Gap | Why it remains | Exact closing check | Blocks sign-off? |
 |---|---|---|---|
-| Downstream module compatibility | CivicCore `v1.0` is published, but each module still owns its compatibility matrix and pin movement. | Run each downstream module's release gate after changing its CivicCore pin. | Limits downstream sign-off only. |
-| Offline procurement reproduction | Local audit checked live metadata and local release verification; full offline cosign/SHA reproduction depends on the reviewer's environment. | Download release assets in a clean environment and run the release-note verification commands. | Confidence limit, not a CivicCore source blocker. |
+| Downstream module compatibility | Townlight Core `v1.0` is published, but each module still owns its compatibility matrix and pin movement. | Run each downstream module's release gate after changing its Townlight Core pin. | Limits downstream sign-off only. |
+| Offline procurement reproduction | Local audit checked live metadata and local release verification; full offline cosign/SHA reproduction depends on the reviewer's environment. | Download release assets in a clean environment and run the release-note verification commands. | Confidence limit, not a Townlight Core source blocker. |
 
 Sign-off limit: this report began as a release-prep audit and now includes a
-post-publication addendum. It signs off CivicCore `v1.0` publication posture,
+post-publication addendum. It signs off Townlight Core `v1.0` publication posture,
 while downstream module compatibility remains outside this report.

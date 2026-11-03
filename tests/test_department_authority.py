@@ -14,8 +14,8 @@ from datetime import UTC, datetime
 
 import pytest
 
-from civiccore.auth import AuthenticatedPrincipal
-from civiccore.auth.department_scope import (
+from townlight_core.auth import AuthenticatedPrincipal
+from townlight_core.auth.department_scope import (
     TRUSTED_AUTH_METHODS,
     AuthorityProvenanceError,
     DepartmentAccessDenied,
@@ -27,7 +27,7 @@ from civiccore.auth.department_scope import (
     scope_model_context_chunks,
     scope_search_results,
 )
-from civiccore.llm.context import assemble_context
+from townlight_core.llm.context import assemble_context
 
 SCOPE = "city-a"
 OTHER_SCOPE = "city-b"
@@ -344,7 +344,7 @@ def test_receipt_is_bounded_and_does_not_leak_the_subject():
 def test_grant_writes_refuse_a_malformed_scope(scope):
     import asyncio
 
-    from civiccore.auth.department_scope import active_department_grants, record_department_grant
+    from townlight_core.auth.department_scope import active_department_grants, record_department_grant
 
     async def write():
         # ``session=None`` is never touched: the scope is validated before any query.

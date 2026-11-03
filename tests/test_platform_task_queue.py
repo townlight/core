@@ -21,8 +21,8 @@ testcontainers = pytest.importorskip(
 )
 PostgresContainer = testcontainers.PostgresContainer
 
-from civiccore.migrations.runner import upgrade_to_head  # noqa: E402
-from civiccore.platform import (  # noqa: E402
+from townlight_core.migrations.runner import upgrade_to_head  # noqa: E402
+from townlight_core.platform import (  # noqa: E402
     LocalTask,
     LocalTaskEnvelope,
     TaskRetryPolicy,
@@ -32,8 +32,8 @@ from civiccore.platform import (  # noqa: E402
     fail_local_task,
     run_one_local_task,
 )
-from civiccore.tasks import register_task_handler  # noqa: E402
-from civiccore.tasks.worker import _run_worker  # noqa: E402
+from townlight_core.tasks import register_task_handler  # noqa: E402
+from townlight_core.tasks.worker import _run_worker  # noqa: E402
 
 
 def _docker_available() -> bool:
@@ -98,7 +98,7 @@ async def session(session_factory):
 async def test_local_task_queue_enqueues_claims_and_completes(session) -> None:
     task = LocalTaskEnvelope(
         task_id="records-response-1",
-        module_id="civicrecords-ai",
+        module_id="townlight_records",
         task_type="records_response_export",
         payload={"request_id": "RR-1001"},
         idempotency_key="RR-1001:response-export",
@@ -124,7 +124,7 @@ async def test_local_task_queue_enqueues_claims_and_completes(session) -> None:
 async def test_local_task_queue_records_retry_state(session) -> None:
     task = LocalTaskEnvelope(
         task_id="records-search-1",
-        module_id="civicrecords-ai",
+        module_id="townlight_records",
         task_type="records_search_index",
     )
     await enqueue_local_task(session, task)
@@ -151,7 +151,7 @@ async def test_run_one_local_task_uses_registered_handler(session) -> None:
         session,
         LocalTaskEnvelope(
             task_id="records-review-1",
-            module_id="civicrecords-ai",
+            module_id="townlight_records",
             task_type="records_review_packet",
         ),
     )
@@ -197,7 +197,7 @@ async def test_worker_once_runs_registered_handler(pg_container, session_factory
             sess,
             LocalTaskEnvelope(
                 task_id="records-worker-1",
-                module_id="civicrecords-ai",
+                module_id="townlight_records",
                 task_type="records_worker_registry_probe",
             ),
         )

@@ -12,8 +12,8 @@ import json
 
 import pytest
 
-from civiccore.platform import ModuleManifest
-from civiccore.platform.inventory import (
+from townlight_core.platform import ModuleManifest
+from townlight_core.platform.inventory import (
     InventoryConflictError,
     ModuleInventory,
     ModuleInventoryEntry,
@@ -31,7 +31,7 @@ def manifest(name, *, version="1.0.0", **extra):
         name=name.title(),
         version=version,
         package_name=name,
-        civiccore_min_version="1.3.0",
+        townlight_core_min_version="1.3.0",
         **extra,
     )
 
@@ -44,7 +44,7 @@ def entry(item, *, enabled=True):
 
 def inventory(*entries, scope="city-a", revision=1, version="1.3.0"):
     return ModuleInventory(
-        scope_id=scope, revision=revision, civiccore_version=version, entries=list(entries)
+        scope_id=scope, revision=revision, townlight_core_version=version, entries=list(entries)
     )
 
 
@@ -139,7 +139,7 @@ def test_core_too_old_is_reported_as_upgrade_core_not_dependency():
     item = inventory(entry(meeting), version="1.2.9")
     [recommendation] = module_recommendations(item)
     assert recommendation.action == "upgrade-core"
-    assert "CivicCore" in recommendation.operator_action
+    assert "TownlightCore" in recommendation.operator_action
 
 
 def test_profile_mismatch_is_reported_as_not_supported():

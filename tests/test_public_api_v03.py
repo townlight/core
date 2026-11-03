@@ -1,10 +1,10 @@
-"""Smoke tests for the shipped CivicCore package-root surface."""
+"""Smoke tests for the shipped TownlightCore package-root surface."""
 
 from __future__ import annotations
 
 
 def test_v03_public_api_symbols_import_from_package_root() -> None:
-    import civiccore
+    import townlight_core
 
     expected = {
         "AuditActor",
@@ -141,16 +141,16 @@ def test_v03_public_api_symbols_import_from_package_root() -> None:
         "validate_windows_local_manifest",
     }
 
-    missing = expected - set(dir(civiccore))
+    missing = expected - set(dir(townlight_core))
     assert not missing, f"Missing shipped public symbols: {missing}"
 
 
 def test_v03_placeholder_modules_stay_out_of_root_surface() -> None:
-    import civiccore
+    import townlight_core
 
     not_yet_shipped = {
         "Auth",
         "ExemptionRuleEngine",
     }
 
-    assert not (not_yet_shipped & set(dir(civiccore)))
+    assert not (not_yet_shipped & set(dir(townlight_core)))

@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import civiccore.tasks.artifacts as artifacts
+import townlight_core.tasks.artifacts as artifacts
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -20,7 +20,7 @@ def test_artifact_adr_records_trust_boundary_and_non_claims() -> None:
     assert "not released" in current
     assert "claim_token" in current
     assert "StaleTaskClaim" in current
-    assert "civiccore_job_artifacts" in current
+    assert "civiccore_job_artifacts" in current  # Dated ADR's original identity.
     assert "append-only" in current
     assert "restore-from-backup" in current
     assert "**no** transcription" in current
@@ -73,7 +73,7 @@ def test_artifact_module_documents_the_non_claims_it_must_uphold() -> None:
 
 
 def test_artifact_contract_is_importable_from_the_tasks_namespace() -> None:
-    import civiccore.tasks as tasks
+    import townlight_core.tasks as tasks
 
     for name in (
         "ArtifactProposal",
@@ -94,11 +94,11 @@ def test_artifact_contract_is_importable_from_the_tasks_namespace() -> None:
 
 
 def test_queue_require_active_claim_is_exported_without_a_second_engine() -> None:
-    import civiccore.platform as platform
+    import townlight_core.platform as platform
 
     assert "require_active_claim" in platform.__all__
     assert hasattr(platform, "require_active_claim")
-    source = (REPO_ROOT / "civiccore/platform/task_queue.py").read_text(encoding="utf-8")
+    source = (REPO_ROOT / "townlight_core/platform/task_queue.py").read_text(encoding="utf-8")
     # It must be a read-only fence over the existing ownership helper.
     assert "async def require_active_claim(" in source
     assert "row = await _owned_task(session, task_id, claim_token, now)" in source

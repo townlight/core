@@ -13,8 +13,8 @@ from uuid import uuid4
 import pytest
 from pydantic import ValidationError
 
-from civiccore.exemptions import Rule, evaluate
-from civiccore.exemptions.history import (
+from townlight_core.exemptions import Rule, evaluate
+from townlight_core.exemptions.history import (
     COVERAGE_DECLARATIONS,
     RuleHistoryError,
     RuleVersionInput,
@@ -80,7 +80,7 @@ def test_rejects_unsupported_type_coverage_citation_and_pattern(changes):
 
 
 def test_incomplete_scan_error_is_not_converted_to_empty():
-    from civiccore.exemptions import RuleEvaluationError
+    from townlight_core.exemptions import RuleEvaluationError
 
     with pytest.raises(ValidationError) as caught:
         RuleVersionInput.model_validate(payload(rule_type="regex", rule_definition="(a+)+$"))

@@ -1,4 +1,4 @@
-"""Tests for CivicCore Windows-local platform contracts."""
+"""Tests for TownlightCore Windows-local platform contracts."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from civiccore.platform import (
+from townlight_core.platform import (
     BackupManifest,
     LocalRuntimeProfile,
     LocalTaskEnvelope,
@@ -25,13 +25,13 @@ from civiccore.platform import (
 )
 
 
-def _module_manifest(module_id: str = "civicclerk", **overrides) -> ModuleManifest:
+def _module_manifest(module_id: str = "townlight_meetings", **overrides) -> ModuleManifest:
     data = {
         "module_id": module_id,
-        "name": "CivicClerk",
+        "name": "TownlightMeetings",
         "version": "1.0.0",
-        "package_name": "civicclerk",
-        "civiccore_min_version": "1.2.0",
+        "package_name": "townlight_meetings",
+        "townlight_core_min_version": "1.2.0",
         "surfaces": ["staff", "admin"],
         "install_profiles": ["windows_local"],
         "permissions": [
@@ -69,15 +69,15 @@ def _module_manifest(module_id: str = "civicclerk", **overrides) -> ModuleManife
         "migrations": [
             {
                 "id": "initial-schema",
-                "description": "Create local CivicClerk tables.",
-                "owner_schema": "civicclerk",
+                "description": "Create local TownlightMeetings tables.",
+                "owner_schema": "townlight_meetings",
             }
         ],
         "backup_hooks": [
             {
                 "id": "module-data",
                 "label": "Module data",
-                "includes": ["civicclerk/**"],
+                "includes": ["townlight_meetings/**"],
             }
         ],
         "model_requirements": [
@@ -124,28 +124,28 @@ def test_windows_manifest_rejects_docker_wsl_and_terminal_requirements() -> None
 
 def test_module_registry_blocks_missing_required_dependencies() -> None:
     manifest = _module_manifest(
-        dependencies=[{"module_id": "civicrecords-ai", "required": True}]
+        dependencies=[{"module_id": "townlight_records", "required": True}]
     )
 
     registry = build_module_registry(
         [manifest],
-        civiccore_version="1.2.0",
-        selected_module_ids={"civicclerk"},
+        townlight_core_version="1.2.0",
+        selected_module_ids={"townlight_meetings"},
     )
 
     entry = registry.entries[0]
-    assert registry.civiccore_locked is True
+    assert registry.townlight_core_locked is True
     assert entry.status == "blocked"
     assert entry.enabled is False
-    assert "civicrecords-ai" in (entry.reason or "")
+    assert "townlight_records" in (entry.reason or "")
 
 
 def test_module_registry_enables_valid_windows_local_module() -> None:
     manifest = _module_manifest()
 
-    registry = build_module_registry([manifest], civiccore_version="1.2.0")
+    registry = build_module_registry([manifest], townlight_core_version="1.2.0")
 
-    assert registry.enabled_module_ids == ["civicclerk"]
+    assert registry.enabled_module_ids == ["townlight_meetings"]
     assert registry.blocked_module_ids == []
     assert registry.entries[0].manifest.routes[0].label == "Meetings & Notices"
 
@@ -182,7 +182,7 @@ def test_local_task_retry_contract_has_no_external_runtime_assumption() -> None:
     now = datetime(2026, 6, 13, 12, 0, tzinfo=UTC)
     task = LocalTaskEnvelope(
         task_id="packet-export-1",
-        module_id="civicclerk",
+        module_id="townlight_meetings",
         task_type="packet_export",
     )
 
@@ -208,7 +208,7 @@ def test_local_task_exhaustion_is_blocking() -> None:
     now = datetime(2026, 6, 13, 12, 0, tzinfo=UTC)
     task = LocalTaskEnvelope(
         task_id="records-export-1",
-        module_id="civicrecords-ai",
+        module_id="townlight_records",
         task_type="records_export",
         attempt_count=1,
     )
@@ -228,8 +228,8 @@ def test_local_task_exhaustion_is_blocking() -> None:
 def test_backup_manifest_validates_hashes_and_restore_safety(tmp_path) -> None:
     data_root = tmp_path / "data"
     data_root.mkdir()
-    (data_root / "civicclerk").mkdir()
-    payload = data_root / "civicclerk" / "meetings.json"
+    (data_root / "townlight_meetings").mkdir()
+    payload = data_root / "townlight_meetings" / "meetings.json"
     payload.write_text('{"meeting":"Regular Council"}', encoding="utf-8")
 
     manifest = build_backup_manifest(
@@ -237,8 +237,8 @@ def test_backup_manifest_validates_hashes_and_restore_safety(tmp_path) -> None:
         files=[payload],
         backup_id="backup-1",
         city_profile_id="sampleville",
-        civiccore_version="1.2.0",
-        module_id="civicclerk",
+        townlight_core_version="1.2.0",
+        module_id="townlight_meetings",
     )
 
     assert isinstance(manifest, BackupManifest)
@@ -254,16 +254,16 @@ def test_backup_manifest_validates_hashes_and_restore_safety(tmp_path) -> None:
     payload.write_text("tampered", encoding="utf-8")
     tampered = validate_backup_manifest(manifest, root=data_root)
     assert tampered.valid is False
-    assert tampered.hash_mismatches == ["civicclerk/meetings.json"]
+    assert tampered.hash_mismatches == ["townlight_meetings/meetings.json"]
 
 
 def test_restore_plan_blocks_overwrite_by_default(tmp_path) -> None:
     backup_root = tmp_path / "backup"
     restore_root = tmp_path / "restore"
-    (backup_root / "civiccode").mkdir(parents=True)
-    (restore_root / "civiccode").mkdir(parents=True)
-    source = backup_root / "civiccode" / "code.json"
-    target = restore_root / "civiccode" / "code.json"
+    (backup_root / "townlight_code").mkdir(parents=True)
+    (restore_root / "townlight_code").mkdir(parents=True)
+    source = backup_root / "townlight_code" / "code.json"
+    target = restore_root / "townlight_code" / "code.json"
     source.write_text('{"title":"Code"}', encoding="utf-8")
     target.write_text("existing", encoding="utf-8")
 
@@ -272,8 +272,8 @@ def test_restore_plan_blocks_overwrite_by_default(tmp_path) -> None:
         files=[source],
         backup_id="backup-2",
         city_profile_id="sampleville",
-        civiccore_version="1.2.0",
-        module_id="civiccode",
+        townlight_core_version="1.2.0",
+        module_id="townlight_code",
     )
     plan = plan_restore(manifest, backup_root=backup_root, restore_root=restore_root)
 
@@ -282,7 +282,7 @@ def test_restore_plan_blocks_overwrite_by_default(tmp_path) -> None:
 
 
 def test_runtime_profile_and_action_result_are_local_first(tmp_path) -> None:
-    registry = build_module_registry([_module_manifest()], civiccore_version="1.2.0")
+    registry = build_module_registry([_module_manifest()], townlight_core_version="1.2.0")
 
     profile = LocalRuntimeProfile(
         profile_id="sampleville",
@@ -296,9 +296,9 @@ def test_runtime_profile_and_action_result_are_local_first(tmp_path) -> None:
         action="first_run",
         status="succeeded",
         title="Setup complete",
-        message="CivicSuite is ready on this computer.",
+        message="Townlight is ready on this computer.",
     )
 
     assert profile.local_only is True
-    assert profile.module_registry.enabled_module_ids == ["civicclerk"]
+    assert profile.module_registry.enabled_module_ids == ["townlight_meetings"]
     assert result.status == "succeeded"

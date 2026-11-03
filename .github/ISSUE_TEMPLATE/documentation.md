@@ -16,4 +16,4 @@ labels: ["documentation"]
 **Audience this affects**
 - [ ] Module developer / IT integrator
 - [ ] Consuming application (records-ai, future modules)
-- [ ] Evaluator (deciding whether to use civiccore)
+- [ ] Evaluator (deciding whether to use townlight_core)

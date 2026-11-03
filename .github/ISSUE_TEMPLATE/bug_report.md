@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a defect in civiccore
+about: Report a defect in townlight_core
 title: "[bug] "
 labels: ["bug"]
 ---
@@ -19,7 +19,7 @@ labels: ["bug"]
 <!-- Include error messages, stack traces, log output. -->
 
 **Environment**
-- civiccore version (`python -c "import civiccore; print(civiccore.__version__)"`):
+- townlight_core version (`python -c "import townlight_core; print(townlight_core.__version__)"`):
 - Python version:
 - Consuming application (records-ai, custom, evaluation):
 - Postgres version (if migration-related):

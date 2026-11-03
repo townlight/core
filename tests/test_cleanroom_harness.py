@@ -15,17 +15,17 @@ def read(path: str) -> str:
 
 
 def test_cleanroom_dockerfile_pins_base_image_and_cosign() -> None:
-    dockerfile = read("cleanroom/civiccore.Dockerfile")
+    dockerfile = read("cleanroom/townlight_core.Dockerfile")
 
     assert "python:3.13-slim-bookworm@sha256:bb73517d48bd32016e15eade0c009b2724ec3a025a9975b5cd9b251d0dcadb33" in dockerfile
     assert "ARG COSIGN_VERSION=v3.0.6" in dockerfile
     assert "ARG COSIGN_SHA256=c956e5dfcac53d52bcf058360d579472f0c1d2d9b69f55209e256fe7783f4c74" in dockerfile
     assert "git fetch --depth 1 origin" in dockerfile
-    assert 'test "$(git rev-parse HEAD)" = "${CIVICCORE_COMMIT}"' in dockerfile
+    assert 'test "$(git rev-parse HEAD)" = "${TOWNLIGHT_CORE_COMMIT}"' in dockerfile
 
 
 def test_cleanroom_runner_executes_required_verification_paths() -> None:
-    runner = read("scripts/cleanroom/civiccore-cleanroom-runner.sh")
+    runner = read("scripts/cleanroom/townlight_core-cleanroom-runner.sh")
 
     assert "bash scripts/verify-release.sh" in runner
     assert "python scripts/verify-release-provenance.py --fixtures-dir tests/fixtures/release_provenance" in runner
@@ -37,7 +37,7 @@ def test_cleanroom_runner_executes_required_verification_paths() -> None:
 
 
 def test_cleanroom_orchestrator_uses_no_cache_two_runs_and_offline_network() -> None:
-    orchestrator = read("scripts/run-civiccore-cleanroom.sh")
+    orchestrator = read("scripts/run-townlight_core-cleanroom.sh")
 
     assert "docker build --no-cache --pull --platform linux/amd64" in orchestrator
     assert "RUN_COUNT=\"${CLEANROOM_RUN_COUNT:-2}\"" in orchestrator
@@ -53,7 +53,7 @@ def test_cleanroom_ci_uploads_evidence_artifact() -> None:
     assert "TARGET_COMMIT" in workflow
     assert "github.event.pull_request.head.sha" in workflow
     assert "fetch-depth: 0" in workflow
-    assert "bash scripts/run-civiccore-cleanroom.sh" in workflow
+    assert "bash scripts/run-townlight_core-cleanroom.sh" in workflow
     assert "actions/upload-artifact" in workflow
     assert "CLEANROOM_RUN_COUNT: \"2\"" in workflow
 
@@ -62,7 +62,7 @@ def test_cleanroom_ci_uploads_evidence_artifact() -> None:
 def test_offline_smoke_requires_candidate_version(
     tmp_path: Path, runtime_version: str
 ) -> None:
-    runner = read("scripts/cleanroom/civiccore-cleanroom-runner.sh")
+    runner = read("scripts/cleanroom/townlight_core-cleanroom-runner.sh")
     marker = 'run_step "offline-runtime-smoke" python - <<\'PY\'\n'
     smoke = runner.split(marker, 1)[1].split("\nPY", 1)[0]
     (tmp_path / "pyproject.toml").write_text(
@@ -76,7 +76,7 @@ def test_offline_smoke_requires_candidate_version(
         "compute_onboarding_status",
         "verify_persisted_audit_chain",
     )
-    (tmp_path / "civiccore.py").write_text(
+    (tmp_path / "townlight_core.py").write_text(
         f"__version__ = {runtime_version!r}\n"
         + "".join(f"def {name}(): pass\n" for name in exports),
         encoding="utf-8",

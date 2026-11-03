@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from civiccore.connectors import (
+from townlight_core.connectors import (
     ConnectorImportError,
     ImportedAgendaItem,
     SUPPORTED_CONNECTORS,

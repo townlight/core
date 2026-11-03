@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, date, datetime
 
-from civiccore.notifications import build_deadline_plan, evaluate_notice_compliance
+from townlight_core.notifications import build_deadline_plan, evaluate_notice_compliance
 
 
 def test_build_deadline_plan_returns_publish_by_and_reminders() -> None:

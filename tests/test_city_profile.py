@@ -5,7 +5,7 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from civiccore.city_profile import (
+from townlight_core.city_profile import (
     CityProfile,
     DeploymentProfile,
     ModuleEnablement,
@@ -35,7 +35,7 @@ def valid_payload() -> dict:
             {"name": "permits", "enabled": False, "settings": {"pilot": True}},
         ],
         "default_llm_provider": "ollama",
-        "file_drop_roots": ["C:/civiccore/dropbox"],
+        "file_drop_roots": ["C:/townlight_core/dropbox"],
         "public_contact": {
             "email": "info@example.gov",
             "phone": "555-0100",
@@ -50,7 +50,7 @@ def test_load_valid_json_profile(tmp_path):
     assert profile.city_name == "Sampleville"
     assert profile.timezone == "America/Denver"
     assert profile.departments[0].slug == "city-clerk"
-    assert profile.file_drop_roots[0].as_posix().endswith("civiccore/dropbox")
+    assert profile.file_drop_roots[0].as_posix().endswith("townlight_core/dropbox")
     assert profile.public_contact["email"] == "info@example.gov"
 
 

@@ -34,7 +34,7 @@ env/
 ENV/
 .python-version
 
-# Node (for civiccore-ui/)
+# Node (for townlight_core-ui/)
 node_modules/
 npm-debug.log*
 yarn-debug.log*

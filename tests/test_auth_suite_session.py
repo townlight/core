@@ -1,4 +1,4 @@
-"""Contract tests for CivicCore-owned suite staff session tokens."""
+"""Contract tests for TownlightCore-owned suite staff session tokens."""
 
 from __future__ import annotations
 
@@ -6,8 +6,8 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-import civiccore.auth.suite_session as suite_session_module
-from civiccore.auth.suite_session import (
+import townlight_core.auth.suite_session as suite_session_module
+from townlight_core.auth.suite_session import (
     SuiteSessionConfigError,
     SuiteSessionPrincipal,
     issue_suite_session_token,
@@ -19,7 +19,7 @@ from civiccore.auth.suite_session import (
 def test_suite_session_token_validates_role_claims_and_rejects_revocation(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    monkeypatch.setenv("CIVICCORE_SUITE_SESSION_SECRET", "test-secret-with-enough-entropy")
+    monkeypatch.setenv("TOWNLIGHT_CORE_SUITE_SESSION_SECRET", "test-secret-with-enough-entropy")
     expires_at = datetime.now(UTC) + timedelta(minutes=15)
 
     token = issue_suite_session_token(
@@ -49,9 +49,9 @@ def test_suite_session_token_validates_role_claims_and_rejects_revocation(
 def test_suite_session_secret_is_required_with_actionable_error(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    monkeypatch.delenv("CIVICCORE_SUITE_SESSION_SECRET", raising=False)
+    monkeypatch.delenv("TOWNLIGHT_CORE_SUITE_SESSION_SECRET", raising=False)
 
-    with pytest.raises(SuiteSessionConfigError, match="CIVICCORE_SUITE_SESSION_SECRET"):
+    with pytest.raises(SuiteSessionConfigError, match="TOWNLIGHT_CORE_SUITE_SESSION_SECRET"):
         issue_suite_session_token(
             subject="admin@example.gov",
             roles=frozenset({"records_admin"}),
@@ -63,9 +63,9 @@ def test_suite_session_revocation_file_survives_process_local_cache_reset(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path,
 ) -> None:
-    monkeypatch.setenv("CIVICCORE_SUITE_SESSION_SECRET", "test-secret-with-enough-entropy")
+    monkeypatch.setenv("TOWNLIGHT_CORE_SUITE_SESSION_SECRET", "test-secret-with-enough-entropy")
     revocation_path = tmp_path / "suite-session-revocations.json"
-    monkeypatch.setenv("CIVICCORE_SUITE_SESSION_REVOCATION_FILE", str(revocation_path))
+    monkeypatch.setenv("TOWNLIGHT_CORE_SUITE_SESSION_REVOCATION_FILE", str(revocation_path))
     token = issue_suite_session_token(
         subject="admin@example.gov",
         roles=frozenset({"records_admin"}),

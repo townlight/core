@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from civiccore.connectors import plan_vendor_delta_request
+from townlight_core.connectors import plan_vendor_delta_request
 
 
 def test_delta_request_plans_connector_specific_cursor_query() -> None:

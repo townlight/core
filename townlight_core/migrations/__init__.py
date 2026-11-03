@@ -1,0 +1,1 @@
+"""TownlightCore: Alembic migrations for shared tables. Run by every consuming module's migration runner BEFORE that module's own migrations. See env.py for the migration-ordering contract from TownlightCore Extraction Spec section 14."""

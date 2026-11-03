@@ -4,8 +4,8 @@ import socket
 
 import pytest
 
-from civiccore.connectors.manifest import ManifestValidationError
-from civiccore.exports import (
+from townlight_core.connectors.manifest import ManifestValidationError
+from townlight_core.exports import (
     BundleFile,
     ExportBundle,
     build_sha256sums,
@@ -21,7 +21,7 @@ def _make_bundle(tmp_path) -> ExportBundle:
     (reports / "summary.json").write_text('{"total":1}\n', encoding="utf-8")
 
     return ExportBundle(
-        module_name="civicrecords",
+        module_name="townlight_records",
         module_version="0.3.0",
         files=[
             BundleFile.from_path(tmp_path, "reports/cases.csv"),

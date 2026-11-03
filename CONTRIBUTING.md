@@ -1,4 +1,4 @@
-<a id="contributing-to-civiccore"></a>
+<a id="contributing-to-townlight_core"></a>
 
 # Contributing to Townlight Core
 
@@ -14,7 +14,7 @@ Townlight Core is at v0.1 (Phase 0 — package skeleton). Functional code lands
 in Phase 1 and beyond per the Townlight Core Extraction Spec section 12. If
 you want to contribute today, the most useful work is:
 
-- Reviewing the Extraction Spec (in CivicSuite/civicsuite) and filing
+- Reviewing the Extraction Spec (in Townlight/townlight) and filing
   issues against ambiguous wording.
 - Building a Phase 1 prototype against the auth + audit subsystem
   contracts in Appendix A of the spec.
@@ -66,7 +66,7 @@ nowhere.
 
 Requirements:
 
-- Python `>=3.11` (Townlight Core widens past civicrecords-ai's 3.12 floor
+- Python `>=3.11` (Townlight Core widens past townlight_records's 3.12 floor
   because it is a shared library).
 - Git.
 - A POSIX-ish shell or PowerShell. The package itself is OS-agnostic.
@@ -74,8 +74,8 @@ Requirements:
 Clone and install in editable mode with the dev extras:
 
 ```bash
-git clone https://github.com/CivicSuite/civiccore.git
-cd civiccore
+git clone https://github.com/Townlight/townlight_core.git
+cd townlight_core
 python -m venv .venv
 # macOS / Linux:
 source .venv/bin/activate
@@ -103,7 +103,7 @@ python scripts/verify/verify_no_telemetry.py   # planned
 ## Code standards
 
 - Match existing patterns. Where a pattern is missing, follow the
-  conventions in `civicrecords-ai/backend/app/` — Townlight Core is being
+  conventions in `townlight_records/backend/app/` — Townlight Core is being
   extracted from that codebase and consistency makes the migration
   reviewable.
 - Type hints on every public function. `mypy` strictness ratchets up
@@ -137,7 +137,7 @@ listed in Appendix A is stable across the v0.x series:
 
 When you bump the version, update it in every location in the same
 commit (currently: `pyproject.toml` `[project].version` and
-`civiccore/__init__.py` `__version__`).
+`townlight_core/__init__.py` `__version__`).
 
 ## Security advisories
 

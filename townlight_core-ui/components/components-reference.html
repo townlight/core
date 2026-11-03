@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Townlight — Component Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- No webfont CDN: Townlight makes no outbound calls. Renders in the token
+     stack's local/fallback faces. -->
+<link rel="stylesheet" href="../tokens/tokens.css" />
+<link rel="stylesheet" href="components.css" />
+<style>
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 48px 32px 96px; }
+  header.doc { border-bottom: 1px solid var(--gold); padding-bottom: 20px; margin-bottom: 8px; }
+  .kick { font-family: var(--font-serif); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 10px; }
+  h1 { font-family: var(--font-serif); font-size: 30px; font-weight: 600; margin: 0 0 8px; }
+  .lede { font-size: 14px; color: var(--ink-2); max-width: 70ch; margin: 0; }
+  section.demo { padding: 28px 0; border-bottom: 1px solid var(--rule); }
+  section.demo > h2 { font-family: var(--font-serif); font-size: 18px; margin: 0 0 4px; }
+  section.demo > .h-note { font-size: 12.5px; color: var(--ink-3); margin: 0 0 16px; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .panel { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 18px; }
+  .code { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-3); }
+  /* Render the audit drawer inline for the showcase (it is position:fixed in use). */
+  .drawer-demo { position: relative; height: 320px; border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; }
+  .drawer-demo .audit-drawer { position: absolute; top: 0; transform: none; box-shadow: none; border-left: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="doc">
+    <div class="kick">Townlight · Design System</div>
+    <h1>Component Reference</h1>
+    <p class="lede">The canonical component primitives, rendered from <span class="code">components.css</span> on the token authority. Every color, type, and density value comes from <span class="code">tokens.css</span>. This is the structure source the way tokens.css is the value source.</p>
+  </header>
+
+  <section class="demo">
+    <h2>Buttons</h2>
+    <p class="h-note"><span class="code">.btn</span> · <span class="code">.primary .ghost .danger</span> · sizes <span class="code">.sm .lg</span>. No gold button: white-on-gold fails AA; use <span class="code">.primary</span> for a solid CTA.</p>
+    <div class="panel row">
+      <button class="btn primary">Primary</button>
+      <button class="btn">Default</button>
+      <button class="btn ghost">Ghost</button>
+      <button class="btn danger">Delete review</button>
+      <button class="btn sm">Small</button>
+      <button class="btn lg">Large</button>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>Badges &amp; status</h2>
+    <p class="h-note"><span class="code">.badge</span> · <span class="code">.ok .warn .err .info .gold</span> · <span class="code">.dot</span>. Gold uses <span class="code">--gold-strong</span> (5.43:1, AA).</p>
+    <div class="panel row">
+      <span class="badge">Neutral</span>
+      <span class="badge ok dot">Released</span>
+      <span class="badge warn dot">Needs attention</span>
+      <span class="badge err dot">Failed</span>
+      <span class="badge info dot">Platform</span>
+      <span class="badge gold dot">Queued</span>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>Status ribbon (lifecycle)</h2>
+    <p class="h-note"><span class="code">.ribbon</span> &gt; <span class="code">.ribbon-step</span> (<span class="code">.done .current</span>). Status conveyed by shape + label, never color alone.</p>
+    <div class="panel">
+      <div class="ribbon">
+        <div class="ribbon-step done"><span class="num">1</span>Drafted</div>
+        <div class="ribbon-step done"><span class="num">2</span>Reviewed</div>
+        <div class="ribbon-step current"><span class="num">3</span>On agenda</div>
+        <div class="ribbon-step"><span class="num">4</span>Posted</div>
+        <div class="ribbon-step"><span class="num">5</span>Archived</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>Table</h2>
+    <p class="h-note"><span class="code">.tbl</span> with <span class="code">.id .ttl .meta</span> cells; honors <span class="code">[data-density]</span>.</p>
+    <div class="panel" style="padding:0; overflow:hidden;">
+      <table class="tbl">
+        <thead><tr><th>ID</th><th>Notice</th><th>Status</th><th>Updated</th></tr></thead>
+        <tbody>
+          <tr><td class="id">N-1042</td><td class="ttl">Public hearing — rezoning</td><td><span class="badge ok dot">Posted</span></td><td class="meta">2026-07-01</td></tr>
+          <tr class="selected"><td class="id">N-1043</td><td class="ttl">Budget adoption notice</td><td><span class="badge gold dot">Queued</span></td><td class="meta">2026-07-02</td></tr>
+          <tr><td class="id">N-1044</td><td class="ttl">Special meeting</td><td><span class="badge warn dot">Draft</span></td><td class="meta">2026-07-03</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>Form fields</h2>
+    <p class="h-note"><span class="code">.field</span> &gt; <span class="code">label</span> (<span class="code">.req</span>) / <span class="code">.hint</span> + <span class="code">.input .select .textarea</span>. Focus ring is the AA navy ring.</p>
+    <div class="panel" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <div class="field"><label>City name <span class="req">*</span></label><input class="input" value="Brookfield" /></div>
+      <div class="field"><label>Records contact</label><input class="input" placeholder="name@city.gov" /><span class="hint">Used on public-records responses.</span></div>
+      <div class="field"><label>Profile</label><select class="select"><option>City Core (all six modules)</option><option>Custom</option></select></div>
+      <div class="field" style="grid-column:1/3;"><label>Notice body</label><textarea class="textarea" placeholder="Paste notice text…"></textarea></div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>Alerts</h2>
+    <p class="h-note"><span class="code">.alert</span> · <span class="code">.ok .warn .err .info</span>. Used for the "AI engine not ready" fallback state and inline validation.</p>
+    <div class="panel" style="display:grid; gap:10px;">
+      <div class="alert warn"><span class="ic">▲</span><div class="body"><b>AI engine not ready</b>Every tool still works in labeled sample mode. <div class="actions"><button class="btn sm">Open model setup</button></div></div></div>
+      <div class="alert info"><span class="ic">i</span><div class="body">This is a draft. A human reviews and decides before anything is published.</div></div>
+      <div class="alert ok"><span class="ic">✓</span><div class="body">Review saved. Records-ready export is available.</div></div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>First-run setup step</h2>
+    <p class="h-note"><span class="code">.setup-step</span> (<span class="code">.current .done</span>) — the canonical three-state wizard step.</p>
+    <div class="panel" style="display:grid; gap:10px;">
+      <div class="setup-step done"><div class="num">✓</div><div><div class="setup-step-h"><h3>City profile</h3><span class="badge ok dot">Done</span></div></div></div>
+      <div class="setup-step current"><div class="num">3</div><div><div class="setup-step-h"><h3>First administrator</h3><span class="badge gold dot">Now</span></div><div class="setup-fields"><div class="field"><label>Name</label><input class="input" /></div><div class="field"><label>Email</label><input class="input" /></div></div></div></div>
+      <div class="setup-step"><div class="num">4</div><div><div class="setup-step-h"><h3>Backup folder</h3></div></div></div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>Empty state</h2>
+    <div class="panel"><div class="empty"><div class="ic">▢</div><div class="ttl">No saved reviews yet</div><div class="body">Run an accessibility review and save it to see it listed here with a records-ready export.</div><button class="btn primary">New review</button></div></div>
+  </section>
+
+  <section class="demo" style="border-bottom:0;">
+    <h2>Audit drawer</h2>
+    <p class="h-note"><span class="code">.audit-drawer</span> — the hash-chained, cross-module audit trail (shown inline here; it is a right-docked drawer in the app).</p>
+    <div class="drawer-demo">
+      <div class="audit-drawer open">
+        <div class="audit-h"><div><div class="ttl">Audit trail</div><div class="sub">Hash-chained · this record</div></div></div>
+        <div class="audit-tabs"><button class="on">This record</button><button>All modules</button></div>
+        <div class="audit-b">
+          <div class="audit-event"><div class="marker"></div><div><div class="ev-h">Review created</div><div class="ev-meta">clerk@city.gov · 2026-07-02 14:22</div><div class="ev-body">Accessibility review opened for notice N-1043.</div><span class="ev-hash">a1b2…9f4c</span></div></div>
+          <div class="audit-event publish"><div class="marker"></div><div><div class="ev-h">AI analysis attached</div><div class="ev-meta">gemma-4-12b-it-qat-q4_0 · 2026-07-02 14:23</div><div class="ev-body">Advisory remediation analysis stored (draft; status unchanged).</div><span class="ev-hash">c3d4…1a77</span></div></div>
+          <div class="audit-event"><div class="marker"></div><div><div class="ev-h">Review saved</div><div class="ev-meta">clerk@city.gov · 2026-07-02 14:25</div><span class="ev-hash">e5f6…8b22</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

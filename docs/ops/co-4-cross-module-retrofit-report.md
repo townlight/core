@@ -28,9 +28,9 @@ in that product repository.
 
 | Repository | PR | Base | Merge commit | Scope |
 | --- | --- | --- | --- | --- |
-| `townlight/sunshine` | [#67](https://github.com/CivicSuite/civicrecords-ai/pull/67) | `master` | `3b1f38c3d88050c1cf299cf8254eedf65f58a52a` | Ledgered `v1.4.10`, updated current Townlight Core dependency/docs to `v0.22.1`, added browser QA evidence, and copied ledger evidence into the backend image so CI verifies it. |
-| `townlight/meetings` | [#142](https://github.com/CivicSuite/civicclerk/pull/142) | `main` | `b068233e87608931ff9165fad435a10fbade24a8` | Ledgered `v0.1.20`, updated current Townlight Core dependency/docs/workflows/rehearsal health checks to `v0.22.1`, and refreshed browser QA evidence. |
-| `townlight/ordinances` | [#47](https://github.com/CivicSuite/civiccode/pull/47) | `main` | `4450931de51c1173adcff91d47e5373382670d89` | Ledgered `v0.1.17` and `v0.1.18`, updated current Townlight Core dependency/docs/workflows to `v0.22.1`, and added browser QA evidence. |
+| `townlight/sunshine` | [#67](https://github.com/Townlight/townlight_records/pull/67) | `master` | `3b1f38c3d88050c1cf299cf8254eedf65f58a52a` | Ledgered `v1.4.10`, updated current Townlight Core dependency/docs to `v0.22.1`, added browser QA evidence, and copied ledger evidence into the backend image so CI verifies it. |
+| `townlight/meetings` | [#142](https://github.com/Townlight/townlight_meetings/pull/142) | `main` | `b068233e87608931ff9165fad435a10fbade24a8` | Ledgered `v0.1.20`, updated current Townlight Core dependency/docs/workflows/rehearsal health checks to `v0.22.1`, and refreshed browser QA evidence. |
+| `townlight/ordinances` | [#47](https://github.com/Townlight/townlight_code/pull/47) | `main` | `4450931de51c1173adcff91d47e5373382670d89` | Ledgered `v0.1.17` and `v0.1.18`, updated current Townlight Core dependency/docs/workflows to `v0.22.1`, and added browser QA evidence. |
 
 ## Evidence
 

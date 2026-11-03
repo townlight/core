@@ -4,7 +4,7 @@ import pytest
 from fastapi import HTTPException
 from fastapi.security import HTTPAuthorizationCredentials
 
-from civiccore.auth import (
+from townlight_core.auth import (
     AuthenticatedPrincipal,
     authorize_bearer_roles,
     enforce_trusted_proxy_source,
@@ -135,9 +135,9 @@ def test_authorize_bearer_roles_returns_principal_for_allowed_token(
 def test_resolve_optional_bearer_roles_allows_anonymous_callers_without_config() -> None:
     principal = resolve_optional_bearer_roles(
         None,
-        service_name="CivicClerk",
+        service_name="TownlightMeetings",
         feature_name="archive search staff access",
-        token_roles_env_var="CIVICCLERK_AUTH_TOKEN_ROLES",
+        token_roles_env_var="TOWNLIGHT_MEETINGS_AUTH_TOKEN_ROLES",
         allowed_roles={"archive_reader"},
     )
 
@@ -148,15 +148,15 @@ def test_resolve_optional_bearer_roles_returns_principal_for_configured_staff_to
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     monkeypatch.setenv(
-        "CIVICCLERK_AUTH_TOKEN_ROLES",
+        "TOWNLIGHT_MEETINGS_AUTH_TOKEN_ROLES",
         '{"staff-token": ["archive_reader", "clerk_admin"]}',
     )
 
     principal = resolve_optional_bearer_roles(
         HTTPAuthorizationCredentials(scheme="Bearer", credentials="staff-token"),
-        service_name="CivicClerk",
+        service_name="TownlightMeetings",
         feature_name="archive search staff access",
-        token_roles_env_var="CIVICCLERK_AUTH_TOKEN_ROLES",
+        token_roles_env_var="TOWNLIGHT_MEETINGS_AUTH_TOKEN_ROLES",
         allowed_roles={"archive_reader"},
     )
 
@@ -168,16 +168,16 @@ def test_resolve_optional_bearer_roles_rejects_present_token_without_allowed_rol
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     monkeypatch.setenv(
-        "CIVICCLERK_AUTH_TOKEN_ROLES",
+        "TOWNLIGHT_MEETINGS_AUTH_TOKEN_ROLES",
         '{"staff-token": ["meeting_editor"]}',
     )
 
     with pytest.raises(HTTPException) as exc_info:
         resolve_optional_bearer_roles(
             HTTPAuthorizationCredentials(scheme="Bearer", credentials="staff-token"),
-            service_name="CivicClerk",
+            service_name="TownlightMeetings",
             feature_name="archive search staff access",
-            token_roles_env_var="CIVICCLERK_AUTH_TOKEN_ROLES",
+            token_roles_env_var="TOWNLIGHT_MEETINGS_AUTH_TOKEN_ROLES",
             allowed_roles={"archive_reader"},
         )
 
@@ -198,7 +198,7 @@ def test_authorize_trusted_header_roles_requires_principal_header() -> None:
     with pytest.raises(HTTPException) as exc_info:
         authorize_trusted_header_roles(
             {"X-Civic-Roles": "clerk_admin"},
-            service_name="CivicClerk",
+            service_name="TownlightMeetings",
             feature_name="staff workflow access",
             principal_header_name="X-Civic-Principal",
             roles_header_name="X-Civic-Roles",
@@ -209,7 +209,7 @@ def test_authorize_trusted_header_roles_requires_principal_header() -> None:
     assert exc_info.value.status_code == 401
     assert exc_info.value.detail["message"] == "Trusted identity header missing."
     assert "X-Civic-Principal" in exc_info.value.detail["fix"]
-    assert "CivicClerk" in exc_info.value.detail["fix"]
+    assert "TownlightMeetings" in exc_info.value.detail["fix"]
     assert "staff workflow access" in exc_info.value.detail["fix"]
 
 
@@ -217,7 +217,7 @@ def test_authorize_trusted_header_roles_requires_role_header() -> None:
     with pytest.raises(HTTPException) as exc_info:
         authorize_trusted_header_roles(
             {"X-Civic-Principal": "clerk@example.gov"},
-            service_name="CivicClerk",
+            service_name="TownlightMeetings",
             feature_name="staff workflow access",
             principal_header_name="X-Civic-Principal",
             roles_header_name="X-Civic-Roles",
@@ -228,7 +228,7 @@ def test_authorize_trusted_header_roles_requires_role_header() -> None:
     assert exc_info.value.status_code == 401
     assert exc_info.value.detail["message"] == "Trusted role header missing."
     assert "X-Civic-Roles" in exc_info.value.detail["fix"]
-    assert "CivicClerk" in exc_info.value.detail["fix"]
+    assert "TownlightMeetings" in exc_info.value.detail["fix"]
     assert "staff workflow access" in exc_info.value.detail["fix"]
 
 
@@ -239,7 +239,7 @@ def test_authorize_trusted_header_roles_rejects_underprivileged_identity() -> No
                 "X-Civic-Principal": "clerk@example.gov",
                 "X-Civic-Roles": "records_viewer",
             },
-            service_name="CivicClerk",
+            service_name="TownlightMeetings",
             feature_name="staff workflow access",
             principal_header_name="X-Civic-Principal",
             roles_header_name="X-Civic-Roles",
@@ -252,7 +252,7 @@ def test_authorize_trusted_header_roles_rejects_underprivileged_identity() -> No
     assert exc_info.value.detail["required_roles"] == ["clerk_admin", "meeting_editor"]
     assert "principal" not in exc_info.value.detail
     assert "principal_roles" not in exc_info.value.detail
-    assert "CivicClerk" in exc_info.value.detail["fix"]
+    assert "TownlightMeetings" in exc_info.value.detail["fix"]
     assert "staff workflow access" in exc_info.value.detail["fix"]
 
 
@@ -262,7 +262,7 @@ def test_authorize_trusted_header_roles_returns_principal() -> None:
             "X-Civic-Principal": "clerk@example.gov",
             "X-Civic-Roles": "meeting_editor, clerk_admin",
         },
-        service_name="CivicClerk",
+        service_name="TownlightMeetings",
         feature_name="staff workflow access",
         principal_header_name="X-Civic-Principal",
         roles_header_name="X-Civic-Roles",
@@ -281,7 +281,7 @@ def test_authorize_trusted_header_roles_returns_principal() -> None:
 def test_resolve_optional_trusted_header_roles_allows_anonymous_callers() -> None:
     principal = resolve_optional_trusted_header_roles(
         {},
-        service_name="CivicClerk",
+        service_name="TownlightMeetings",
         feature_name="staff workflow access",
         principal_header_name="X-Civic-Principal",
         roles_header_name="X-Civic-Roles",
@@ -298,7 +298,7 @@ def test_resolve_optional_trusted_header_roles_returns_principal_when_present() 
             "X-Civic-Principal": "clerk@example.gov",
             "X-Civic-Roles": "clerk_admin",
         },
-        service_name="CivicClerk",
+        service_name="TownlightMeetings",
         feature_name="staff workflow access",
         principal_header_name="X-Civic-Principal",
         roles_header_name="X-Civic-Roles",
@@ -371,15 +371,15 @@ def test_enforce_trusted_proxy_source_requires_allowlist() -> None:
     with pytest.raises(HTTPException) as exc_info:
         enforce_trusted_proxy_source(
             "127.0.0.1",
-            service_name="CivicClerk",
+            service_name="TownlightMeetings",
             feature_name="staff workflow access",
             config=config,
-            trusted_proxy_env_var="CIVICCLERK_STAFF_SSO_TRUSTED_PROXIES",
+            trusted_proxy_env_var="TOWNLIGHT_MEETINGS_STAFF_SSO_TRUSTED_PROXIES",
         )
 
     assert exc_info.value.status_code == 503
     assert exc_info.value.detail["message"] == "Trusted-header proxy allowlist is missing."
-    assert "CIVICCLERK_STAFF_SSO_TRUSTED_PROXIES" in exc_info.value.detail["fix"]
+    assert "TOWNLIGHT_MEETINGS_STAFF_SSO_TRUSTED_PROXIES" in exc_info.value.detail["fix"]
 
 
 def test_enforce_trusted_proxy_source_rejects_invalid_allowlist() -> None:
@@ -393,10 +393,10 @@ def test_enforce_trusted_proxy_source_rejects_invalid_allowlist() -> None:
     with pytest.raises(HTTPException) as exc_info:
         enforce_trusted_proxy_source(
             "127.0.0.1",
-            service_name="CivicClerk",
+            service_name="TownlightMeetings",
             feature_name="staff workflow access",
             config=config,
-            trusted_proxy_env_var="CIVICCLERK_STAFF_SSO_TRUSTED_PROXIES",
+            trusted_proxy_env_var="TOWNLIGHT_MEETINGS_STAFF_SSO_TRUSTED_PROXIES",
         )
 
     assert exc_info.value.status_code == 503
@@ -415,10 +415,10 @@ def test_enforce_trusted_proxy_source_rejects_untrusted_host() -> None:
     with pytest.raises(HTTPException) as exc_info:
         enforce_trusted_proxy_source(
             "203.0.113.22",
-            service_name="CivicClerk",
+            service_name="TownlightMeetings",
             feature_name="staff workflow access",
             config=config,
-            trusted_proxy_env_var="CIVICCLERK_STAFF_SSO_TRUSTED_PROXIES",
+            trusted_proxy_env_var="TOWNLIGHT_MEETINGS_STAFF_SSO_TRUSTED_PROXIES",
         )
 
     assert exc_info.value.status_code == 403
@@ -439,10 +439,10 @@ def test_enforce_trusted_proxy_source_accepts_allowed_host() -> None:
 
     enforce_trusted_proxy_source(
         "10.20.30.40",
-        service_name="CivicClerk",
+        service_name="TownlightMeetings",
         feature_name="staff workflow access",
         config=config,
-        trusted_proxy_env_var="CIVICCLERK_STAFF_SSO_TRUSTED_PROXIES",
+        trusted_proxy_env_var="TOWNLIGHT_MEETINGS_STAFF_SSO_TRUSTED_PROXIES",
     )
 
 
@@ -507,7 +507,7 @@ def test_staff_key_gate_uses_constant_time_compare(
         return False
 
     monkeypatch.setenv("CIVIC_TEST_STAFF_API_KEY", "secret")
-    monkeypatch.setattr("civiccore.auth.staff_key.hmac.compare_digest", fake_compare_digest)
+    monkeypatch.setattr("townlight_core.auth.staff_key.hmac.compare_digest", fake_compare_digest)
     dependency = staff_key_gate("CIVIC_TEST_STAFF_API_KEY", "X-CivicTest-Staff-Key")
 
     with pytest.raises(HTTPException):

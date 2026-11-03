@@ -1,6 +1,6 @@
 # Support
 
-civiccore is a shared platform library for the Townlight product family. Support is community-driven via GitHub.
+townlight_core is a shared platform library for the Townlight product family. Support is community-driven via GitHub.
 
 ## Where to ask
 
@@ -20,8 +20,8 @@ civiccore is a shared platform library for the Townlight product family. Support
 
 ## Audience-specific guidance
 
-- **Module developers / IT integrators** consuming civiccore as a library: include the consuming application name, civiccore version, and Python/Postgres versions.
-- **Evaluators** considering civiccore for a new module: a Discussions post under General is the right starting point.
+- **Module developers / IT integrators** consuming townlight_core as a library: include the consuming application name, townlight_core version, and Python/Postgres versions.
+- **Evaluators** considering townlight_core for a new module: a Discussions post under General is the right starting point.
 
 ## Response expectations
 

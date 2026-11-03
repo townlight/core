@@ -1,4 +1,4 @@
-"""Unit tests for civiccore.llm.providers.
+"""Unit tests for townlight_core.llm.providers.
 
 No live HTTP, no real API keys. httpx-based providers are mocked with respx;
 optional-SDK providers (openai, anthropic) are mocked via unittest.mock.
@@ -17,7 +17,7 @@ import httpx
 import pytest
 import respx
 
-from civiccore.llm.providers import (
+from townlight_core.llm.providers import (
     AnthropicProvider,
     LLMProvider,
     OllamaProvider,
@@ -35,7 +35,7 @@ from civiccore.llm.providers import (
 
 
 def test_three_builtin_providers_registered():
-    """Importing civiccore.llm.providers must register all three built-ins."""
+    """Importing townlight_core.llm.providers must register all three built-ins."""
     assert {"ollama", "openai", "anthropic"}.issubset(set(list_providers()))
 
 
@@ -74,11 +74,11 @@ def test_get_unknown_provider_raises():
 
 
 def test_fourth_provider_extensibility():
-    """Prove a fourth provider can be registered without editing civiccore source.
+    """Prove a fourth provider can be registered without editing townlight_core source.
 
     This test imports ONLY the public API (register_provider, list_providers,
     get_provider, LLMProvider) and demonstrates that a downstream consumer can
-    add their own provider with no civiccore source changes.
+    add their own provider with no townlight_core source changes.
     """
     try:
 
@@ -232,7 +232,7 @@ def test_openai_provider_raises_clear_error_without_sdk(monkeypatch):
     # fresh resolution path even if the SDK was already imported elsewhere.
     monkeypatch.delitem(sys.modules, "openai", raising=False)
     monkeypatch.setitem(sys.modules, "openai", None)
-    with pytest.raises(ImportError, match=r"civiccore\[openai\]"):
+    with pytest.raises(ImportError, match=r"townlight_core\[openai\]"):
         OpenAIProvider(api_key="dummy")
 
 
@@ -243,7 +243,7 @@ def test_anthropic_provider_raises_clear_error_without_sdk(monkeypatch):
 
     monkeypatch.delitem(sys.modules, "anthropic", raising=False)
     monkeypatch.setitem(sys.modules, "anthropic", None)
-    with pytest.raises(ImportError, match=r"civiccore\[anthropic\]"):
+    with pytest.raises(ImportError, match=r"townlight_core\[anthropic\]"):
         AnthropicProvider(api_key="dummy")
 
 
@@ -313,7 +313,7 @@ def test_supports_images_property():
 
 def test_ollama_config_defaults():
     """OllamaConfig builds with no fields supplied; sensible defaults."""
-    from civiccore.llm.providers import OllamaConfig
+    from townlight_core.llm.providers import OllamaConfig
     cfg = OllamaConfig()
     assert cfg.base_url == "http://localhost:11434"
     assert cfg.default_model == "gemma4:e4b"
@@ -321,7 +321,7 @@ def test_ollama_config_defaults():
 
 def test_openai_config_requires_api_key():
     """OpenAIConfig.api_key is required and must be non-empty."""
-    from civiccore.llm.providers import OpenAIConfig
+    from townlight_core.llm.providers import OpenAIConfig
     from pydantic import ValidationError
     with pytest.raises(ValidationError):
         OpenAIConfig()  # missing api_key
@@ -331,7 +331,7 @@ def test_openai_config_requires_api_key():
 
 def test_anthropic_config_requires_api_key_and_positive_max_tokens():
     """AnthropicConfig validates api_key and max_tokens > 0."""
-    from civiccore.llm.providers import AnthropicConfig
+    from townlight_core.llm.providers import AnthropicConfig
     from pydantic import ValidationError
     with pytest.raises(ValidationError):
         AnthropicConfig()  # missing api_key
@@ -342,8 +342,8 @@ def test_anthropic_config_requires_api_key_and_positive_max_tokens():
 @pytest.mark.asyncio
 async def test_build_provider_validates_config_type():
     """build_provider raises TypeError when given the wrong config schema."""
-    from civiccore.llm.factory import build_provider
-    from civiccore.llm.providers import OpenAIConfig
+    from townlight_core.llm.factory import build_provider
+    from townlight_core.llm.providers import OpenAIConfig
     # Pass OpenAIConfig to ollama; should be rejected
     with pytest.raises(TypeError, match="ollama.*expects config type OllamaConfig"):
         build_provider("ollama", OpenAIConfig(api_key="k"))
@@ -352,8 +352,8 @@ async def test_build_provider_validates_config_type():
 @pytest.mark.asyncio
 async def test_build_provider_unknown_name_raises_key_error():
     """build_provider raises KeyError naming available providers."""
-    from civiccore.llm.factory import build_provider
-    from civiccore.llm.providers import OllamaConfig
+    from townlight_core.llm.factory import build_provider
+    from townlight_core.llm.providers import OllamaConfig
     with pytest.raises(KeyError, match="not registered"):
         build_provider("nonexistent_provider", OllamaConfig())
 
@@ -361,8 +361,8 @@ async def test_build_provider_unknown_name_raises_key_error():
 @pytest.mark.asyncio
 async def test_build_provider_constructs_ollama_with_valid_config():
     """build_provider with valid OllamaConfig returns a working provider instance."""
-    from civiccore.llm.factory import build_provider
-    from civiccore.llm.providers import OllamaConfig, OllamaProvider
+    from townlight_core.llm.factory import build_provider
+    from townlight_core.llm.providers import OllamaConfig, OllamaProvider
     cfg = OllamaConfig(base_url="http://test:11434", default_model="custom")
     provider = build_provider("ollama", cfg)
     assert isinstance(provider, OllamaProvider)
@@ -374,8 +374,8 @@ async def test_build_provider_constructs_ollama_with_valid_config():
 @pytest.mark.asyncio
 async def test_build_provider_constructs_openai_with_valid_config():
     """build_provider with valid OpenAIConfig returns OpenAIProvider."""
-    from civiccore.llm.factory import build_provider
-    from civiccore.llm.providers import OpenAIConfig, OpenAIProvider
+    from townlight_core.llm.factory import build_provider
+    from townlight_core.llm.providers import OpenAIConfig, OpenAIProvider
     cfg = OpenAIConfig(api_key="dummy")
     provider = build_provider("openai", cfg)
     assert isinstance(provider, OpenAIProvider)
@@ -385,8 +385,8 @@ async def test_build_provider_constructs_openai_with_valid_config():
 @pytest.mark.asyncio
 async def test_build_provider_constructs_anthropic_with_valid_config():
     """build_provider with valid AnthropicConfig returns AnthropicProvider."""
-    from civiccore.llm.factory import build_provider
-    from civiccore.llm.providers import AnthropicConfig, AnthropicProvider
+    from townlight_core.llm.factory import build_provider
+    from townlight_core.llm.providers import AnthropicConfig, AnthropicProvider
     cfg = AnthropicConfig(api_key="dummy")
     provider = build_provider("anthropic", cfg)
     assert isinstance(provider, AnthropicProvider)

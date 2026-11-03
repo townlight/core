@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 
 import pytest
 
-from civiccore.provenance import (
+from townlight_core.provenance import (
     CitationTarget,
     DocumentMetadata,
     ProvenanceBundle,

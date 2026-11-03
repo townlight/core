@@ -1,4 +1,4 @@
-name: civiccore cleanroom
+name: townlight_core cleanroom
 
 on:
   pull_request:
@@ -7,8 +7,8 @@ on:
       - ".github/workflows/cleanroom.yml"
       - "cleanroom/**"
       - "scripts/cleanroom/**"
-      - "scripts/run-civiccore-cleanroom.sh"
-      - "civiccore/release_provenance.py"
+      - "scripts/run-townlight_core-cleanroom.sh"
+      - "townlight_core/release_provenance.py"
       - "tests/fixtures/release_provenance/**"
       - "tests/test_cleanroom_harness.py"
       - "docs/ops/cleanroom-harness.md"
@@ -36,10 +36,10 @@ jobs:
           fetch-depth: 0
       - name: Verify Docker is available
         run: docker version
-      - name: Run CivicCore cleanroom harness
-        run: bash scripts/run-civiccore-cleanroom.sh "$TARGET_COMMIT" "docs/evidence/co6-ci-${TARGET_COMMIT}"
+      - name: Run TownlightCore cleanroom harness
+        run: bash scripts/run-townlight_core-cleanroom.sh "$TARGET_COMMIT" "docs/evidence/co6-ci-${TARGET_COMMIT}"
       - name: Upload cleanroom evidence
         uses: actions/upload-artifact@v7
         with:
-          name: civiccore-co6-cleanroom-${{ env.TARGET_COMMIT }}
+          name: townlight_core-co6-cleanroom-${{ env.TARGET_COMMIT }}
           path: docs/evidence/co6-ci-${{ env.TARGET_COMMIT }}/

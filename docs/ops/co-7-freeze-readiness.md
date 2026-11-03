@@ -1,4 +1,4 @@
-<a id="co-7-civiccore-freeze-readiness"></a>
+<a id="co-7-townlight_core-freeze-readiness"></a>
 
 # CO-7 Townlight Core Freeze Readiness
 
@@ -27,7 +27,7 @@ CO-7 reconciles the shipped Townlight Core surface against Townlight unified spe
 section 6 and the Townlight Core README. The shipped freeze candidate includes:
 
 - migrations and shared SQLAlchemy `Base`
-- `civiccore.llm` provider, template, registry, context, and structured-output helpers
+- `townlight_core.llm` provider, template, registry, context, and structured-output helpers
 - audit, persisted audit-log verification, provenance, manifest, and export-bundle primitives
 - city profile models and onboarding profile interview helpers
 - auth helpers for bearer roles and trusted-header proxy boundaries
@@ -45,9 +45,9 @@ Townlight PR so those shipped surfaces no longer appear as silent drift.
 
 The three README-listed placeholder namespaces now have Townlight Core ADRs:
 
-- `docs/adr/ADR-0001-defer-civiccore-catalog.md`
-- `docs/adr/ADR-0002-defer-civiccore-exemptions.md`
-- `docs/adr/ADR-0003-defer-civiccore-scaffold.md`
+- `docs/adr/ADR-0001-defer-townlight_core-catalog.md`
+- `docs/adr/ADR-0002-defer-townlight_core-exemptions.md`
+- `docs/adr/ADR-0003-defer-townlight_core-scaffold.md`
 
 Each ADR names the deferral rationale, target phase, and downstream consumption
 rule: no module depends on the placeholder namespace until it ships in a
@@ -58,12 +58,12 @@ versioned Townlight Core release artifact.
 Local command:
 
 ```powershell
-git -C <module> grep -n -E 'civiccore\.(catalog|exemptions|scaffold)|from civiccore import (catalog|exemptions|scaffold)|import civiccore\.(catalog|exemptions|scaffold)' -- .
+git -C <module> grep -n -E 'townlight_core\.(catalog|exemptions|scaffold)|from townlight_core import (catalog|exemptions|scaffold)|import townlight_core\.(catalog|exemptions|scaffold)' -- .
 ```
 
 Result: no production-code reliance found across the compatibility-matrix module
 set. Townlight Meetings and Townlight Code contain test-only references to
-`civiccore.exemptions` and `civiccore.catalog` inside guard tests that assert
+`townlight_core.exemptions` and `townlight_core.catalog` inside guard tests that assert
 module schemas do not foreign-key into unreleased Townlight Core placeholder targets.
 
 A production-code-only sweep excluding tests returned clean for every module in
@@ -74,7 +74,7 @@ the compatibility matrix.
 Local checks completed on 2026-05-05 before any freeze tag publication:
 
 - `python -m pytest tests/test_placeholder_adrs.py -q`: 3 passed.
-- `python -m ruff check tests/test_placeholder_adrs.py civiccore/catalog/__init__.py civiccore/exemptions/__init__.py civiccore/scaffold/__init__.py`: passed.
+- `python -m ruff check tests/test_placeholder_adrs.py townlight_core/catalog/__init__.py townlight_core/exemptions/__init__.py townlight_core/scaffold/__init__.py`: passed.
 - `python -m pytest --collect-only -q`: 260 tests collected.
 - `bash scripts/verify-release.sh`: passed, including 260 tests, Ruff, docs
   checks, build artifacts, and fresh virtualenv import/version smoke.
@@ -88,9 +88,9 @@ Local checks completed on 2026-05-05 before any freeze tag publication:
   `bash scripts/verify-docs.sh` passed.
 - Companion Townlight suite-state verification:
   `python scripts/verify-suite-state.py --remote-only` passed for all 26 repos
-  and confirmed `civiccore 0.22.1`.
+  and confirmed `townlight_core 0.22.1`.
 - Companion Townlight browser QA:
-  `docs/browser-qa-co7-civiccore-freeze-lockstep-summary.md` passed with
+  `docs/browser-qa-co7-townlight_core-freeze-lockstep-summary.md` passed with
   desktop 1280x900 and mobile 390x844 screenshots, zero browser console
   messages, zero page errors, no horizontal overflow, keyboard focus proof,
   contrast proof, and copy review.

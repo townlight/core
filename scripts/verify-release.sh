@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# civiccore/scripts/verify-release.sh - civiccore release gate.
+# townlight_core/scripts/verify-release.sh - townlight_core release gate.
 #
-# Read-only verification of civiccore's pre-push readiness. Checks:
+# Read-only verification of townlight_core's pre-push readiness. Checks:
 #   1. Test suite (pytest tests/)
 #   2. Lint (ruff check .)
-#   3. Version lockstep between pyproject.toml and civiccore/__init__.py
+#   3. Version lockstep between pyproject.toml and townlight_core/__init__.py
 #   4. Required Rule 9 doc artifacts present on disk
 #   5. Build artifacts (sdist + wheel via python -m build)
 #   6. Fresh virtualenv install from the built wheel, exact version check,
@@ -66,7 +66,7 @@ dump_failure_diagnostics() {
         echo ""
     else
         echo "## docker compose"
-        echo "No compose file present; CivicCore release verification is package-only."
+        echo "No compose file present; TownlightCore release verification is package-only."
         echo ""
     fi
     echo "============================================"
@@ -74,7 +74,7 @@ dump_failure_diagnostics() {
 }
 
 info "0. release verification environment"
-RELEASE_VENV="$(mktemp -d "${TMPDIR:-/tmp}/civiccore-release-env-XXXXXX")"
+RELEASE_VENV="$(mktemp -d "${TMPDIR:-/tmp}/townlight_core-release-env-XXXXXX")"
 if "${PYTHON_CMD[@]}" -m venv "$RELEASE_VENV"; then
     VENV_PYTHON="$RELEASE_VENV/bin/python"
     if [ ! -x "$VENV_PYTHON" ] && [ -x "$RELEASE_VENV/Scripts/python.exe" ]; then
@@ -111,17 +111,17 @@ else
     fail "ruff reported issues"
 fi
 
-# --- 3. version lockstep (pyproject.toml <-> civiccore/__init__.py) ---------
+# --- 3. version lockstep (pyproject.toml <-> townlight_core/__init__.py) ---------
 info "3. version lockstep"
 PY_VER=$(grep -oE '^version[[:space:]]*=[[:space:]]*"[^"]+"' pyproject.toml 2>/dev/null \
     | head -1 \
     | sed -E 's/^version[[:space:]]*=[[:space:]]*"([^"]+)"/\1/' || true)
-INIT_VER=$(grep -oE '__version__[[:space:]]*=[[:space:]]*"[^"]+"' civiccore/__init__.py 2>/dev/null \
+INIT_VER=$(grep -oE '__version__[[:space:]]*=[[:space:]]*"[^"]+"' townlight_core/__init__.py 2>/dev/null \
     | head -1 \
     | sed -E 's/.*"([^"]+)"/\1/' || true)
 
 printf '      pyproject.toml          %s\n' "${PY_VER:-<missing>}"
-printf '      civiccore/__init__.py   %s\n' "${INIT_VER:-<missing>}"
+printf '      townlight_core/__init__.py   %s\n' "${INIT_VER:-<missing>}"
 
 if [ -n "$PY_VER" ] && [ -n "$INIT_VER" ] && [ "$PY_VER" = "$INIT_VER" ]; then
     pass "two surfaces agree on $PY_VER"
@@ -172,13 +172,13 @@ from pathlib import Path
 
 
 def main() -> int:
-    wheels = sorted(glob.glob("dist/civiccore-*.whl"))
+    wheels = sorted(glob.glob("dist/townlight_core-*.whl"))
     if not wheels:
         print("missing built wheel in dist/", file=sys.stderr)
         return 1
 
     wheel_path = Path(wheels[0]).resolve()
-    temp_dir = Path(tempfile.mkdtemp(prefix="civiccore-release-"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="townlight_core-release-"))
 
     try:
         builder = venv.EnvBuilder(with_pip=True)
@@ -206,42 +206,42 @@ def main() -> int:
                     "from pathlib import Path; "
                     "import re; "
                     "from importlib.metadata import version; "
-                    "import civiccore; "
-                    "from civiccore.migrations.runner import upgrade_to_head; "
+                    "import townlight_core; "
+                    "from townlight_core.migrations.runner import upgrade_to_head; "
                     "pyproject = Path('pyproject.toml').read_text(encoding='utf-8'); "
                     "match = re.search(r'^version\\s*=\\s*\"([^\"]+)\"', pyproject, re.MULTILINE); "
                     "assert match, 'pyproject.toml version missing'; "
                     "expected_version = match.group(1); "
-                    "assert version('civiccore') == expected_version; "
-                    "assert civiccore.__version__ == expected_version; "
+                    "assert version('townlight_core') == expected_version; "
+                    "assert townlight_core.__version__ == expected_version; "
                     "assert callable(upgrade_to_head); "
-                    "assert callable(civiccore.validate_manifest); "
-                    "assert callable(civiccore.ingest_file); "
-                    "assert callable(civiccore.ingest_bytes); "
-                    "assert callable(civiccore.register_handler); "
-                    "assert civiccore.Document; "
-                    "assert civiccore.DocumentChunk; "
-                    "assert civiccore.DataSource; "
-                    "assert callable(civiccore.import_meeting_payload); "
-                    "assert callable(civiccore.plan_vendor_delta_request); "
-                    "assert callable(civiccore.build_deadline_plan); "
-                    "assert callable(civiccore.evaluate_notice_compliance); "
-                    "assert callable(civiccore.validate_cron_expression); "
-                    "assert callable(civiccore.compute_next_sync_at); "
-                    "assert callable(civiccore.compute_onboarding_status); "
-                    "assert callable(civiccore.next_profile_prompt); "
-                    "assert civiccore.AuditHashChain; "
-                    "assert civiccore.PersistedAuditLogEntry; "
-                    "assert callable(civiccore.compute_persisted_audit_hash); "
-                    "assert callable(civiccore.verify_persisted_audit_chain); "
-                    "assert civiccore.SyncCircuitState; "
-                    "assert civiccore.SyncRunResult; "
-                    "assert civiccore.SyncSourceStatus; "
-                    "assert callable(civiccore.apply_sync_run_result); "
-                    "assert callable(civiccore.build_sync_source_status); "
-                    "assert callable(civiccore.with_http_retry); "
-                    "assert civiccore.CityProfile; "
-                    "assert callable(civiccore.reciprocal_rank_fusion); "
+                    "assert callable(townlight_core.validate_manifest); "
+                    "assert callable(townlight_core.ingest_file); "
+                    "assert callable(townlight_core.ingest_bytes); "
+                    "assert callable(townlight_core.register_handler); "
+                    "assert townlight_core.Document; "
+                    "assert townlight_core.DocumentChunk; "
+                    "assert townlight_core.DataSource; "
+                    "assert callable(townlight_core.import_meeting_payload); "
+                    "assert callable(townlight_core.plan_vendor_delta_request); "
+                    "assert callable(townlight_core.build_deadline_plan); "
+                    "assert callable(townlight_core.evaluate_notice_compliance); "
+                    "assert callable(townlight_core.validate_cron_expression); "
+                    "assert callable(townlight_core.compute_next_sync_at); "
+                    "assert callable(townlight_core.compute_onboarding_status); "
+                    "assert callable(townlight_core.next_profile_prompt); "
+                    "assert townlight_core.AuditHashChain; "
+                    "assert townlight_core.PersistedAuditLogEntry; "
+                    "assert callable(townlight_core.compute_persisted_audit_hash); "
+                    "assert callable(townlight_core.verify_persisted_audit_chain); "
+                    "assert townlight_core.SyncCircuitState; "
+                    "assert townlight_core.SyncRunResult; "
+                    "assert townlight_core.SyncSourceStatus; "
+                    "assert callable(townlight_core.apply_sync_run_result); "
+                    "assert callable(townlight_core.build_sync_source_status); "
+                    "assert callable(townlight_core.with_http_retry); "
+                    "assert townlight_core.CityProfile; "
+                    "assert callable(townlight_core.reciprocal_rank_fusion); "
                     "print('fresh-venv import smoke OK')"
                 ),
             ],

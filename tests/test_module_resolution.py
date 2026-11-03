@@ -1,7 +1,7 @@
 """Dependency admission must not enable a module whose prerequisites cannot run."""
 
 import pytest
-from civiccore.platform import ModuleManifest, build_module_registry
+from townlight_core.platform import ModuleManifest, build_module_registry
 
 
 def module(name, **extra):
@@ -10,7 +10,7 @@ def module(name, **extra):
         name=name,
         version="1.0.0",
         package_name=name,
-        civiccore_min_version="1.2.0",
+        townlight_core_min_version="1.2.0",
         **extra,
     )
 
@@ -18,7 +18,7 @@ def module(name, **extra):
 def resolve(*modules, version="1.3.0.dev1"):
     return {
         entry.module_id: entry
-        for entry in build_module_registry(list(modules), civiccore_version=version).entries
+        for entry in build_module_registry(list(modules), townlight_core_version=version).entries
     }
 
 

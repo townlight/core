@@ -1,4 +1,4 @@
-"""Negative contract tests for CivicCore-owned suite staff session tokens."""
+"""Negative contract tests for TownlightCore-owned suite staff session tokens."""
 
 from __future__ import annotations
 
@@ -10,12 +10,12 @@ import pytest
 def test_suite_session_rejects_expired_and_wrong_signature_tokens(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from civiccore.auth.suite_session import (
+    from townlight_core.auth.suite_session import (
         issue_suite_session_token,
         validate_suite_session_token,
     )
 
-    monkeypatch.setenv("CIVICCORE_SUITE_SESSION_SECRET", "first-test-secret")
+    monkeypatch.setenv("TOWNLIGHT_CORE_SUITE_SESSION_SECRET", "first-test-secret")
     expired_token = issue_suite_session_token(
         subject="operator@example.gov",
         roles=frozenset({"records_admin"}),
@@ -35,7 +35,7 @@ def test_suite_session_rejects_expired_and_wrong_signature_tokens(
         session_id="wrong-secret-session",
         expires_at=datetime.now(UTC) + timedelta(minutes=5),
     )
-    monkeypatch.setenv("CIVICCORE_SUITE_SESSION_SECRET", "second-test-secret")
+    monkeypatch.setenv("TOWNLIGHT_CORE_SUITE_SESSION_SECRET", "second-test-secret")
 
     with pytest.raises(PermissionError, match="signature|invalid"):
         validate_suite_session_token(

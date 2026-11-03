@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 
-from civiccore.testing import (
+from townlight_core.testing import (
     MOCK_CITY_NAME,
     assert_secret_free_report,
     mock_city_backup_retention_contract,

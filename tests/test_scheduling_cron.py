@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytest
 
-from civiccore.scheduling import (
+from townlight_core.scheduling import (
     UTC,
     compute_next_sync_at,
     min_interval_minutes,

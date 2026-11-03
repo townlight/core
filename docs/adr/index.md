@@ -1,20 +1,27 @@
-# CivicCore Architecture Decision Records
+# Townlight Core Architecture Decision Records
 
-CivicCore ADRs record module-scoped platform decisions. Cross-module decisions
-that bind more than one repository remain in the umbrella `CivicSuite`
+Townlight Core ADRs record module-scoped platform decisions. Cross-module decisions
+that bind more than one repository remain in the umbrella `Townlight`
 architecture ADR index.
 
 ## Placeholder Namespace Deferrals
 
-These CO-7 ADRs define the placeholder namespace boundary for the freeze line:
+These historical CO-7 ADRs define the placeholder namespace boundary for their
+original freeze line. They retain their original text and identities. Current
+catalog, exemption and scaffold implementations are described by ADR-0004
+through ADR-0010 and their owning source/tests; this index is not a current
+blanket deferral.
 
-- [ADR-0001: Defer `civiccore.catalog`](ADR-0001-defer-civiccore-catalog.md)
-- [ADR-0002: Defer `civiccore.exemptions`](ADR-0002-defer-civiccore-exemptions.md)
-- [ADR-0003: Defer `civiccore.scaffold`](ADR-0003-defer-civiccore-scaffold.md)
+The current principal namespaces are `townlight_core.catalog`,
+`townlight_core.exemptions` and `townlight_core.scaffold`.
+
+- [ADR-0001: Historical catalog deferral](ADR-0001-defer-civiccore-catalog.md)
+- [ADR-0002: Historical exemptions deferral](ADR-0002-defer-civiccore-exemptions.md)
+- [ADR-0003: Historical scaffold deferral](ADR-0003-defer-civiccore-scaffold.md)
 
 Rule: no downstream module may import, foreign-key to, document as required, or
 otherwise depend on a placeholder namespace until that namespace ships in a
-versioned CivicCore release artifact and the downstream compatibility matrix is
+versioned Townlight Core release artifact and the downstream compatibility matrix is
 updated to name that release.
 
 - [ADR-0004: Beta shared catalog extraction](ADR-0004-beta-shared-catalog.md) partially supersedes ADR-0001 in the private candidate; broader inventory remains open.
@@ -27,6 +34,6 @@ updated to name that release.
 
 - [ADR-0008: Beta installed-module inventory and recommendations](ADR-0008-beta-module-inventory.md) partially supersedes ADR-0001/ADR-0004 for the tested persisted, scoped module inventory and its deterministic recommendations. It reuses the shipped `build_module_registry` rather than adding a resolver, records only caller-declared installs, and keeps the municipal systems catalog distinct. Per-city module commissioning, installer/umbrella registration, artifact proof and consumer wiring remain open.
 
-- [ADR-0009: Department-scoped shared authority](ADR-0009-department-scoped-authority.md) adds the deny-by-default department/tenant authorization contract around the shipped auth, search, export and model-context helpers: a department claim is admissible only from the persisted `civiccore_department_grant_events` ledger, roles are intersected rather than unioned, revocation is an appended event, and no credential verifier, route or second permission engine is added. A Core HTTP/CLI surface, per-city department commissioning, role-to-job-function mapping and consumer wiring remain open.
+- [ADR-0009: Department-scoped shared authority](ADR-0009-department-scoped-authority.md) adds the deny-by-default department/tenant authorization contract around the shipped auth, search, export and model-context helpers: a department claim is admissible only from the persisted `townlight_core_department_grant_events` ledger, roles are intersected rather than unioned, revocation is an appended event, and no credential verifier, route or second permission engine is added. A Core HTTP/CLI surface, per-city department commissioning, role-to-job-function mapping and consumer wiring remain open.
 
-- [ADR-0010: Claim-bound acceptance of ingest and media artifacts](ADR-0010-claim-bound-artifacts.md) adds one adapter (`civiccore.tasks.artifacts`, migration `civiccore_0009_job_artifacts`) that binds a derived artifact to the producing job identity and its still-active claim, publishes it only inside a configured store root with a re-verified sha256, and records an attributed, append-only receipt. It adds no transcription, OCR, transcoding, embedding, provider call or second job engine; consumer wiring, large-original storage and retention/redaction workflows remain open.
+- [ADR-0010: Claim-bound acceptance of ingest and media artifacts](ADR-0010-claim-bound-artifacts.md) adds one adapter (`townlight_core.tasks.artifacts`, migration `townlight_core_0009_job_artifacts`) that binds a derived artifact to the producing job identity and its still-active claim, publishes it only inside a configured store root with a re-verified sha256, and records an attributed, append-only receipt. It adds no transcription, OCR, transcoding, embedding, provider call or second job engine; consumer wiring, large-original storage and retention/redaction workflows remain open.

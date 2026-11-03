@@ -6,7 +6,7 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from civiccore.audit import (
+from townlight_core.audit import (
     AuditActor,
     AuditEvent,
     AuditHashChain,

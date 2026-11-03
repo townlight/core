@@ -1,22 +1,22 @@
 # Historical Provenance Disclosure Policy
 
-Status: operative CivicSuite policy, effective 2026-05-05.
+Status: operative Townlight policy, effective 2026-05-05.
 
-Baseline: `civiccore v0.22.1`, released 2026-05-05 at 16:23:36Z, is the
+Baseline: `townlight_core v0.22.1`, released 2026-05-05 at 16:23:36Z, is the
 baseline release under the attested provenance model. The live release and trust
 artifacts are:
 
-- Release: [`v0.22.1`](https://github.com/CivicSuite/civiccore/releases/tag/v0.22.1)
+- Release: [`v0.22.1`](https://github.com/Townlight/townlight_core/releases/tag/v0.22.1)
 - Attestation:
-  [`release-attestation.json`](https://github.com/CivicSuite/civiccore/releases/download/v0.22.1/release-attestation.json)
+  [`release-attestation.json`](https://github.com/Townlight/townlight_core/releases/download/v0.22.1/release-attestation.json)
 - Cosign bundle:
-  [`release-attestation.json.bundle`](https://github.com/CivicSuite/civiccore/releases/download/v0.22.1/release-attestation.json.bundle)
+  [`release-attestation.json.bundle`](https://github.com/Townlight/townlight_core/releases/download/v0.22.1/release-attestation.json.bundle)
 - Checksums:
-  [`SHA256SUMS.txt`](https://github.com/CivicSuite/civiccore/releases/download/v0.22.1/SHA256SUMS.txt)
+  [`SHA256SUMS.txt`](https://github.com/Townlight/townlight_core/releases/download/v0.22.1/SHA256SUMS.txt)
 
 ## Summary
 
-CivicSuite strengthened its release provenance model during the synthetic
+Townlight strengthened its release provenance model during the synthetic
 development phase. The prior model relied on GitHub-native release pages and
 tag references. A backfill scan found that historical releases were either
 lightweight tags or unsigned annotated tag objects. GitHub's release UI can show
@@ -28,7 +28,7 @@ The new model treats tags as release pointers and makes a Sigstore-signed
 must include the attestation, cosign bundle, artifact checksums, evidence bundle
 hashes, and an exact per-repo/per-tag verification command.
 
-This model shift was driven by the CivicSuite synthetic-phase adversarial audit
+This model shift was driven by the Townlight synthetic-phase adversarial audit
 contract. The external auditor flagged that the release-page "Verified" signal
 was misleading for release provenance, the development team built a
 fixture-driven gate, the gate surfaced an organization-wide historical baseline
@@ -40,8 +40,8 @@ rewriting release history.
 The 2026-05-05 policy promotion is anchored to the following evidence:
 
 - The live `v0.22.1` release attestation URL listed above.
-- CivicCore's Tier 1 retrofit ledger:
-  [`docs/ops/civiccore-tier1-retrofit-ledger.md`](civiccore-tier1-retrofit-ledger.md)
+- Townlight Core's Tier 1 retrofit ledger:
+  [`docs/ops/townlight_core-tier1-retrofit-ledger.md`](townlight_core-tier1-retrofit-ledger.md)
 - The cross-module retrofit closeout report:
   [`docs/ops/co-4-cross-module-retrofit-report.md`](co-4-cross-module-retrofit-report.md)
 - Release verification command and result: `bash scripts/verify-release.sh`,
@@ -54,7 +54,7 @@ The 2026-05-05 policy promotion is anchored to the following evidence:
 
 - Historical releases before 2026-05-05 were produced under a weaker
   GitHub-native provenance model.
-- The backfill scan covered CivicSuite release tags across the organization as
+- The backfill scan covered Townlight release tags across the organization as
   of 2026-05-04 and found 119 historical releases failing the strengthened
   gate: 83 lightweight tags and 36 unsigned annotated tag objects.
 - Those releases are not retroactively deleted or rewritten.
@@ -81,12 +81,12 @@ Worked example for the first attested Townlight Core baseline release:
 ```bash
 cosign verify-blob release-attestation.json \
   --bundle release-attestation.json.bundle \
-  --certificate-identity "https://github.com/CivicSuite/civiccore/.github/workflows/release.yml@refs/tags/v0.22.1" \
+  --certificate-identity "https://github.com/Townlight/townlight_core/.github/workflows/release.yml@refs/tags/v0.22.1" \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com
 
 sha256sum -c SHA256SUMS.txt
 python scripts/verify-release-provenance.py v0.22.1 \
-  --repo CivicSuite/civiccore \
+  --repo Townlight/townlight_core \
   --attestation release-attestation.json \
   --bundle release-attestation.json.bundle \
   --artifacts-dir .
@@ -95,15 +95,15 @@ python scripts/verify-release-provenance.py v0.22.1 \
 ## Canonical Sources
 
 - Live attested baseline release:
-  [`v0.22.1`](https://github.com/CivicSuite/civiccore/releases/tag/v0.22.1)
+  [`v0.22.1`](https://github.com/Townlight/townlight_core/releases/tag/v0.22.1)
 - Gate implementation:
-  [`civiccore/release_provenance.py`](../../civiccore/release_provenance.py)
+  [`townlight_core/release_provenance.py`](../../townlight_core/release_provenance.py)
 - Thin CLI wrapper:
   [`scripts/verify-release-provenance.py`](../../scripts/verify-release-provenance.py)
 - Versioned attestation schema:
   [`docs/ops/release-attestation.schema.json`](release-attestation.schema.json)
 - Townlight Core Tier 1 retrofit ledger:
-  [`docs/ops/civiccore-tier1-retrofit-ledger.md`](civiccore-tier1-retrofit-ledger.md)
+  [`docs/ops/townlight_core-tier1-retrofit-ledger.md`](townlight_core-tier1-retrofit-ledger.md)
 - CO-4 cross-module retrofit report:
   [`docs/ops/co-4-cross-module-retrofit-report.md`](co-4-cross-module-retrofit-report.md)
 - Adversarial fixture suite:

@@ -1,6 +1,6 @@
 # Claim-bound ingest and media artifacts
 
-`civiccore.tasks.artifacts` is the shared answer to one question: *may this derived file
+`townlight_core.tasks.artifacts` is the shared answer to one question: *may this derived file
 become durable, and does the job that produced it still own the work?* It is the executable
 part of the `C1.jobs` adapter gap ("consumers must enforce claim-bound artifact receipts"),
 built on the queue contract in [job-leases.md](job-leases.md). It is **not** a media
@@ -63,7 +63,7 @@ symlink-privilege case) cover identity binding, every refusal reason, traversal 
 path refusal, idempotency, name conflict, staging cleanup and tamper detection.
 
 Real PostgreSQL acceptance (`work/beta-foundations/core-job-adapters-01/harness.py`, 9/9
-checks, 0 skips, head `civiccore_0009_job_artifacts`): a claimed synthetic job publishes
+checks, 0 skips, head `townlight_core_0009_job_artifacts`): a claimed synthetic job publishes
 three derived artifacts (chunked text, chunks JSON, and metadata measured from a
 stdlib-generated 0.25 s WAV), bound to the job identity, claim token, recorder and source
 hashes. Expired-lease, superseded-token, cancelled and unattributed acceptances are refused

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from civiccore.verification import (
+from townlight_core.verification import (
     BrowserReleaseEvidenceResult,
     normalized_text_sha256,
     validate_release_browser_evidence,

@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an enhancement to civiccore
+about: Suggest an enhancement to townlight_core
 title: "[feat] "
 labels: ["enhancement"]
 ---
@@ -14,6 +14,6 @@ labels: ["enhancement"]
 **Alternatives considered**
 
 **Scope check**
-<!-- Does this fit civiccore's role as a shared platform library, or does it belong in a consumer module? -->
+<!-- Does this fit townlight_core's role as a shared platform library, or does it belong in a consumer module? -->
 
 **Additional context**

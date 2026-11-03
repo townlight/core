@@ -5,7 +5,7 @@
 # 1. build release artifacts
 # 2. generate release-attestation.json using canonical JSON
 # 3. sign the attestation with keyless Sigstore/cosign from this workflow
-# 4. run the CivicCore provenance gate against fixtures and the prospective tag
+# 4. run the TownlightCore provenance gate against fixtures and the prospective tag
 # 5. publish only after the preflight gate passes
 
 name: release-with-sigstore-attestation
