@@ -2,8 +2,7 @@
 
 The current candidate is `townlight-core` 1.3.0.dev2 with principal import
 `townlight_core`. Its README, user manual and governing `AGENTS.md` describe
-current source and fresh-install boundaries. Signed Windows installed acceptance
-for the coordinated naming, Access and Notice candidate remains pending.
+current source and fresh-install boundaries. Windows MSI 1.7.0.1 is [published](https://github.com/townlight/townlight/releases/tag/townlight-beta-1-windows-1.7.0.1). Its [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md) identifies the tested workflows and limits; standalone source checks remain separate.
 
 The CO-3 ledger, CO-4 report, CO-7 freeze readiness and CO-9 release/audit reports
 are historical records for their identified releases. Their original filenames,
