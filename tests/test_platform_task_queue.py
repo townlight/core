@@ -19,7 +19,7 @@ testcontainers = pytest.importorskip(
     "testcontainers.postgres",
     reason="testcontainers[postgres] not installed; install dev extras to run queue tests",
 )
-PostgresContainer = testcontainers.PostgresContainer
+from tests._postgres_fixture import postgres_fixture  # noqa: E402
 
 from townlight_core.migrations.runner import upgrade_to_head  # noqa: E402
 from townlight_core.platform import (  # noqa: E402
@@ -37,6 +37,8 @@ from townlight_core.tasks.worker import _run_worker  # noqa: E402
 
 
 def _docker_available() -> bool:
+    if os.environ.get("TOWNLIGHT_CORE_TEST_DATABASE_URL"):
+        return True
     try:
         import docker  # type: ignore[import-untyped]
 
@@ -71,7 +73,7 @@ def _async_url(sync_url: str) -> str:
 def pg_container():
     if not _docker_available():
         pytest.skip("Docker daemon not reachable; queue tests require a PostgreSQL container.")
-    with PostgresContainer("pgvector/pgvector:pg17") as pg:
+    with postgres_fixture("pgvector/pgvector:pg17") as pg:
         yield pg
 
 

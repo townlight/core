@@ -16,7 +16,7 @@ testcontainers = pytest.importorskip(
     "testcontainers.postgres",
     reason="testcontainers[postgres] not installed; install dev extras to run idempotency tests",
 )
-PostgresContainer = testcontainers.PostgresContainer
+from tests._postgres_fixture import postgres_fixture  # noqa: E402
 
 from townlight_core.migrations.runner import current_revision, upgrade_to_head  # noqa: E402
 from townlight_core.migrations.versions.townlight_core_0001_baseline_v1 import (  # noqa: E402
@@ -33,6 +33,8 @@ def _docker_available() -> bool:
     when the daemon is unreachable. We probe once at fixture setup so that
     dev machines without Docker get a clear skip rather than a stack trace.
     """
+    if os.environ.get("TOWNLIGHT_CORE_TEST_DATABASE_URL"):
+        return True
     try:
         import docker  # type: ignore[import-untyped]
 
@@ -58,7 +60,7 @@ def pg_container():
             "Docker daemon not reachable — idempotency tests require testcontainers "
             "with a running Docker host. Install Docker Desktop or run in CI."
         )
-    with PostgresContainer("pgvector/pgvector:pg17") as pg:
+    with postgres_fixture("pgvector/pgvector:pg17") as pg:
         yield pg
 
 
