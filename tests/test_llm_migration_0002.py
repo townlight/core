@@ -21,7 +21,7 @@ testcontainers = pytest.importorskip(
     "testcontainers.postgres",
     reason="testcontainers[postgres] not installed; install dev extras to run migration tests",
 )
-PostgresContainer = testcontainers.PostgresContainer
+from _postgres_fixture import postgres_fixture
 
 import townlight_core  # noqa: E402
 from townlight_core.migrations.runner import current_revision, upgrade_to_head  # noqa: E402
@@ -36,6 +36,8 @@ _ALEMBIC_INI = Path(townlight_core.__file__).parent / "migrations" / "alembic.in
 
 def _docker_available() -> bool:
     """Return True if a Docker daemon is reachable; False otherwise."""
+    if os.environ.get("TOWNLIGHT_CORE_TEST_DATABASE_URL"):
+        return True
     try:
         import docker  # type: ignore[import-untyped]
 
@@ -53,7 +55,7 @@ def pg_container():
             "Docker daemon not reachable — migration tests require testcontainers "
             "with a running Docker host. Install Docker Desktop or run in CI."
         )
-    with PostgresContainer("pgvector/pgvector:pg17") as pg:
+    with postgres_fixture("pgvector/pgvector:pg17") as pg:
         yield pg
 
 
