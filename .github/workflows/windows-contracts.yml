@@ -1,17 +1,17 @@
 name: Windows component contracts
 on:
   pull_request:
-    paths: ["**/*.py", "**/pyproject.toml", ".github/workflows/windows-contracts.yml"]
-  push:
-    paths: ["**/*.py", "**/pyproject.toml", ".github/workflows/windows-contracts.yml"]
-    branches: [main]
+    paths: ["**/*.py", "**/*.toml", "**/*.sql", "**/*.json", "**/*.ini", "**/*.cfg", "**/*.ps1", "**/*.sh", "**/*.yaml", "**/*.yml", "**/requirements*.txt", "**/*.lock"]
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
   windows-contracts:
     runs-on: windows-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     defaults:
       run:
         working-directory: .
@@ -20,10 +20,12 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
+          cache: pip
+          cache-dependency-path: '**/pyproject.toml'
       - name: Install component and test tools
         run: python -m pip install -e ".[dev]" pytest
-      - name: Run existing Windows contracts
-        run: python -X utf8 -m pytest tests/test_auth_suite_session.py tests/test_security_config_validation.py tests/test_connector_manifest.py tests/test_export_bundle.py -q --junitxml=windows-contracts.xml
+      - name: Run full Python suite on Windows
+        run: python -X utf8 -m pytest tests -q -ra --junitxml=windows-contracts.xml
       - name: Preserve results
         if: always()
         uses: actions/upload-artifact@v4
