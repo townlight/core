@@ -173,7 +173,7 @@ jobs:
             --output release-attestation.json
 
       - name: Install cosign
-        uses: sigstore/cosign-installer@v4.1.1
+        uses: sigstore/cosign-installer@v4.1.3
 
       - name: Sign release attestation
         run: cosign sign-blob release-attestation.json --bundle release-attestation.json.bundle --yes
