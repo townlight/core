@@ -66,6 +66,10 @@ class CatalogInput(BaseModel):
         return self
 
 
+def catalog_row_key(row):
+    return row["domain"], row["vendor_name"], row["access_protocol"]
+
+
 def normalized_rows(bundle: CatalogInput):
     return sorted(
         [
@@ -73,13 +77,15 @@ def normalized_rows(bundle: CatalogInput):
             for domain in bundle.domains
             for system in domain.systems
         ],
-        key=lambda r: (r["domain"], r["vendor_name"], r["access_protocol"]),
+        key=catalog_row_key,
     )
 
 
 def fingerprint(rows):
+    # Database collation can order the same keys differently from Python.
+    canonical_rows = sorted(rows, key=catalog_row_key)
     return hashlib.sha256(
-        json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()
+        json.dumps(canonical_rows, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
 
 
