@@ -16,7 +16,7 @@ testcontainers = pytest.importorskip(
     "testcontainers.postgres",
     reason="testcontainers[postgres] not installed; install dev extras to run idempotency tests",
 )
-from _postgres_fixture import postgres_fixture  # noqa: E402
+from tests._postgres_fixture import postgres_fixture  # noqa: E402
 
 from townlight_core.migrations.runner import current_revision, upgrade_to_head  # noqa: E402
 from townlight_core.migrations.versions.townlight_core_0001_baseline_v1 import (  # noqa: E402

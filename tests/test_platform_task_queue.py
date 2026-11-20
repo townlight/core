@@ -19,7 +19,7 @@ testcontainers = pytest.importorskip(
     "testcontainers.postgres",
     reason="testcontainers[postgres] not installed; install dev extras to run queue tests",
 )
-from _postgres_fixture import postgres_fixture  # noqa: E402
+from tests._postgres_fixture import postgres_fixture  # noqa: E402
 
 from townlight_core.migrations.runner import upgrade_to_head  # noqa: E402
 from townlight_core.platform import (  # noqa: E402
