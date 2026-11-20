@@ -31,7 +31,7 @@ testcontainers = pytest.importorskip(
     "testcontainers.postgres",
     reason="testcontainers[postgres] not installed; install dev extras to run service tests",
 )
-from _postgres_fixture import postgres_fixture
+from _postgres_fixture import postgres_fixture  # noqa: E402
 
 from townlight_core.llm.context import DEFAULT_CONTEXT_WINDOW  # noqa: E402
 from townlight_core.llm.registry import (  # noqa: E402
